@@ -1,7 +1,7 @@
 package pe.com.yoursoccerfield;
 
 /**
- * Created by Pc LAURA on 15/06/2017.
+ * Created by Pc LAURA NAKAYA on 15/06/2017.
  */
 public class Additional {
     private String id;
