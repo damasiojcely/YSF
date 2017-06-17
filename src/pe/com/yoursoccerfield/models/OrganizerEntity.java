@@ -45,19 +45,19 @@ public class OrganizerEntity {
     public List<Organizer> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
                 criteria == "" ? "" : " WHERE " + criteria;
-        List<Organizer> regions = new ArrayList<>();
+        List<Organizer> organizers = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if(resultSet == null) return null;
             while(resultSet.next()) {
-                regions.add((new Organizer())
+                organizers.add((new Organizer())
                         .setId(resultSet.getInt("organizer_id"))
                         .setFirstName(resultSet.getString("organizer_first_name"))
                         .setLastName(resultSet.getString("organizer_last_name"));
             }
-            return regions;
+            return organizers;
         } catch (SQLException e) {
             e.printStackTrace();
         }
