@@ -20,6 +20,7 @@ public class Organizer {
     public Organizer() {
     }
 
+
     public Organizer(int id, String firstName, String lastName, String email, String password, int dni, String photo, String phone, String position) {
         this.setId(id);
         this.setFirstName(firstName);
@@ -37,13 +38,18 @@ public class Organizer {
         return id;
     }
 
+    public String getIdAsString() {
+        return String.valueOf(getId());
+    }
+
     public Organizer setId(int id) {
         this.id = id;
         return this;
     }
 
     public String getFirstName() {
-        return firstName;
+
+         return "'" + getFirstName() + "'";
     }
 
     public Organizer setFirstName(String firstName) {
@@ -52,7 +58,7 @@ public class Organizer {
     }
 
     public String getLastName() {
-        return lastName;
+       return "'" + getLastName() + "'";
     }
 
     public Organizer setLastName(String lastName) {
