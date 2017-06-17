@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by otoya on 17/06/2017.
  */
-public class OrganizerEntity {
+public class OrganizerEntity  extends  BaseEntity{
 
     public OrganizerEntity(Connection connection) {
         super( connection,"organizer");
