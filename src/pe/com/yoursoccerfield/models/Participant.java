@@ -1,5 +1,8 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Otoya user on 16/06/2017.
  */
@@ -10,18 +13,18 @@ public class Participant {
     private String lastName;
     private String email;
     private String position;
-    private int Organizer;
+    private  Organizer organizer;
 
     public Participant() {
     }
 
-    public Participant(int id, String firstName, String lastName, String email, String position, int organizer) {
+    public Participant(int id, String firstName, String lastName, String email, String position, Organizer organizer) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
         this.setPosition(position);
-        setOrganizer(organizer);
+        this.setOrganizer(organizer);
     }
 
 
@@ -70,12 +73,25 @@ public class Participant {
         return this;
     }
 
-    public int getOrganizer() {
-        return Organizer;
+    public Organizer getOrganizer() {
+        return organizer;
     }
 
-    public Participant setOrganizer(int organizer) {
-        Organizer = organizer;
+    public Participant setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
         return this;
+    }
+
+
+    public static Participant build(ResultSet rs, OrganizerEntity organizerEntity) {
+        try {
+            return (new Participant())
+                    .setId(rs.getInt("participant_id"))
+                    .setFirstName(rs.getString("participant_first_name"))
+                    .setOrganizer(organizerEntity.findById(rs.getInt("organizer_id")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

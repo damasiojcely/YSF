@@ -1,11 +1,11 @@
 package pe.com.yoursoccerfield.models;
 
 /**
- * Created by Pc user on 16/06/2017.
+ * Created by Otoya user on 16/06/2017.
  */
 public class Organizer {
     private int id;
-    private String firstName;
+    private  String firstName;
     private String lastName;
     private String email;
     private String password;
@@ -18,16 +18,17 @@ public class Organizer {
     }
 
     public Organizer(int id, String firstName, String lastName, String email, String password, int dni, String photo, String phone, String position) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.dni = dni;
-        this.photo = photo;
-        this.phone = phone;
-        this.position = position;
+        this.setId(id);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setDni(dni);
+        this.setPhoto(photo);
+        this.setPhone(phone);
+        this.setPosition(position);
     }
+
 
     public int getId() {
         return id;
@@ -78,9 +79,8 @@ public class Organizer {
         return dni;
     }
 
-    public Organizer setDni(int dni) {
+    public void setDni(int dni) {
         this.dni = dni;
-        return this;
     }
 
     public String getPhoto() {
@@ -96,9 +96,8 @@ public class Organizer {
         return phone;
     }
 
-    public Organizer setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
-        return this;
     }
 
     public String getPosition() {
