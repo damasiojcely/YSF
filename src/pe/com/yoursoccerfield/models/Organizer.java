@@ -1,5 +1,8 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Otoya user on 16/06/2017.
  */
@@ -16,6 +19,7 @@ public class Organizer {
 
     public Organizer() {
     }
+
 
     public Organizer(int id, String firstName, String lastName, String email, String password, int dni, String photo, String phone, String position) {
         this.setId(id);
@@ -34,13 +38,18 @@ public class Organizer {
         return id;
     }
 
+    public String getIdAsString() {
+        return String.valueOf(getId());
+    }
+
     public Organizer setId(int id) {
         this.id = id;
         return this;
     }
 
     public String getFirstName() {
-        return firstName;
+
+         return "'" + getFirstName() + "'";
     }
 
     public Organizer setFirstName(String firstName) {
@@ -49,7 +58,7 @@ public class Organizer {
     }
 
     public String getLastName() {
-        return lastName;
+       return "'" + getLastName() + "'";
     }
 
     public Organizer setLastName(String lastName) {
@@ -107,5 +116,18 @@ public class Organizer {
     public Organizer setPosition(String position) {
         this.position = position;
         return this;
+    }
+
+
+    public static Organizer build(ResultSet resultSet) {
+        try {
+            return (new Organizer())
+                    .setId(resultSet.getInt("organizer_id"))
+                    .setFirstName(resultSet.getString("organizer_first_name"))
+                    .setLastName(resultSet.getString("organizer_last_name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
