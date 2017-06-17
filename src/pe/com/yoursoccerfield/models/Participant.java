@@ -88,7 +88,9 @@ public class Participant {
             return (new Participant())
                     .setId(rs.getInt("participant_id"))
                     .setFirstName(rs.getString("participant_first_name"))
+                    .setLastName(rs.getString("participant_last_name"))
                     .setOrganizer(organizerEntity.findById(rs.getInt("organizer_id")));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
