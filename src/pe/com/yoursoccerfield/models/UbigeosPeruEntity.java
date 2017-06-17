@@ -9,15 +9,15 @@ import java.util.List;
 /**
  * Created by lnakaya on 6/17/2017.
  */
-public class UbigeoPeruEntity extends BaseEntity{
+public class UbigeosPeruEntity extends BaseEntity{
 
 
-    public UbigeoPeruEntity(Connection connection) {
+    public UbigeosPeruEntity(Connection connection) {
         super(connection,"ubigeoperu");
     }
 
 
-    public UbigeoPeruEntity() { super(); }
+    public UbigeosPeruEntity() { super(); }
 
     public List<UbigeoPeru> findByCriteria(String criteria){
         String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
