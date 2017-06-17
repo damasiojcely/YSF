@@ -1,5 +1,8 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Laura Nakaya on 6/17/2017.
  */
@@ -71,5 +74,21 @@ public class UbigeoPeru {
     public UbigeoPeru setDistrictName(String districtName) {
         this.districtName = districtName;
         return this;
+    }
+
+    public static UbigeoPeru build(ResultSet resultSet){
+        try {
+            return (new UbigeoPeru())
+                    .setId(resultSet.getString("id"))
+                    .setDepartmentId(resultSet.getString("department_id"))
+                    .setProvinceId(resultSet.getString("province_id"))
+                    .setDistrictId(resultSet.getString("district_id"))
+                    .setDepartmentName(resultSet.getString("department_name"))
+                    .setProvinceName(resultSet.getString("province_name"))
+                    .setDistrictName(resultSet.getString("district_name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
