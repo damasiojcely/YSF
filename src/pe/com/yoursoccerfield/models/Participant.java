@@ -32,6 +32,8 @@ public class Participant {
         return id;
     }
 
+    public String getIdAsValue() { return "'" + getId() + "'";}
+
     public Participant setId(int id) {
         this.id = id;
         return this;
