@@ -1,22 +1,33 @@
 package pe.com.yoursoccerfield;
 
 /**
- * Created by Pc user on 16/06/2017.
+ * Created by Otoya user on 16/06/2017.
  */
 public class Organizer {
     private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String password;
-    private People people;
-    private Participant participant;
+    private int dni;
+    private String photo;
+    private String phone;
+    private String position;
 
-    public Organizer() {
+    public Organizer(){
+
     }
 
-    public Organizer(int id, String password, People people, Participant participant) {
-        this.id = id;
-        this.password = password;
-        this.people = people;
-        this.participant = participant;
+    public Organizer(int id, String firstName, String lastName, String email, String password, int dni, String photo, String phone, String position) {
+        this.setId(id);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setDni(dni);
+        this.setPhoto(photo);
+        this.setPhone(phone);
+        this.setPosition(position);
     }
 
 
@@ -29,6 +40,33 @@ public class Organizer {
         return this;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public Organizer setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Organizer setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Organizer setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -38,21 +76,39 @@ public class Organizer {
         return this;
     }
 
-    public People getPeople() {
-        return people;
+    public int getDni() {
+        return dni;
     }
 
-    public Organizer setPeople(People people) {
-        this.people = people;
+    public Organizer setDni(int dni) {
+        this.dni = dni;
         return this;
     }
 
-    public Participant getParticipant() {
-        return participant;
+    public String getPhoto() {
+        return photo;
+
     }
 
-    public Organizer setParticipant(Participant participant) {
-        this.participant = participant;
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Organizer setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public Organizer setPosition(String position) {
+        this.position = position;
         return this;
     }
 }
