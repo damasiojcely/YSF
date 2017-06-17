@@ -1,5 +1,8 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by lnakaya on 6/17/2017.
  */
@@ -111,5 +114,23 @@ public class Owner {
     public Owner setPosition(String position) {
         this.position = position;
         return this;
+    }
+
+    public static Owner build(ResultSet resultSet){
+        try {
+            return (new Owner())
+                    .setId(resultSet.getString("id"))
+                    .setFirstName(resultSet.getString("first_name"))
+                    .setLastName(resultSet.getString("last_name"))
+                    .setEmail(resultSet.getString("email"))
+                    .setPassword(resultSet.getString("password"))
+                    .setDni(resultSet.getString("dni"))
+                    .setPhoto(resultSet.getString("photo"))
+                    .setPhone(resultSet.getString("phone"))
+                    .setPosition(resultSet.getString("position"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
