@@ -12,17 +12,19 @@ public class Reservation {
     private Date gameDate;
     private Date gameTime;
     private Organizer organizer;
+    private Field field;
 
     public Reservation() {
     }
 
-    public Reservation(int id, boolean state, Date date, Date gameDate, Date gameTime, Organizer organizer) {
+    public Reservation(int id, boolean state, Date date, Date gameDate, Date gameTime, Organizer organizer, Field field) {
         this.id = id;
         this.state = state;
         this.date = date;
         this.gameDate = gameDate;
         this.gameTime = gameTime;
         this.organizer = organizer;
+        this.setField(field);
     }
 
 
@@ -77,6 +79,15 @@ public class Reservation {
 
     public Reservation setOrganizer(Organizer organizer) {
         this.organizer = organizer;
+        return this;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public Reservation setField(Field field) {
+        this.field = field;
         return this;
     }
 }

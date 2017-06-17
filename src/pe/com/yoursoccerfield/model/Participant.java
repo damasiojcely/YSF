@@ -5,16 +5,22 @@ package pe.com.yoursoccerfield.model;
  */
 public class Participant {
     private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String password;
-    private People people;
+    private int Organizer;
 
     public Participant() {
     }
 
-    public Participant(int id, String password, People people) {
+    public Participant(int id, String firstName, String lastName, String email, String password, int organizer) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.password = password;
-        this.people = people;
+        setOrganizer(organizer);
     }
 
 
@@ -36,12 +42,39 @@ public class Participant {
         return this;
     }
 
-    public People getPeople() {
-        return people;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Participant setPeople(People people) {
-        this.people = people;
+    public Participant setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Participant setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Participant setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public int getOrganizer() {
+        return Organizer;
+    }
+
+    public Participant setOrganizer(int organizer) {
+        Organizer = organizer;
         return this;
     }
 }
