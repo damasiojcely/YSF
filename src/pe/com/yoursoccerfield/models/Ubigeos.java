@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Created by Laura Nakaya on 6/17/2017.
  */
-public class UbigeoPeru {
+public class Ubigeos {
     private String id;
     private String departmentId;
     private String provinceId;
@@ -17,7 +17,7 @@ public class UbigeoPeru {
 
     public String getId() { return id; }
 
-    public UbigeoPeru setId(String id) {
+    public Ubigeos setId(String id) {
         this.id = id;
         return this;
     }
@@ -26,7 +26,7 @@ public class UbigeoPeru {
 
     public String getDepartmentIdAsValue(){ return "'" + getDepartmentId() + "'"; }
 
-    public UbigeoPeru setDepartmentId(String departmentId) {
+    public Ubigeos setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
         return this;
     }
@@ -35,7 +35,7 @@ public class UbigeoPeru {
 
     public String getProvinceIdAsValue(){ return "'" + getProvinceId() + "'";  }
 
-    public UbigeoPeru setProvinceId(String provinceId) {
+    public Ubigeos setProvinceId(String provinceId) {
         this.provinceId = provinceId;
         return this;
     }
@@ -44,7 +44,7 @@ public class UbigeoPeru {
 
     public String getDistrictIdAsValue(){ return "'" + getDistrictId() + "'";  }
 
-    public UbigeoPeru setDistrictId(String districtId) {
+    public Ubigeos setDistrictId(String districtId) {
         this.districtId = districtId;
         return this;
     }
@@ -53,7 +53,7 @@ public class UbigeoPeru {
 
     public String getDepartmentNameAsValue(){return "'" + getDepartmentName()+ "'"; }
 
-    public UbigeoPeru setDepartmentName(String departmentName) {
+    public Ubigeos setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
         return this;
     }
@@ -62,7 +62,7 @@ public class UbigeoPeru {
 
     public String getProvinceNameAsValue(){ return "'" + getProvinceName() + "'";  }
 
-    public UbigeoPeru setProvinceName(String provinceName) {
+    public Ubigeos setProvinceName(String provinceName) {
         this.provinceName = provinceName;
         return this;
     }
@@ -71,14 +71,14 @@ public class UbigeoPeru {
 
     private String getDistrictNameAsValue(){ return "'" + getDistrictName() + "'"; }
 
-    public UbigeoPeru setDistrictName(String districtName) {
+    public Ubigeos setDistrictName(String districtName) {
         this.districtName = districtName;
         return this;
     }
 
-    public static UbigeoPeru build(ResultSet resultSet){
+    public static Ubigeos build(ResultSet resultSet){
         try {
-            return (new UbigeoPeru())
+            return (new Ubigeos())
                     .setId(resultSet.getString("id"))
                     .setDepartmentId(resultSet.getString("department_id"))
                     .setProvinceId(resultSet.getString("province_id"))

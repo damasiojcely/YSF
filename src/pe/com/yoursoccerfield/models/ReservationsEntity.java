@@ -19,7 +19,7 @@ public class ReservationsEntity extends BaseEntity {
         super();
     }
 
-    public List<Reservation> findByCriteria(String criteria, OrganizerEntity organizerEntity){
+    public List<Reservation> findByCriteria(String criteria, OrganizersEntity organizersEntity){
         String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
         List<Reservation> reservation= new ArrayList<>();
         try {
@@ -28,7 +28,7 @@ public class ReservationsEntity extends BaseEntity {
                     .executeQuery(sql);
             if (resultSet == null) return null;
             while(resultSet.next()){
-                reservation.add(Reservation.build(resultSet,organizerEntity));
+                reservation.add(Reservation.build(resultSet, organizersEntity));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,14 +36,14 @@ public class ReservationsEntity extends BaseEntity {
         return null;
     }
 
-    public List<Reservation>findAll(OrganizerEntity organizerEntity){
-        return findByCriteria("",organizerEntity);
+    public List<Reservation>findAll(OrganizersEntity organizersEntity){
+        return findByCriteria("", organizersEntity);
     }
 
-    public Reservation findById(int id, OrganizerEntity organizerEntity){
+    public Reservation findById(int id, OrganizersEntity organizersEntity){
         try{
             String sql="id = "+String.valueOf(id);
-            return findByCriteria(sql,organizerEntity).get(0);
+            return findByCriteria(sql, organizersEntity).get(0);
         } catch (Exception e){
             e.printStackTrace();
         }

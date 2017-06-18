@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * Created by otoya on 17/06/2017.
  */
-public class OrganizerEntity  extends  BaseEntity{
+public class OrganizersEntity extends  BaseEntity{
 
-    public OrganizerEntity(Connection connection) {
+    public OrganizersEntity(Connection connection) {
         super( connection,"organizer");
     }
 
-    public OrganizerEntity() {
+    public OrganizersEntity() {
         super();
     }
 

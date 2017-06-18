@@ -19,16 +19,16 @@ public class DetailReservationsEntity extends BaseEntity{
             super();
         }
 
-    public List<DetailReservation> findByCriteria(String criteria, ReservationsEntity reservationsEntity){
+    public List<DetailReservation> findByCriteria(String criteria, ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity){
         String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
-        List<DetailReservation> detailReservation= new ArrayList<>();
+        List<DetailReservation> detailReservations= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if (resultSet == null) return null;
             while(resultSet.next()){
-                detailReservation.add(DetailReservation.build(resultSet, reservationsEntity));
+                detailReservations.add(DetailReservation.build(resultSet, reservationsEntity, organizersEntity));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,14 +36,15 @@ public class DetailReservationsEntity extends BaseEntity{
         return null;
     }
 
-    public List<DetailReservation>findAll(ReservationsEntity reservationsEntity){
-        return findByCriteria("",reservationsEntity);
+    public List<DetailReservation>findAll(ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity){
+        return findByCriteria("",reservationsEntity,organizersEntity);
     }
 
-    public DetailReservation findById(int id, ReservationsEntity reservationsEntity){
+
+    public DetailReservation findById(int id, ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity){
         try{
             String sql="id = "+String.valueOf(id);
-            return findByCriteria(sql,reservationsEntity).get(0);
+            return findByCriteria(sql,reservationsEntity,organizersEntity).get(0);
         } catch (Exception e){
             e.printStackTrace();
         }

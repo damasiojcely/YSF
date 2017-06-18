@@ -10,32 +10,32 @@ import java.util.List;
  * Created by otoya on 17/06/2017.
  */
 
-public class ParticipantEntity extends BaseEntity {
+public class ParticipantsEntity extends BaseEntity {
 
-    public ParticipantEntity(Connection connection) {
+    public ParticipantsEntity(Connection connection) {
         super(connection, "participant");
     }
 
-    public ParticipantEntity() {
+    public ParticipantsEntity() {
         super();
     }
 
-    public List<Participant> findAll(OrganizerEntity organizerEntity) {
-        return findByCriteria("", organizerEntity);
+    public List<Participant> findAll(OrganizersEntity organizersEntity) {
+        return findByCriteria("", organizersEntity);
     }
 
-    public Participant findById(String id,  OrganizerEntity organizerEntity) {
+    public Participant findById(String id,  OrganizersEntity organizersEntity) {
         String criteria = "participant_id = " + "'" + id + "'";
-        return findByCriteria(criteria, organizerEntity).get(0);
+        return findByCriteria(criteria, organizersEntity).get(0);
     }
 
-    public List<Participant> findByCriteria(String criteria, OrganizerEntity organizerEntity) {
+    public List<Participant> findByCriteria(String criteria, OrganizersEntity organizersEntity) {
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Participant> participants = new ArrayList<>();
         try {
             ResultSet rs = getConnection().createStatement().executeQuery(sql);
             if(rs == null) return null;
-            while(rs.next()) participants.add(Participant.build(rs, organizerEntity));
+            while(rs.next()) participants.add(Participant.build(rs, organizersEntity));
             return participants;
         } catch(SQLException e) {
             e.printStackTrace();
@@ -44,16 +44,16 @@ public class ParticipantEntity extends BaseEntity {
     }
 
     public boolean add(Participant participant) {
-        String sql = "INSERT INTO participant(participant_id, participant_first__name, participant_last_name,organizer_id) VALUES(" +
+        String sql = "INSERT INTO participant(id, first__name, last_name,organizer_id) VALUES(" +
                 participant.getIdAsValue() + ", " +
-                participant.getFirstName() + ", " +
-                participant.getLastName() + ", " +
+                participant.getFirstNameAsValue() + ", " +
+                participant.getLastNameAsValue() + ", " +
                 participant.getOrganizer().getIdAsString() + ")";
         return change(sql);
     }
 
     public boolean update(Participant participant) {
-        String sql = "UPDATE countries SET " +
+        String sql = "UPDATE participants SET " +
                 "participant_first_name = " + participant.getFirstName() + ", " +
                "participant_last_name = "+ participant.getLastName() + ", " +
                 "organizer_id = " + participant.getOrganizer().getIdAsString() +

@@ -11,18 +11,16 @@ public class DetailReservation {
     private int id;
     private float total;
     private float hours;
-    private FieldAddi fieldAddi;
     private Reservation reservation;
     private Organizer organizer;
 
     public DetailReservation() {
     }
 
-    public DetailReservation(int id, float total, float hours, FieldAddi fieldAddi, Reservation reservation) {
+    public DetailReservation(int id, float total, float hours, Reservation reservation) {
         this.setId(id);
         this.setTotal(total);
         this.setHours(hours);
-        this.setFieldAddi(fieldAddi);
         this.setReservation(reservation);
     }
 
@@ -63,18 +61,6 @@ public class DetailReservation {
         return this;
     }
 
-    public FieldAddi getFieldAddi() {
-        return fieldAddi;
-    }
-    public String getFieldAddiAsValue() {
-        return "'" + getFieldAddi() + "'";
-    }
-
-    public DetailReservation setFieldAddi(FieldAddi fieldAddi) {
-        this.fieldAddi = fieldAddi;
-        return this;
-    }
-
     public Reservation getReservation() {
         return reservation;
     }
@@ -101,14 +87,14 @@ public class DetailReservation {
         return this;
     }
 
-    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizerEntity organizerEntity) {
+    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity) {
         try {
             return (new DetailReservation())
                     .setId(resultSet.getInt("id"))
                     .setTotal(resultSet.getFloat("total"))
                     .setHours(resultSet.getFloat("hours"))
                     //.setFieldAddi(fieldAddiEntity.findById(resultSet.getArray("id")));
-                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"),organizerEntity));
+                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"), organizersEntity));
 
         } catch (SQLException e) {
             e.printStackTrace();

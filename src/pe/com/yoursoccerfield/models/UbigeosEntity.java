@@ -9,26 +9,26 @@ import java.util.List;
 /**
  * Created by lnakaya on 6/17/2017.
  */
-public class UbigeosPeruEntity extends BaseEntity{
+public class UbigeosEntity extends BaseEntity{
 
 
-    public UbigeosPeruEntity(Connection connection) {
-        super(connection,"ubigeoperu");
+    public UbigeosEntity(Connection connection) {
+        super(connection,"ubigeos");
     }
 
 
-    public UbigeosPeruEntity() { super(); }
+    public UbigeosEntity() { super(); }
 
-    public List<UbigeoPeru> findByCriteria(String criteria){
+    public List<Ubigeos> findByCriteria(String criteria){
         String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
-        List<UbigeoPeru> ubigeosPeru= new ArrayList<>();
+        List<Ubigeos> ubigeos= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if (resultSet == null) return null;
             while(resultSet.next()){
-                ubigeosPeru.add(UbigeoPeru.build(resultSet));
+                ubigeos.add(Ubigeos.build(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,11 +36,11 @@ public class UbigeosPeruEntity extends BaseEntity{
         return null;
     }
 
-    List<UbigeoPeru>findAll(){
+    List<Ubigeos>findAll(){
         return findByCriteria("");
     }
 
-    public UbigeoPeru fingById(String id){
+    public Ubigeos fingById(String id){
         String criteria = " id = '" + id + "'";
         return findByCriteria(criteria).get(0);
     }
