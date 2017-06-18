@@ -53,9 +53,9 @@ public class OrganizersEntity extends  BaseEntity{
             if(resultSet == null) return null;
             while(resultSet.next()) {
                 organizers.add((new Organizer())
-                        .setId(resultSet.getInt("organizer_id"))
-                        .setFirstName(resultSet.getString("organizer_first_name"))
-                        .setLastName(resultSet.getString("organizer_last_name"));
+                        .setId(resultSet.getString("id"))
+                        .setFirstName(resultSet.getString("first_name"))
+                        .setLastName(resultSet.getString("last_name")));
             }
             return organizers;
         } catch (SQLException e) {
@@ -65,29 +65,8 @@ public class OrganizersEntity extends  BaseEntity{
     }
 
 
-    public boolean add(Organizer organizer) {
-        String sql = "INSERT INTO organizer(organizer_id, organizer_first_name,organizer_last_name) " +
-                "VALUES(" + organizer.getIdAsString() + ", "
-                organizer.getFirstName() + ", "
-                organizer.getLastName();
-        return change(sql);
-    }
 
-    public boolean delete(Organizer organizer) {
-        String sql = "DELETE FROM regions WHERE organizer_id = " + organizer.getIdAsString();
-        return change(sql);
-    }
 
-    public boolean delete(String name) {
-        return change("DELETE FROM regions WHERE organizer_first_name = " +
-                "'" + name + "'");
-    }
-
-    public boolean update(Organizer organizer) {
-        String sql = "UPDATE organizer SET organizer_first_name = " + organizer.getFirstName() +
-                " WHERE organizer_id = " + organizer.getIdAsString();
-        return change(sql);
-    }
 }
 
 
