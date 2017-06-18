@@ -1,7 +1,10 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- * Created by Pc user on 16/06/2017.
+ * Created by Wilmer Ramos  on 16/06/2017.
  */
 public class Field {
     private String id;
@@ -62,7 +65,7 @@ public class Field {
     public int getType() {return type;}
     public Field setType(int type) {this.type = type;
         return this;}
-    public boolean isState() {return state;}
+    public boolean getState() {return state;}
     public Field setState(boolean state) {this.state = state;
         return this;}
     public Owner getOwner() {return owner;}
@@ -71,4 +74,29 @@ public class Field {
     public UbigeoPeru getUbigeoPeru() {return ubigeoPeru;}
     public Field setUbigeoPeru(UbigeoPeru ubigeoPeru) {this.ubigeoPeru = ubigeoPeru;
         return this;}
+
+    public static Field build(ResultSet rs,OwnerEntity ownerEntity ,UbigeoPeruEntity ubigeoPeruEntity) {
+        try {
+            return (new Field())
+                    .setId(rs.getString("id"))
+                    .setName(rs.getString("name"))
+                    .setCapacity(rs.getInt("capacity"))
+                    .setAddress(rs.getString("address"))
+                    .setEmail(rs.getString("email"))
+                    .setPhone(rs.getString("phone"))
+                    .setPrice(rs.getFloat("price"))
+                    .setPhoto(rs.getString("photo"))
+                    .setType(rs.getInt("type"))
+                    .setState(rs.getBoolean("state"))
+                    .setOwner(OwnerEntity.findById(rs.getInt("owner_id")))
+                    .setUbigeoPeru(UbigeoPeruEntity.findById(rs.getInt("ubigeo_id")));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 }
