@@ -1,9 +1,13 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
+import static sun.misc.VM.getState;
+
 /**
- * Created by Pc user on 16/06/2017.
+ * Created by Yessenia on 16/06/2017.
  */
 public class Reservation {
     private int id;
@@ -27,9 +31,14 @@ public class Reservation {
         this.setField(field);
     }
 
+    //public String getDepartmentIdAsValue(){ return "'" + getDepartmentId() + "'"; }
 
     public int getId() {
         return id;
+    }
+
+    public String getIdAsString() {
+        return String.valueOf(getId());
     }
 
     public Reservation setId(int id) {
@@ -37,8 +46,12 @@ public class Reservation {
         return this;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
+    }
+
+    public String getStateAsValue() {
+        return String.valueOf(getState());
     }
 
     public Reservation setState(boolean state) {
@@ -50,6 +63,10 @@ public class Reservation {
         return date;
     }
 
+    public String getDateAsValue() {
+        return "'" + getDate() + "'";
+    }
+
     public Reservation setDate(Date date) {
         this.date = date;
         return this;
@@ -57,6 +74,10 @@ public class Reservation {
 
     public Date getGameDate() {
         return gameDate;
+    }
+
+    public String getGameDateAsValue() {
+        return "'" + getGameDate() + "'";
     }
 
     public Reservation setGameDate(Date gameDate) {
@@ -68,6 +89,10 @@ public class Reservation {
         return gameTime;
     }
 
+    public String getGameTimeAsValue() {
+        return "'" + getGameTime() + "'";
+    }
+
     public Reservation setGameTime(Date gameTime) {
         this.gameTime = gameTime;
         return this;
@@ -75,6 +100,10 @@ public class Reservation {
 
     public Organizer getOrganizer() {
         return organizer;
+    }
+
+    public String getOrganizerAsValue() {
+        return "'" + getOrganizer() + "'";
     }
 
     public Reservation setOrganizer(Organizer organizer) {
@@ -86,8 +115,28 @@ public class Reservation {
         return field;
     }
 
+    public String getFieldAsValue() {
+        return "'" + getField() + "'";
+    }
+
     public Reservation setField(Field field) {
         this.field = field;
         return this;
+    }
+
+    public static Reservation build(ResultSet resultSet, OrganizerEntity organizerEntity) {
+        try {
+            return (new Reservation())
+                    .setId(resultSet.getInt("id"))
+                    .setState(resultSet.getBoolean("state"))
+                    .setDate(resultSet.getDate("date"))
+                    .setGameDate(resultSet.getDate("game_date"))
+                    .setGameTime(resultSet.getDate("game_time"))
+                    .setOrganizer(organizerEntity.findById(resultSet.getInt("organizer_id")));
+            //.setField(resultSet.getField());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
