@@ -39,7 +39,7 @@ public class OwnersEntity extends BaseEntity{
         return findByCriteria("");
     }
 
-    public Owner findById(String id){
+    public Owner findById(int id){
         String criteria =  " id = '" + id + "'";
         return findByCriteria(criteria).get(0);
     }

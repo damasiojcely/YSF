@@ -19,16 +19,16 @@ public class UbigeosEntity extends BaseEntity{
 
     public UbigeosEntity() { super(); }
 
-    public List<Ubigeos> findByCriteria(String criteria){
+    public List<Ubigeo> findByCriteria(String criteria){
         String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
-        List<Ubigeos> ubigeos= new ArrayList<>();
+        List<Ubigeo> ubigeos= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if (resultSet == null) return null;
             while(resultSet.next()){
-                ubigeos.add(Ubigeos.build(resultSet));
+                ubigeos.add(Ubigeo.build(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,15 +36,14 @@ public class UbigeosEntity extends BaseEntity{
         return null;
     }
 
-    List<Ubigeos>findAll(){
+    List<Ubigeo>findAll(){
         return findByCriteria("");
     }
 
-    public Ubigeos fingById(String id){
+    public Ubigeo findById(String id){
         String criteria = " id = '" + id + "'";
         return findByCriteria(criteria).get(0);
     }
-
 
 
 }

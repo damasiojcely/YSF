@@ -18,12 +18,12 @@ public class Field {
     private int type;
     private boolean state;
     private Owner owner;
-    private UbigeoPeru ubigeoPeru;
+    private Ubigeo ubigeo;
 
     public Field() {
     }
 
-    public Field(String id, String name, int capacity, String address, String email, String phone, float price, String photo, int type, boolean state, Owner owner, UbigeoPeru ubigeoPeru) {
+    public Field(String id, String name, int capacity, String address, String email, String phone, float price, String photo, int type, boolean state, Owner owner, Ubigeo ubigeo) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -35,7 +35,7 @@ public class Field {
         this.type = type;
         this.state = state;
         this.owner = owner;
-        this.ubigeoPeru = ubigeoPeru;
+        this.ubigeo = ubigeo;
     }
 
     public String getId() {return id;}
@@ -71,11 +71,11 @@ public class Field {
     public Owner getOwner() {return owner;}
     public Field setOwner(Owner owner) {this.owner = owner;
         return this;}
-    public UbigeoPeru getUbigeoPeru() {return ubigeoPeru;}
-    public Field setUbigeoPeru(UbigeoPeru ubigeoPeru) {this.ubigeoPeru = ubigeoPeru;
+    public Ubigeo getUbigeo() {return ubigeo;}
+    public Field setUbigeo(Ubigeo ubigeo) {this.ubigeo = ubigeo;
         return this;}
 
-    public static Field build(ResultSet rs,OwnersEntity ownerEntity ,UbigeoPeruEntity ubigeoPeruEntity) {
+    public static Field build(ResultSet rs,OwnersEntity ownersEntity ,UbigeosEntity ubigeosEntity) {
         try {
             return (new Field())
                     .setId(rs.getString("id"))
@@ -88,14 +88,31 @@ public class Field {
                     .setPhoto(rs.getString("photo"))
                     .setType(rs.getInt("type"))
                     .setState(rs.getBoolean("state"))
-                    .setOwner(OwnerEntity.findById(rs.getInt("owner_id")))
-                    .setUbigeoPeru(UbigeoPeruEntity.findById(rs.getInt("ubigeo_id")));
+                    .setOwner(ownersEntity.findById(rs.getInt("owner_id")))
+                    .setUbigeo(ubigeosEntity.findById(rs.getString("ubigeo_id")));
+            //.setOrganizer(organizersEntity.findById(resultSet.getInt("organizer_id")));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+    /*
+    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity) {
+        try {
+            return (new DetailReservation())
+                    .setId(resultSet.getInt("id"))
+                    .setTotal(resultSet.getFloat("total"))
+                    .setHours(resultSet.getFloat("hours"))
+                    //.setFieldAddi(fieldAddiEntity.findById(resultSet.getArray("id")));
+                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"), organizersEntity));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+     */
 
 
 
