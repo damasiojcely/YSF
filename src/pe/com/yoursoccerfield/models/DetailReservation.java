@@ -11,18 +11,16 @@ public class DetailReservation {
     private int id;
     private float total;
     private float hours;
-    private FieldAddi fieldAddi;
     private Reservation reservation;
     private Organizer organizer;
 
     public DetailReservation() {
     }
 
-    public DetailReservation(int id, float total, float hours, FieldAddi fieldAddi, Reservation reservation) {
+    public DetailReservation(int id, float total, float hours, Reservation reservation) {
         this.setId(id);
         this.setTotal(total);
         this.setHours(hours);
-        this.setFieldAddi(fieldAddi);
         this.setReservation(reservation);
     }
 
@@ -60,18 +58,6 @@ public class DetailReservation {
 
     public DetailReservation setHours(float hours) {
         this.hours = hours;
-        return this;
-    }
-
-    public FieldAddi getFieldAddi() {
-        return fieldAddi;
-    }
-    public String getFieldAddiAsValue() {
-        return "'" + getFieldAddi() + "'";
-    }
-
-    public DetailReservation setFieldAddi(FieldAddi fieldAddi) {
-        this.fieldAddi = fieldAddi;
         return this;
     }
 

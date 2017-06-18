@@ -75,7 +75,7 @@ public class Field {
     public Field setUbigeoPeru(UbigeoPeru ubigeoPeru) {this.ubigeoPeru = ubigeoPeru;
         return this;}
 
-    public static Field build(ResultSet rs,OwnerEntity ownerEntity ,UbigeoPeruEntity ubigeoPeruEntity) {
+    public static Field build(ResultSet rs,OwnersEntity ownerEntity ,UbigeoPeruEntity ubigeoPeruEntity) {
         try {
             return (new Field())
                     .setId(rs.getString("id"))
