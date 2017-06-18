@@ -43,18 +43,18 @@ public class AdditionalEntity extends BaseEntity{
     public List<Additional> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
                 criteria == "" ? "" : " WHERE " + criteria;
-        List<Additional> additional = new ArrayList<>();
+        List<Additional> additionals = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if(resultSet == null) return null;
-            while(resultSet.next()) {additional.add((new Additional())
+            while(resultSet.next()) {additionals.add((new Additional())
                         .setId(resultSet.getString("id"))
                         .setName(resultSet.getString("name"))
                          .setPrice(resultSet.getFloat("price")));
             }
-            return additional;
+            return additionals;
         } catch (SQLException e) {
             e.printStackTrace();
         }
