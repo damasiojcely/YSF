@@ -11,7 +11,7 @@ public class AdditionalEntity extends BaseEntity{
 
 
     public AdditionalEntity( Connection connection) {
-        super(connection, "additional");
+        super(connection, "additionals");
     }
 
     public  AdditionalEntity() {
@@ -23,19 +23,19 @@ public class AdditionalEntity extends BaseEntity{
     }
 
     public Additional findById(int id) {
-        String criteria = " region_id = " +
+        String criteria = " id = " +
                 String.valueOf(id);
         return findByCriteria(criteria).get(0);
     }
 
     public Additional findByName(String name) {
-        String criteria = " region_name = '" +
+        String criteria = " name = '" +
                 name + "'";
         return findByCriteria(criteria).get(0);
     }
 
     public List<Additional> findAllOrderedByName() {
-        String criteria = "true ORDER BY region_name";
+        String criteria = "true ORDER BY name";
         return findByCriteria(criteria);
     }
 
@@ -43,18 +43,18 @@ public class AdditionalEntity extends BaseEntity{
     public List<Additional> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
                 criteria == "" ? "" : " WHERE " + criteria;
-        List<Additional> additionals = new ArrayList<>();
+        List<Additional> additional = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
                     .createStatement()
                     .executeQuery(sql);
             if(resultSet == null) return null;
-            while(resultSet.next()) {additionals.add((new Additional())
+            while(resultSet.next()) {additional.add((new Additional())
                         .setId(resultSet.getString("id"))
                         .setName(resultSet.getString("name"))
                          .setPrice(resultSet.getFloat("price")));
             }
-            return additionals;
+            return additional;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,20 +62,20 @@ public class AdditionalEntity extends BaseEntity{
     }
 
     public boolean add(Additional additional) {
-        String sql = "INSERT INTO additional (id,name,price) " +
+        String sql = "INSERT INTO additionals (id,name,price) " +
                 "VALUES(" + additional.getId() + ", " +additional.getName()+" ,"+
                 additional.getPrice() + ")";
         return change(sql);
     }
 
     public boolean delete(Additional additional) {
-        String sql = "DELETE FROM additional WHERE id = " + additional.getId();
+        String sql = "DELETE FROM additionals WHERE id = " + additional.getId();
         return change(sql);
     }
 
 
     public boolean update(Additional additional) {
-        String sql = "UPDATE additional SET WHERE region_id = " + additional.getId();
+        String sql = "UPDATE additionals SET WHERE id = " + additional.getId();
         return change(sql);
     }
 

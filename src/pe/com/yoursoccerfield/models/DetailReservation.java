@@ -101,14 +101,14 @@ public class DetailReservation {
         return this;
     }
 
-    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizerEntity organizerEntity) {
+    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizersEntity organizersEntity) {
         try {
             return (new DetailReservation())
                     .setId(resultSet.getInt("id"))
                     .setTotal(resultSet.getFloat("total"))
                     .setHours(resultSet.getFloat("hours"))
                     //.setFieldAddi(fieldAddiEntity.findById(resultSet.getArray("id")));
-                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"),organizerEntity));
+                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"), organizersEntity));
 
         } catch (SQLException e) {
             e.printStackTrace();

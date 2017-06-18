@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import static sun.misc.VM.getState;
-
 /**
  * Created by Yessenia on 16/06/2017.
  */
@@ -124,7 +122,7 @@ public class Reservation {
         return this;
     }
 
-    public static Reservation build(ResultSet resultSet, OrganizerEntity organizerEntity) {
+    public static Reservation build(ResultSet resultSet, OrganizersEntity organizersEntity) {
         try {
             return (new Reservation())
                     .setId(resultSet.getInt("id"))
@@ -132,7 +130,7 @@ public class Reservation {
                     .setDate(resultSet.getDate("date"))
                     .setGameDate(resultSet.getDate("game_date"))
                     .setGameTime(resultSet.getDate("game_time"))
-                    .setOrganizer(organizerEntity.findById(resultSet.getInt("organizer_id")));
+                    .setOrganizer(organizersEntity.findById(resultSet.getInt("organizer_id")));
             //.setField(resultSet.getField());
         } catch (SQLException e) {
             e.printStackTrace();

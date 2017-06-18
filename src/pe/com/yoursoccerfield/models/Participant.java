@@ -42,6 +42,7 @@ public class Participant {
     public String getFirstName() {
         return firstName;
     }
+    public String getFirstNameAsValue() { return "'" + getFirstName() + "'";}
 
     public Participant setFirstName(String firstName) {
         this.firstName = firstName;
@@ -51,6 +52,7 @@ public class Participant {
     public String getLastName() {
         return lastName;
     }
+    public String getLastNameAsValue() { return "'" + getLastName() + "'";}
 
     public Participant setLastName(String lastName) {
         this.lastName = lastName;
@@ -60,6 +62,7 @@ public class Participant {
     public String getEmail() {
         return email;
     }
+    public String getEmailAsValue() { return "'" + getEmail() + "'";}
 
     public Participant setEmail(String email) {
         this.email = email;
@@ -69,6 +72,7 @@ public class Participant {
     public String getPosition() {
         return position;
     }
+    public String getPositionAsValue() { return "'" + getPosition() + "'";}
 
     public Participant setPosition(String position) {
         this.position = position;
@@ -78,6 +82,7 @@ public class Participant {
     public Organizer getOrganizer() {
         return organizer;
     }
+    public String getOrganizerAsValue() { return "'" + getOrganizer() + "'";}
 
     public Participant setOrganizer(Organizer organizer) {
         this.organizer = organizer;
@@ -85,13 +90,15 @@ public class Participant {
     }
 
 
-    public static Participant build(ResultSet rs, OrganizerEntity organizerEntity) {
+    public static Participant build(ResultSet rs, OrganizersEntity organizersEntity) {
         try {
             return (new Participant())
-                    .setId(rs.getInt("participant_id"))
-                    .setFirstName(rs.getString("participant_first_name"))
-                    .setLastName(rs.getString("participant_last_name"))
-                    .setOrganizer(organizerEntity.findById(rs.getInt("organizer_id")));
+                    .setId(rs.getInt("id"))
+                    .setFirstName(rs.getString("first_name"))
+                    .setLastName(rs.getString("last_name"))
+                    .setEmail(rs.getString("email"))
+                    .setPosition(rs.getString("position"))
+                    .setOrganizer(organizersEntity.findById(rs.getInt("organizer_id")));
 
         } catch (SQLException e) {
             e.printStackTrace();
