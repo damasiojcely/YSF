@@ -1,5 +1,8 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Pc user on 16/06/2017.
  */
@@ -10,6 +13,7 @@ public class DetailReservation {
     private float hours;
     private FieldAddi fieldAddi;
     private Reservation reservation;
+    private Organizer organizer;
 
     public DetailReservation() {
     }
@@ -26,6 +30,9 @@ public class DetailReservation {
     public int getId() {
         return id;
     }
+    public String getIdAsString() {
+        return String.valueOf(getId());
+    }
 
     public DetailReservation setId(int id) {
         this.id = id;
@@ -34,6 +41,9 @@ public class DetailReservation {
 
     public float getTotal() {
         return total;
+    }
+    public String getTotalAsString() {
+        return String.valueOf(getTotal());
     }
 
     public DetailReservation setTotal(float total) {
@@ -44,6 +54,9 @@ public class DetailReservation {
     public float getHours() {
         return hours;
     }
+    public String getHoursAsString() {
+        return String.valueOf(getHours());
+    }
 
     public DetailReservation setHours(float hours) {
         this.hours = hours;
@@ -52,6 +65,9 @@ public class DetailReservation {
 
     public FieldAddi getFieldAddi() {
         return fieldAddi;
+    }
+    public String getFieldAddiAsValue() {
+        return "'" + getFieldAddi() + "'";
     }
 
     public DetailReservation setFieldAddi(FieldAddi fieldAddi) {
@@ -63,8 +79,42 @@ public class DetailReservation {
         return reservation;
     }
 
+    public String getReservationAsValue() {
+        return "'" + getReservation() + "'";
+    }
+
+
     public DetailReservation setReservation(Reservation reservation) {
         this.reservation = reservation;
         return this;
     }
+
+    public Organizer getOrganizer() {
+        return organizer;
+    }
+    public String getOrganizerAsValue() {
+        return "'" + getOrganizer() + "'";
+    }
+
+    public DetailReservation setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
+        return this;
+    }
+
+    public static DetailReservation build(ResultSet resultSet, ReservationsEntity reservationsEntity, OrganizerEntity organizerEntity) {
+        try {
+            return (new DetailReservation())
+                    .setId(resultSet.getInt("id"))
+                    .setTotal(resultSet.getFloat("total"))
+                    .setHours(resultSet.getFloat("hours"))
+                    //.setFieldAddi(fieldAddiEntity.findById(resultSet.getArray("id")));
+                    .setReservation(reservationsEntity.findById(resultSet.getInt("reservation_id"),organizerEntity));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
