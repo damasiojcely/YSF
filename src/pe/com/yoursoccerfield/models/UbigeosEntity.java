@@ -19,8 +19,17 @@ public class UbigeosEntity extends BaseEntity{
 
     public UbigeosEntity() { super(); }
 
+    List<Ubigeo> findAll() {
+        return findByCriteria("");
+    }
+
+    public Ubigeo findById(String id){
+        String criteria = " id = " + "'" + id + "'";
+        return findByCriteria(criteria).get(0);
+    }
+
     public List<Ubigeo> findByCriteria(String criteria){
-        String sql = getDefaultQuery() +  (criteria.equalsIgnoreCase("") ? "" : " WHERE " + criteria);
+        String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Ubigeo> ubigeos= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -33,17 +42,11 @@ public class UbigeosEntity extends BaseEntity{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return ubigeos;
     }
 
-    List<Ubigeo>findAll(){
-        return findByCriteria("");
-    }
 
-    public Ubigeo findById(String id){
-        String criteria = " id = '" + id + "'";
-        return findByCriteria(criteria).get(0);
-    }
+
 
 
 }

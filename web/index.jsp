@@ -8,9 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>HR Service</title>
+
+
+      <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
   </head>
   <body>
-  $END$
+    <ul>
+     <li><a href="listCourts.jsp">List Courts</a> </li>
+     <li><a href="listOrganizers.jsp">List Organizers</a> </li>
+     <li><a href="listOwners.jsp">List Owners</a> </li>
+     <li><a href="listParticipants.jsp">List Participants</a></li>
+     <li><a href="listReservations.jsp">List Reservations</a></li>
+     <li><a href="listServices.jsp">List Services</a></li>
+     <li><a href="listUbigeos.jsp">List Ubigeos</a></li>
+    </ul>
   </body>
 </html>

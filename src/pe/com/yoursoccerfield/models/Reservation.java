@@ -1,41 +1,22 @@
 package pe.com.yoursoccerfield.models;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
-/**
- * Created by Yessenia on 16/06/2017.
- */
 public class Reservation {
     private int id;
-    private boolean state;
-    private Date date;
-    private Date gameDate;
+    private Date createDate;
+    private Boolean state;
     private Date gameTime;
+    private float hours;
+    private float total;
     private Organizer organizer;
     private Court court;
-
-    public Reservation() {
-    }
-
-    public Reservation(int id, boolean state, Date date, Date gameDate, Date gameTime, Organizer organizer, Court court) {
-        this.id = id;
-        this.state = state;
-        this.date = date;
-        this.gameDate = gameDate;
-        this.gameTime = gameTime;
-        this.organizer = organizer;
-        this.court = court;
-    }
 
 
     public int getId() {
         return id;
-    }
-
-    public String getIdAsString() {
-        return String.valueOf(getId());
     }
 
     public Reservation setId(int id) {
@@ -43,42 +24,21 @@ public class Reservation {
         return this;
     }
 
-    public boolean getState() {
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public Reservation setCreateDate(Date createDate) {
+        this.createDate = createDate;
+        return this;
+    }
+
+    public Boolean getState() {
         return state;
     }
 
-    public String getStateAsValue() {
-        return String.valueOf(getState());
-    }
-
-    public Reservation setState(boolean state) {
+    public Reservation setState(Boolean state) {
         this.state = state;
-        return this;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public String getDateAsValue() {
-        return "'" + getDate() + "'";
-    }
-
-    public Reservation setDate(Date date) {
-        this.date = date;
-        return this;
-    }
-
-    public Date getGameDate() {
-        return gameDate;
-    }
-
-    public String getGameDateAsValue() {
-        return "'" + getGameDate() + "'";
-    }
-
-    public Reservation setGameDate(Date gameDate) {
-        this.gameDate = gameDate;
         return this;
     }
 
@@ -86,21 +46,31 @@ public class Reservation {
         return gameTime;
     }
 
-    public String getGameTimeAsValue() {
-        return "'" + getGameTime() + "'";
-    }
-
     public Reservation setGameTime(Date gameTime) {
         this.gameTime = gameTime;
         return this;
     }
 
-    public Organizer getOrganizer() {
-        return organizer;
+    public float getHours() {
+        return hours;
     }
 
-    public String getOrganizerAsValue() {
-        return "'" + getOrganizer() + "'";
+    public Reservation setHours(float hours) {
+        this.hours = hours;
+        return this;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public Reservation setTotal(float total) {
+        this.total = total;
+        return this;
+    }
+
+    public Organizer getOrganizer() {
+        return organizer;
     }
 
     public Reservation setOrganizer(Organizer organizer) {
@@ -112,30 +82,32 @@ public class Reservation {
         return court;
     }
 
-    public String getCourtAsValue() {
-        return "'" + getCourt() + "'";
-    }
-
     public Reservation setCourt(Court court) {
         this.court = court;
         return this;
     }
 
-    public static Reservation build(ResultSet resultSet, OrganizersEntity organizersEntity,
-                                    CourtsEntity courtsEntity, OwnersEntity ownersEntity,
-                                    UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
-        try {
+    public static Reservation build(ResultSet resultSet,
+                                    OrganizersEntity organizersEntity,
+                                    CourtsEntity courtsEntity,
+                                    OwnersEntity ownersEntity,
+                                    UbigeosEntity ubigeosEntity,
+                                    ServicesEntity servicesEntity){
+        try{
             return (new Reservation())
                     .setId(resultSet.getInt("id"))
+                    .setCreateDate(resultSet.getDate("created_date"))
                     .setState(resultSet.getBoolean("state"))
-                    .setDate(resultSet.getDate("date"))
-                    .setGameDate(resultSet.getDate("game_date"))
                     .setGameTime(resultSet.getDate("game_time"))
-                    .setOrganizer(organizersEntity.findById(resultSet.getInt("organizer_id")))
+                    .setHours(resultSet.getFloat("hours"))
+                    .setTotal(resultSet.getFloat("total"))
+                    .setOrganizer(organizersEntity.findById(resultSet.getString("organizer_id")))
                     .setCourt(courtsEntity.findById(resultSet.getString("court_id"),ownersEntity,ubigeosEntity,servicesEntity));
-            } catch (SQLException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }

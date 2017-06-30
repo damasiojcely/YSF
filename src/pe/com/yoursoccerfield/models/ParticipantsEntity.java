@@ -36,19 +36,19 @@ public class ParticipantsEntity extends BaseEntity {
             ResultSet rs = getConnection().createStatement().executeQuery(sql);
             if(rs == null) return null;
             while(rs.next()) participants.add(Participant.build(rs, organizersEntity));
-            return participants;
+             return participants;
         } catch(SQLException e) {
             e.printStackTrace();
         }
         return participants;
     }
-/*
+
     public boolean add(Participant participant) {
         String sql = "INSERT INTO participant(id, first__name, last_name,organizer_id) VALUES(" +
                 participant.getIdAsValue() + ", " +
                 participant.getFirstNameAsValue() + ", " +
                 participant.getLastNameAsValue() + ", " +
-                participant.getOrganizer().getIdAsString() + ")";
+                participant.getOrganizer().getId() + ")";
         return change(sql);
     }
 
@@ -56,7 +56,7 @@ public class ParticipantsEntity extends BaseEntity {
         String sql = "UPDATE participants SET " +
                 "participant_first_name = " + participant.getFirstName() + ", " +
                "participant_last_name = "+ participant.getLastName() + ", " +
-                "organizer_id = " + participant.getOrganizer().getIdAsString() +
+                "organizer_id = " + participant.getOrganizer().getId() +
                 " WHERE participant_id = " + participant.getIdAsValue();
         return change(sql);
     }
@@ -73,5 +73,5 @@ public class ParticipantsEntity extends BaseEntity {
         return change(sql);
     }
 
-*/
+
 }

@@ -8,33 +8,21 @@ import java.sql.SQLException;
  */
 public class Participant {
 
-    private int id;
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
     private String position;
     private  Organizer organizer;
 
-    public Participant() {
-    }
 
-    public Participant(int id, String firstName, String lastName, String email, String position, Organizer organizer) {
-        this.setId(id);
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setEmail(email);
-        this.setPosition(position);
-        this.setOrganizer(organizer);
-    }
-
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getIdAsValue() { return "'" + getId() + "'";}
 
-    public Participant setId(int id) {
+    public Participant setId(String id) {
         this.id = id;
         return this;
     }
@@ -93,13 +81,12 @@ public class Participant {
     public static Participant build(ResultSet rs, OrganizersEntity organizersEntity) {
         try {
             return (new Participant())
-                    .setId(rs.getInt("id"))
+                    .setId(rs.getString("id"))
                     .setFirstName(rs.getString("first_name"))
                     .setLastName(rs.getString("last_name"))
                     .setEmail(rs.getString("email"))
                     .setPosition(rs.getString("position"))
-                    .setOrganizer(organizersEntity.findById(rs.getInt("organizer_id")));
-
+                    .setOrganizer(organizersEntity.findById(rs.getString("organizer_id")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

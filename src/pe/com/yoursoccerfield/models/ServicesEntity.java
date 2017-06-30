@@ -22,26 +22,26 @@ public class ServicesEntity extends BaseEntity{
         return findByCriteria("");
     }
 
-    public Service findById(String id) {
-        String criteria = " id = '" + id + "'";
+    public Service findById(int id) {
+        String criteria = " id = " +
+                String.valueOf(id);
         return findByCriteria(criteria).get(0);
     }
 
     public Service findByName(String name) {
-        String criteria = " name = '" +name + "'";
+        String criteria = " name = '" +
+                name + "'";
         return findByCriteria(criteria).get(0);
     }
 
-    public List<Service> findAllOrderByName() {
+    public List<Service> findAllOrderedByName() {
         String criteria = "true ORDER BY name";
         return findByCriteria(criteria);
     }
-    
 
 
     public List<Service> findByCriteria(String criteria) {
-        String sql = getDefaultQuery() +
-                (criteria.equalsIgnoreCase("") ? "" : " WHERE " + criteria);
+        String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Service> services = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -49,30 +49,33 @@ public class ServicesEntity extends BaseEntity{
                     .executeQuery(sql);
             if(resultSet == null) return null;
             while(resultSet.next()) {
-                services.add(Service.build(resultSet));
+                services.add((new Service())
+                        .setId(resultSet.getString("id"))
+                        .setName(resultSet.getString("name"))
+                         .setPrice(resultSet.getFloat("price")));
             }
             return services;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return services;
     }
 
     public boolean add(Service service) {
-        String sql = "INSERT INTO services (id,name,price) " +
-                "VALUES(" + service.getIdAsValue() + ", " + service.getNameAsValue()+" ,"+
-                service.getPriceAsString() + ")";
+        String sql = "INSERT INTO additionals (id,name,price) " +
+                "VALUES(" + service.getId() + ", " + service.getName()+" ,"+
+                service.getPrice() + ")";
         return change(sql);
     }
 
     public boolean delete(Service service) {
-        String sql = "DELETE FROM services WHERE id = " + service.getIdAsValue();
+        String sql = "DELETE FROM additionals WHERE id = " + service.getId();
         return change(sql);
     }
 
 
     public boolean update(Service service) {
-        String sql = "UPDATE services SET WHERE id = " + service.getIdAsValue();
+        String sql = "UPDATE additionals SET WHERE id = " + service.getId();
         return change(sql);
     }
 

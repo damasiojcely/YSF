@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by lnakaya on 29/06/2017.
+ * Created by Pc user on 15/06/2017.
  */
 public class Service {
     private String id;
@@ -20,25 +20,12 @@ public class Service {
         this.price = price;
     }
     public String getId() {return id;}
-
-    public String getIdAsValue() { return "'" + getId() + "'";}
-
     public Service setId(String id) {this.id = id;
         return this;}
-
     public String getName() {return name;}
-
-    public String getNameAsValue() { return "'" + getName() + "'";}
-
     public Service setName(String name) {this.name = name;
         return this;}
-
     public float getPrice() {return price;}
-
-    public String getPriceAsString() {
-        return String.valueOf(getPrice());
-    }
-
     public Service setPrice(float price) {this.price = price;
         return this;}
 
