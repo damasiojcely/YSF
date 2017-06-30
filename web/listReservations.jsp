@@ -10,11 +10,29 @@
 <html>
 <head>
     <title>List Reservations</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <body>
+<h2> RESERVACIONES REGISTRADAS </h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Tiempo juego</th>
+        <th>Horas</th>
+        <th>Total</th>
+    </tr>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.HRService"/>
 <c:forEach var="reservation" items="${service.reservations}">
-    <p><c:out value="${reservation.hours}"/></p>
+    <tr><td><c:out value="${reservation.id}"/></td>
+        <td><c:out value="${reservation.createDate}"/></td>
+        <td><c:out value="${reservation.state}"/></td>
+        <td><c:out value="${reservation.gameTime}"/></td>
+        <td><c:out value="${reservation.hours}"/></td>
+        <td> <c:out value="${reservation.total}"/></td>
+    </tr>
 </c:forEach>
+</table>
 </body>
 </html>
