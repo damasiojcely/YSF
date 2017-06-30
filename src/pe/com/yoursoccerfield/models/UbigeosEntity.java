@@ -20,7 +20,7 @@ public class UbigeosEntity extends BaseEntity{
     public UbigeosEntity() { super(); }
 
     public List<Ubigeo> findByCriteria(String criteria){
-        String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
+        String sql = getDefaultQuery() +  (criteria.equalsIgnoreCase("") ? "" : " WHERE " + criteria);
         List<Ubigeo> ubigeos= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()

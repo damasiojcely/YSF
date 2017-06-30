@@ -14,22 +14,21 @@ public class Reservation {
     private Date gameDate;
     private Date gameTime;
     private Organizer organizer;
-    private Field field;
+    private Court court;
 
     public Reservation() {
     }
 
-    public Reservation(int id, boolean state, Date date, Date gameDate, Date gameTime, Organizer organizer, Field field) {
+    public Reservation(int id, boolean state, Date date, Date gameDate, Date gameTime, Organizer organizer, Court court) {
         this.id = id;
         this.state = state;
         this.date = date;
         this.gameDate = gameDate;
         this.gameTime = gameTime;
         this.organizer = organizer;
-        this.setField(field);
+        this.court = court;
     }
 
-    //public String getDepartmentIdAsValue(){ return "'" + getDepartmentId() + "'"; }
 
     public int getId() {
         return id;
@@ -109,20 +108,22 @@ public class Reservation {
         return this;
     }
 
-    public Field getField() {
-        return field;
+    public Court getCourt() {
+        return court;
     }
 
-    public String getFieldAsValue() {
-        return "'" + getField() + "'";
+    public String getCourtAsValue() {
+        return "'" + getCourt() + "'";
     }
 
-    public Reservation setField(Field field) {
-        this.field = field;
+    public Reservation setCourt(Court court) {
+        this.court = court;
         return this;
     }
 
-    public static Reservation build(ResultSet resultSet, OrganizersEntity organizersEntity) {
+    public static Reservation build(ResultSet resultSet, OrganizersEntity organizersEntity,
+                                    CourtsEntity courtsEntity, OwnersEntity ownersEntity,
+                                    UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
         try {
             return (new Reservation())
                     .setId(resultSet.getInt("id"))
@@ -130,9 +131,9 @@ public class Reservation {
                     .setDate(resultSet.getDate("date"))
                     .setGameDate(resultSet.getDate("game_date"))
                     .setGameTime(resultSet.getDate("game_time"))
-                    .setOrganizer(organizersEntity.findById(resultSet.getInt("organizer_id")));
-            //.setField(resultSet.getField());
-        } catch (SQLException e) {
+                    .setOrganizer(organizersEntity.findById(resultSet.getInt("organizer_id")))
+                    .setCourt(courtsEntity.findById(resultSet.getString("court_id"),ownersEntity,ubigeosEntity,servicesEntity));
+            } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

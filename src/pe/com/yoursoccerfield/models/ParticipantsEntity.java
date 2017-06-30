@@ -42,7 +42,7 @@ public class ParticipantsEntity extends BaseEntity {
         }
         return participants;
     }
-
+/*
     public boolean add(Participant participant) {
         String sql = "INSERT INTO participant(id, first__name, last_name,organizer_id) VALUES(" +
                 participant.getIdAsValue() + ", " +
@@ -73,5 +73,5 @@ public class ParticipantsEntity extends BaseEntity {
         return change(sql);
     }
 
-
+*/
 }

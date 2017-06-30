@@ -19,8 +19,9 @@ public class ReservationsEntity extends BaseEntity {
         super();
     }
 
-    public List<Reservation> findByCriteria(String criteria, OrganizersEntity organizersEntity){
-        String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
+    public List<Reservation> findByCriteria(String criteria, OrganizersEntity organizersEntity, CourtsEntity courtsEntity,
+    OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity){
+        String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Reservation> reservation= new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -28,14 +29,14 @@ public class ReservationsEntity extends BaseEntity {
                     .executeQuery(sql);
             if (resultSet == null) return null;
             while(resultSet.next()){
-                reservation.add(Reservation.build(resultSet, organizersEntity));
+                reservation.add(Reservation.build(resultSet, organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-
+/*
     public List<Reservation>findAll(OrganizersEntity organizersEntity){
         return findByCriteria("", organizersEntity);
     }
@@ -48,7 +49,7 @@ public class ReservationsEntity extends BaseEntity {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
 
 }
