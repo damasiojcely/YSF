@@ -34,86 +34,68 @@ public class Organizer {
     }
 
 
-   public String getId() {
+    public String getId() {
         return id;
     }
-
-    public Organizer setId(String id) {
-        this.id = id;
-        return this;
-    }
+    public String getIdAsValue(){return "'"+ getId() +"'";}
+    public Organizer setId(String id) { this.id = id;
+        return this; }
 
     public String getFirstName() {
         return firstName;
     }
-
-    public Organizer setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
+    public String getFirstNameAsValue(){return "'"+ getFirstName() +"'";}
+        public Organizer setFirstName(String firstName) {this.firstName = firstName;
+        return this; }
 
     public String getLastName() {
         return lastName;
     }
-
-    public Organizer setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
+    public String getLastNameAsValue(){return "'"+ getLastName() +"'";}
+    public Organizer setLastName(String lastName) {this.lastName = lastName;
+    return this;}
 
     public String getEmail() {
         return email;
     }
-
-    public Organizer setEmail(String email) {
-        this.email = email;
-        return this;
-    }
+    public String getEmailAsValue(){return "'"+ getEmail() +"'";}
+    public Organizer setEmail(String email) { this.email = email;
+        return this;}
 
     public String getPassword() {
         return password;
     }
-
-    public Organizer setPassword(String password) {
-        this.password = password;
-        return this;
-    }
+    public String getPasswordAsValue(){return "'"+ getPassword() +"'";}
+    public Organizer setPassword(String password) { this.password = password;
+        return this;}
 
     public String getDni() {
         return dni;
     }
-
-    public Organizer setDni(String dni) {
-        this.dni = dni;
-        return this;
-    }
+    public String getDniAsValue(){return "'"+ getDni() +"'";}
+    public Organizer setDni(String dni) { this.dni = dni;
+        return this; }
 
     public String getPhoto() {
         return photo;
     }
-
-    public Organizer setPhoto(String photo) {
-        this.photo = photo;
-        return this;
-    }
+    public String getPhotoAsValue(){return "'"+ getPhoto() +"'";}
+    public Organizer setPhoto(String photo) {this.photo = photo;
+        return this; }
 
     public String getPhone() {
         return phone;
     }
-
-    public Organizer setPhone(String phone) {
-        this.phone = phone;
-        return this;
-    }
+    public String getPhoneAsValue(){return "'"+ getPhone() +"'";}
+    public Organizer setPhone(String phone) {this.phone = phone;
+        return this; }
 
     public String getPosition() {
         return position;
     }
-
-    public Organizer setPosition(String position) {
-        this.position = position;
-        return this;
-    }
+    public String getPositionAsValue(){return "'"+ getPosition() +"'";}
+    public Organizer setPosition(String position) {this.position = position;
+        return this; }
 
     public static Organizer build(ResultSet resultSet){
         try {

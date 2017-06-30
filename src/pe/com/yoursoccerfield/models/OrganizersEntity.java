@@ -13,7 +13,7 @@ import java.util.List;
 public class OrganizersEntity extends  BaseEntity{
 
     public OrganizersEntity(Connection connection) {
-        super( connection,"organizer");
+        super( connection,"organizers");
     }
 
     public OrganizersEntity() {
@@ -36,7 +36,7 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria).get(0);
     }
 
-    public List<Organizer> findAllOrderedByName() {
+    public List<Organizer> findAllOrderByName() {
         String criteria = "true ORDER BY organizer_first_name";
         return findByCriteria(criteria);
     }
@@ -44,7 +44,7 @@ public class OrganizersEntity extends  BaseEntity{
 
     public List<Organizer> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
-                criteria == "" ? "" : " WHERE " + criteria;
+                (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Organizer> organizers = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -52,10 +52,7 @@ public class OrganizersEntity extends  BaseEntity{
                     .executeQuery(sql);
             if(resultSet == null) return null;
             while(resultSet.next()) {
-                organizers.add((new Organizer())
-                        .setId(resultSet.getString("id"))
-                        .setFirstName(resultSet.getString("first_name"))
-                        .setLastName(resultSet.getString("last_name")));
+                organizers.add(Organizer.build(resultSet));
             }
             return organizers;
         } catch (SQLException e) {
@@ -63,6 +60,43 @@ public class OrganizersEntity extends  BaseEntity{
         }
         return null;
     }
+
+    public boolean add(Organizer organizer) {
+        String sql = "INSERT INTO organizers (id,firs_name, last_name, email, password) " +
+                "VALUES(" + organizer.getIdAsValue() + ", " + organizer.getFirstNameAsValue()+" ,"+
+                organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ")";
+        return change(sql);
+    }
+
+    public boolean delete(Organizer organizer) {
+        String sql = "DELETE FROM organizers WHERE id = " + organizer.getIdAsValue();
+        return change(sql);
+    }
+
+    public boolean updatePass(Organizer organizer) {
+        String sql = "UPDATE organizers SET WHERE password = " + organizer.getPasswordAsValue()+
+                     " WHERE id = " + organizer.getIdAsValue();
+        return change(sql);
+    }
+
+    public boolean updatePhoto(Organizer organizer) {
+        String sql = "UPDATE organizers SET WHERE photo = " + organizer.getPhotoAsValue()+
+                " WHERE id = " + organizer.getIdAsValue();
+        return change(sql);
+    }
+
+    public boolean update(Organizer organizer) {
+        String sql = "UPDATE organizers SET WHERE id = " + organizer.getIdAsValue()+", "+
+                "first_name = " + organizer.getFirstNameAsValue()+ "," +
+                "last_name = " + organizer.getLastNameAsValue()+ "," +
+                "email = " + organizer.getEmailAsValue() + "," +
+                "dni = " + organizer.getDniAsValue() + ","+
+                "phone = " + organizer.getPhoneAsValue() +
+                " WHERE id = " + organizer.getIdAsValue();
+        return change(sql);
+    }
+
+
 
 
 

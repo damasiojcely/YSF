@@ -15,11 +15,11 @@ public class OwnersEntity extends BaseEntity{
     public OwnersEntity() {super();   }
 
     public OwnersEntity(Connection connection) {
-        super(connection,"owner");
+        super(connection,"owners");
     }
 
     public List<Owner>findByCriteria(String criteria){
-        String sql = getDefaultQuery() + criteria == "" ? "" : " WHERE " + criteria;
+        String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Owner> owners = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -55,21 +55,33 @@ public class OwnersEntity extends BaseEntity{
     }
 
     public  boolean add(Owner owner) {
-        return change("INSERT INTO owner(id,first_name,last_name,email," +
-                "password,dni,photo,phone,position) VALUES (" + owner.getIdAsValue() + "," +
+        return change("INSERT INTO owners(id,first_name,last_name,email," +
+                "password) VALUES (" + owner.getIdAsValue() + "," +
                 owner.getFirstNameAsValue() + "," + owner.getLastNameAsValue() + "," +
-                owner.getEmailAsValue() + "," + owner.getPasswordAsValue() + "," +
-                owner.getDniAsValue() + "," + owner.getPhotoAsValue() + "," +
-                owner.getPhoneAsValue() + "," + owner.getPositionAsValue() + ")");
+                owner.getEmailAsValue() + "," + owner.getPasswordAsValue() + ")");
     }
 
     public boolean delete(Owner owner){
-        return change("DELETE FROM owner WHERE id = " + owner.getIdAsValue());
+
+        return change("DELETE FROM owners WHERE id = " + owner.getIdAsValue());
     }
 
-   /* public  boolean update(Owner owner){
-        return change("UPDATE owner SET first_name = " + owner.getFirstNameAsValue() +
-                ", last_name = " + owner.getLastNameAsValue() + ", email = " +
-                owner.getEmailAsValue() + ", password,dni,photo,phone,position")*/
+    public  boolean update(Owner owner){
+        return change("UPDATE owners SET first_name = " + owner.getFirstNameAsValue() +
+                ", last_name = " + owner.getLastNameAsValue() + ", dni = " + owner.getDniAsValue()+
+                ", phone = " + owner.getPhotoAsValue()+",position = "+ owner.getPositionAsValue() +
+                " WHERE id = " +owner.getIdAsValue());
+    }
 
+    public boolean updatePhoto(Owner owner) {
+        String sql = "UPDATE owners SET WHERE photo = " + owner.getPhotoAsValue()+
+                " WHERE id = " + owner.getIdAsValue();
+        return change(sql);
+    }
+
+    public boolean updatePass(Owner owner) {
+        String sql = "UPDATE owners SET WHERE password = " + owner.getPasswordAsValue()+
+                " WHERE id = " + owner.getIdAsValue();
+        return change(sql);
+    }
 }

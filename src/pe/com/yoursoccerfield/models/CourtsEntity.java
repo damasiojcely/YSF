@@ -83,7 +83,7 @@ public class CourtsEntity extends BaseEntity{
     }
 
     public boolean delete(Court court) {
-        String sql = "DELETE FROM court WHERE id = " +
+        String sql = "DELETE FROM courts WHERE id = " +
                 court.getIdAsValue();
         return change(sql);
     }

@@ -13,7 +13,7 @@ import java.util.List;
 public class ParticipantsEntity extends BaseEntity {
 
     public ParticipantsEntity(Connection connection) {
-        super(connection, "participant");
+        super(connection, "participants");
     }
 
     public ParticipantsEntity() {
@@ -25,7 +25,7 @@ public class ParticipantsEntity extends BaseEntity {
     }
 
     public Participant findById(String id,  OrganizersEntity organizersEntity) {
-        String criteria = "participant_id = " + "'" + id + "'";
+        String criteria = "id = " + "'" + id + "'";
         return findByCriteria(criteria, organizersEntity).get(0);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 public class ReservationsEntity extends BaseEntity {
 
     public ReservationsEntity(Connection connection) {
-        super( connection,"reservation");
+        super( connection,"reservations");
     }
 
     public ReservationsEntity() {
