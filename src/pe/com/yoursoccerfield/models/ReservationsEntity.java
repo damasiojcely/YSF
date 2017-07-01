@@ -49,4 +49,27 @@ public class ReservationsEntity extends BaseEntity {
 
     }
 
+    
+    public  boolean add(Reservation reservation) {
+        return change("INSERT INTO reservations(id,created_date,state,game_time,hours,total" +
+                "password) VALUES (" + reservation.getIdAsValue() + "," +
+                reservation.getCreate_DateAsValue() + "," + reservation.getStateAsValue() + "," +
+                reservation.getGame_TimeAsValue() + "," + reservation.getHoursAsValue() + "," + reservation.getTotalAsValue() +
+                ")");
+    }
+
+
+    public boolean delete(Reservation reservation){
+
+        return change("DELETE FROM reservations WHERE id = " + reservation.getIdAsValue());
+    }
+
+    public  boolean update(Reservation reservation){
+        return change("UPDATE reservations SET created_date = " + reservation.getCreate_DateAsValue() +
+                ", state = " + reservation.getStateAsValue() + ", game_time = " + reservation.getGame_TimeAsValue()+
+                ", hours = " + reservation.getHoursAsValue()+",total = "+ reservation.getTotalAsValue() +
+                " WHERE id = " +reservation.getIdAsValue());
+    }
+
+
 }
