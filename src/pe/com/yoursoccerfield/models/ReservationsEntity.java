@@ -18,7 +18,7 @@ public class ReservationsEntity extends BaseEntity {
     public ReservationsEntity() {
         super();
     }
-
+/*
     public List<Reservation> findByCriteria(String criteria, OrganizersEntity organizersEntity, CourtsEntity courtsEntity,
     OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity){
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
@@ -36,7 +36,7 @@ public class ReservationsEntity extends BaseEntity {
         }
         return null;
     }
-/*
+
     public List<Reservation>findAll(OrganizersEntity organizersEntity){
         return findByCriteria("", organizersEntity);
     }

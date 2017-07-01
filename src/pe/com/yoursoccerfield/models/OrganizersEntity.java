@@ -24,20 +24,19 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria("");
     }
 
-    public Organizer findById(int id) {
-        String criteria = " organizer_id = " +
-                String.valueOf(id);
+    public Organizer findById(String id) {
+        String criteria = " id = '"+ id+"'";
         return findByCriteria(criteria).get(0);
     }
 
     public Organizer findByName(String name) {
-        String criteria = " organizer_first_name = '" +
+        String criteria = " first_name = '" +
                 name + "'";
         return findByCriteria(criteria).get(0);
     }
 
     public List<Organizer> findAllOrderByName() {
-        String criteria = "true ORDER BY organizer_first_name";
+        String criteria = "true ORDER BY first_name";
         return findByCriteria(criteria);
     }
 
@@ -62,7 +61,7 @@ public class OrganizersEntity extends  BaseEntity{
     }
 
     public boolean add(Organizer organizer) {
-        String sql = "INSERT INTO organizers (id,firs_name, last_name, email, password) " +
+        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password) " +
                 "VALUES(" + organizer.getIdAsValue() + ", " + organizer.getFirstNameAsValue()+" ,"+
                 organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ")";
         return change(sql);

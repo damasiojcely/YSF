@@ -82,8 +82,6 @@ public class Participant {
     public Organizer getOrganizer() {
         return organizer;
     }
-    public String getOrganizerAsValue() { return "'" + getOrganizer() + "'";}
-
     public Participant setOrganizer(Organizer organizer) {
         this.organizer = organizer;
         return this;
@@ -98,7 +96,7 @@ public class Participant {
                     .setLastName(rs.getString("last_name"))
                     .setEmail(rs.getString("email"))
                     .setPosition(rs.getString("position"))
-                    .setOrganizer(organizersEntity.findById(rs.getInt("organizer_id")));
+                    .setOrganizer(organizersEntity.findById(rs.getString("organizer_id")));
 
         } catch (SQLException e) {
             e.printStackTrace();
