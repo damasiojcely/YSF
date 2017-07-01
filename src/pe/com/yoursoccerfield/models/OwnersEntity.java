@@ -29,6 +29,7 @@ public class OwnersEntity extends BaseEntity{
             while(resultSet.next()){
                 owners.add(Owner.build(resultSet));
             }
+            return owners;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +40,7 @@ public class OwnersEntity extends BaseEntity{
         return findByCriteria("");
     }
 
-    public Owner findById(int id){
+    public Owner findById(String id){
         String criteria =  " id = '" + id + "'";
         return findByCriteria(criteria).get(0);
     }

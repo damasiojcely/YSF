@@ -115,7 +115,7 @@ public class Court {
                     .setPhoto(rs.getString("photo"))
                     .setType(rs.getInt("type"))
                     .setState(rs.getBoolean("state"))
-                    .setOwner(ownersEntity.findById(rs.getInt("owner_id")))
+                    .setOwner(ownersEntity.findById(rs.getString("owner_id")))
                     .setUbigeo(ubigeosEntity.findById(rs.getString("ubigeo_id")))
                     .setService(servicesEntity.findById(rs.getString("service_id")));
         } catch (SQLException e) {

@@ -12,14 +12,15 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
   </head>
   <body>
+  <h1>Your Soccer Field</h1>
   <ul>
-    <li><a href="listCourts.jsp">List Courts</a> </li>
-    <li><a href="listOrganizers.jsp">List Organizers</a> </li>
-    <li><a href="listOwners.jsp">List Owners</a> </li>
-    <li><a href="listParticipants.jsp">List Participants</a></li>
+    <li><a href="listCourts.jsp">Courts</a> </li>
+    <li><a href="listOrganizers.jsp">Organizers</a> </li>
+    <li><a href="listOwners.jsp">Owners</a> </li>
+    <li><a href="listParticipants.jsp">Participants</a></li>
     <li><a href="listReservations.jsp">Reservations</a></li>
-    <li><a href="listServices.jsp">List Services</a></li>
-    <li><a href="listUbigeos.jsp">List Ubigeos</a></li>
+    <li><a href="listServices.jsp">Services</a></li>
+    <li><a href="listUbigeos.jsp">Ubigeos</a></li>
   </ul>
   </body>
 </html>

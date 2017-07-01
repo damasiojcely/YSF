@@ -14,7 +14,7 @@
 <body>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
 <c:forEach var="owner" items="${service.owners}">
-    <p><c:out value="${owner.firstName}"/><c:out value="${owner.lastName}"/> </p>
+    <p><c:out value="${owner.firstName}"/><c:out value=" ${owner.lastName}"/> </p>
 </c:forEach>
 
 </body>

@@ -40,12 +40,14 @@ public class ReservationsEntity extends BaseEntity {
         try {
             ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
             if(resultSet == null) return null;
-            while(resultSet.next()) reservations.add(Reservation.build(resultSet,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity));
+            while(resultSet.next()) {
+                reservations.add(Reservation.build(resultSet,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity));
+            }
             return reservations;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return reservations;
+        return null;
 
     }
 

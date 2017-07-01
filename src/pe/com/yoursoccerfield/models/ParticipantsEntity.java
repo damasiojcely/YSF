@@ -25,7 +25,7 @@ public class ParticipantsEntity extends BaseEntity {
     }
 
     public Participant findById(String id,  OrganizersEntity organizersEntity) {
-        String criteria = "id = " + "'" + id + "'";
+        String criteria = "id = '" + id + "'";
         return findByCriteria(criteria, organizersEntity).get(0);
     }
 

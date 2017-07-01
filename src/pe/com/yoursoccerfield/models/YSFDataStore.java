@@ -65,7 +65,7 @@ public class YSFDataStore {
         return getOwnersEntity().findAll();
     }
 
-    private ParticipantsEntity getParticipantsEntity() {
+    public ParticipantsEntity getParticipantsEntity() {
         if(participantsEntity==null){
             participantsEntity = new ParticipantsEntity(getConnection());
         }
@@ -75,6 +75,7 @@ public class YSFDataStore {
     public List<Participant> findAllParticipants(){
         return getParticipantsEntity().findAll(getOrganizersEntity());
     }
+
 
     private ReservationsEntity getReservationsEntity() {
         if(reservationsEntity==null){

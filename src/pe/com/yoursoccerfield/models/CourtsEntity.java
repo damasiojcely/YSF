@@ -27,7 +27,7 @@ public class CourtsEntity extends BaseEntity{
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        return courts;
+        return null;
     }
 
     public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {

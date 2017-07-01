@@ -30,6 +30,7 @@ public class UbigeosEntity extends BaseEntity{
             while(resultSet.next()){
                 ubigeos.add(Ubigeo.build(resultSet));
             }
+            return ubigeos;
         } catch (SQLException e) {
             e.printStackTrace();
         }
