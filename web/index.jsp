@@ -17,7 +17,9 @@
     <li><a href="listOrganizers.jsp">List Organizers</a> </li>
     <li><a href="listOwners.jsp">List Owners</a> </li>
     <li><a href="listParticipants.jsp">List Participants</a></li>
-    <li><a href="listReservations.jsp">Reservas</a></li>
+    <li><a href="listReservations.jsp">Reservations</a></li>
     <li><a href="listServices.jsp">List Services</a></li>
     <li><a href="listUbigeos.jsp">List Ubigeos</a></li>
   </ul>
+  </body>
+</html>

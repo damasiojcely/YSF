@@ -18,11 +18,10 @@ public class YSFDataStore {
 
 
     public YSFDataStore(Connection connection) {
-        this.setConnection(connection);    }
+        this.connection= connection;    }
 
     public YSFDataStore() {
     }
-
 
     public Connection getConnection() {
         return connection;
