@@ -49,12 +49,12 @@ public class ReservationsEntity extends BaseEntity {
 
     }
 
-    
     public  boolean add(Reservation reservation) {
-        return change("INSERT INTO reservations(id,created_date,state,game_time,hours,total" +
-                "password) VALUES (" + reservation.getIdAsValue() + "," +
+        return change("INSERT INTO reservations(id,created_date,state,game_time,hours,total,organizer_id,court_id" +
+                "VALUES (" + reservation.getIdAsValue() + "," +
                 reservation.getCreate_DateAsValue() + "," + reservation.getStateAsValue() + "," +
                 reservation.getGame_TimeAsValue() + "," + reservation.getHoursAsValue() + "," + reservation.getTotalAsValue() +
+                reservation.getOrganizer().getIdAsValue()+reservation.getCourt().getIdAsValue()+
                 ")");
     }
 
@@ -67,7 +67,8 @@ public class ReservationsEntity extends BaseEntity {
     public  boolean update(Reservation reservation){
         return change("UPDATE reservations SET created_date = " + reservation.getCreate_DateAsValue() +
                 ", state = " + reservation.getStateAsValue() + ", game_time = " + reservation.getGame_TimeAsValue()+
-                ", hours = " + reservation.getHoursAsValue()+",total = "+ reservation.getTotalAsValue() +
+                ", hours = " + reservation.getHoursAsValue()+",total = "+ reservation.getTotalAsValue() + ",organizer_id"+
+                reservation.getOrganizer().getIdAsValue()+",court_id"+reservation.getCourt().getIdAsValue()+
                 " WHERE id = " +reservation.getIdAsValue());
     }
 

@@ -88,6 +88,7 @@ public class Reservation {
     public Organizer getOrganizer() {
         return organizer;
     }
+    public String getOrganizerAsValue() {return "'" + getOrganizer();}
 
     public Reservation setOrganizer(Organizer organizer) {
         this.organizer = organizer;
@@ -97,6 +98,7 @@ public class Reservation {
     public Court getCourt() {
         return court;
     }
+    public String getCourtAsValue() {return "'" + getCourt();}
 
     public Reservation setCourt(Court court) {
         this.court = court;
