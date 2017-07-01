@@ -24,6 +24,8 @@ public class Reservation {
         return id;
     }
 
+    public String getIdAsValue() { return "'" + getId() + "'";}
+
     public Reservation setId(int id) {
         this.id = id;
         return this;
@@ -33,7 +35,9 @@ public class Reservation {
         return createDate;
     }
 
-    public Reservation setCreateDate(java.sql.Date createDate) {
+    public String getCreate_DateAsValue() { return "'" + getCreateDate() + "'";}
+
+       public Reservation setCreateDate(java.sql.Date createDate) {
         this.createDate = createDate;
         return this;
     }
@@ -41,6 +45,8 @@ public class Reservation {
     public Boolean getState() {
         return state;
     }
+
+    public String getStateAsValue(){return "'" + getState() + "";}
 
     public Reservation setState(Boolean state) {
         this.state = state;
@@ -51,6 +57,8 @@ public class Reservation {
         return gameTime;
     }
 
+    public String getGame_TimeAsValue() { return "'" + getGameTime()+ "'";}
+
     public Reservation setGameTime(java.sql.Date gameTime) {
         this.gameTime = gameTime;
         return this;
@@ -60,14 +68,17 @@ public class Reservation {
         return hours;
     }
 
+    public String getHoursAsValue() { return "'" + getHours()+ "'";}
+
     public Reservation setHours(float hours) {
         this.hours = hours;
         return this;
     }
 
-    public float getTotal() {
-        return total;
-    }
+    public float getTotal() {return total;}
+
+    public String getTotalAsValue() { return "'" + getTotal()+ "'";}
+
 
     public Reservation setTotal(float total) {
         this.total = total;
@@ -114,6 +125,7 @@ public class Reservation {
         }
         return null;
     }
+
 
 
 }
