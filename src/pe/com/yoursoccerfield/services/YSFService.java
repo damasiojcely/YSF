@@ -70,8 +70,8 @@ public class YSFService {
         return getDataStore().findAllServices();
     }
 
-    public List<Ubigeo> getUbigeos(){
-        return getDataStore().findAllUbigeos();
-    }
+   /* public List<Ubigeo> getUbigeos(){
+        return getDataStore().findAllUbigeos();*/
+
 
 }

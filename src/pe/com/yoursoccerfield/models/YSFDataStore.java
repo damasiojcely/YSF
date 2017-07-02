@@ -105,8 +105,8 @@ public class YSFDataStore {
         }
         return ubigeosEntity;
     }
-
+/*
     public List<Ubigeo> findAllUbigeos(){
         return getUbigeosEntity().findAll();
-    }
+    }*/
 }
