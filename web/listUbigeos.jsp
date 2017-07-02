@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lnakaya
@@ -14,7 +13,7 @@
 <body>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
 <c:forEach var="ubigeo" items="${service.ubigeos}">
-    <p><c:out value="${ubigeo.departmentName}"/></p>
+    <p><c:out value="${court.name}"/></p>
 </c:forEach>
 </body>
 </html>
