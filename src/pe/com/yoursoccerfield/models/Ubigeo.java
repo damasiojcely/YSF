@@ -8,48 +8,60 @@ import java.sql.SQLException;
  */
 public class Ubigeo {
     private String id;
-    private String departmentId;
-    private String provinceId;
-    private String districtId;
+    private String department;
+    private String province;
+    private String district;
     private String departmentName;
     private String provinceName;
     private String districtName;
 
+
+    public Ubigeo() {
+    }
+
+    public Ubigeo(String id, String department, String province, String district, String departmentName, String provinceName, String districtName) {
+        this.id = id;
+        this.department = department;
+        this.province = province;
+        this.district = district;
+        this.departmentName = departmentName;
+        this.provinceName = provinceName;
+        this.districtName = districtName;
+    }
+
     public String getId() { return id; }
+
+    public String getIdAsValue(){ return "'"+ getId() + "'" ;}
 
     public Ubigeo setId(String id) {
         this.id = id;
         return this;
     }
 
-    public String getIdAsValue(){
-        return "'" + getId() + "'";
-    }
+    public String getDepartment() { return department; }
 
-    public String getDepartmentId() { return departmentId; }
+    public String getDepartmentAsValue(){ return "'" + getDepartment() + "'"; }
 
-    public String getDepartmentIdAsValue(){ return "'" + getDepartmentId() + "'"; }
-
-    public Ubigeo setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public Ubigeo setDepartment(String department) {
+        this.department = department;
         return this;
     }
 
-    public String getProvinceId() {return provinceId;  }
+    public String getProvince() {return province;  }
 
-    public String getProvinceIdAsValue(){ return "'" + getProvinceId() + "'";  }
+    public String getProvinceAsValue(){ return "'" + getProvince() + "'";  }
 
-    public Ubigeo setProvinceId(String provinceId) {
-        this.provinceId = provinceId;
+    public Ubigeo setProvince(String province) {
+        this.province = province;
         return this;
     }
 
-    public String getDistrictId() {  return districtId;  }
+    public String getDistrict() {  return district;  }
 
-    public String getDistrictIdAsValue(){ return "'" + getDistrictId() + "'";  }
+    public String getDistrictAsValue(){ return "'" + getDistrict() + "'";  }
 
-    public Ubigeo setDistrictId(String districtId) {
-        this.districtId = districtId;
+    public Ubigeo setDistrict(String district) {
+        this.district = district;
         return this;
     }
 
@@ -84,9 +96,9 @@ public class Ubigeo {
         try {
             return (new Ubigeo())
                     .setId(resultSet.getString("id"))
-                    .setDepartmentId(resultSet.getString("department"))
-                    .setProvinceId(resultSet.getString("province"))
-                    .setDistrictId(resultSet.getString("district"))
+                    .setDepartment(resultSet.getString("department"))
+                    .setProvince(resultSet.getString("province"))
+                    .setDistrict(resultSet.getString("district"))
                     .setDepartmentName(resultSet.getString("department_name"))
                     .setProvinceName(resultSet.getString("province_name"))
                     .setDistrictName(resultSet.getString("district_name"));

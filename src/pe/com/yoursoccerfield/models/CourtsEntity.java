@@ -16,77 +16,73 @@ public class CourtsEntity extends BaseEntity{
         super();
     }
 
-    public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity,ServicesEntity servicesEntity) {
-        return findByCriteria("", ownersEntity, ubigeosEntity,servicesEntity);
-    }
-
-
-    public Court findById(String id, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity,ServicesEntity servicesEntity) {
-
-        String criteria = "id = " + "'" + id + "'";
-        return findByCriteria(criteria, ownersEntity,ubigeosEntity,servicesEntity).get(0);
-
-    }
-
-
-    public List<Court> findByCriteria(String criteria, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity,ServicesEntity servicesEntity) {
+    public List<Court> findByCriteria(String criteria, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Court> courts = new ArrayList<>();
         try {
             ResultSet rs = getConnection().createStatement().executeQuery(sql);
             if(rs == null) return null;
-            while(rs.next()) courts.add(Court.build(rs, ownersEntity, ubigeosEntity,servicesEntity));
+            while(rs.next()) courts.add(Court.build(rs, ownersEntity,ubigeosEntity,servicesEntity));
             return courts;
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        return courts;
+        return null;
     }
 
+    public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+        return findByCriteria("", ownersEntity, ubigeosEntity, servicesEntity);
+    }
 
+    public Court findById(String id, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+        try {
+            String  sql = "id = '" + id + "'";
+            return findByCriteria(sql, ownersEntity, ubigeosEntity, servicesEntity).get(0);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean add(Court court) {
-        String sql = "INSERT INTO courts (id, name, capacity,address,email,phone,price,photo,type,state,owner_id ,ubigeo_id,service_id) VALUES(" +
-                court.getId() + ", " +
-                court.getName() + ", " +
-                court.getCapacity() + ", " +
-                court.getAddress()+ ", " +
-                court.getEmail()+ ", " +
-                court.getPhone()+ ", " +
-                court.getPrice()+ ", " +
-                court.getPhoto()+ ", " +
-                court.getType()+ ", " +
-                court.getState()+ ", " +
-                court.getOwner().getId()+ ", " +
-                court.getUbigeo().getId() + "," +
-                court.getService().getId()+")";
-
+        String sql = "INSERT INTO courts(id, name, capacity,address,email,phone,price,photo," +
+                "type,state,owner_id ,ubigeo_id,service_id) VALUES(" +
+                court.getIdAsValue() + ", " +
+                court.getNameAsValue() + ", " +
+                court.getCapacityAsString() + ", " +
+                court.getAddressAsValue()+ ", " +
+                court.getEmailAsValue()+ ", " +
+                court.getPhoneAsValue()+ ", " +
+                court.getPriceAsString()+ ", " +
+                court.getPhotoAsValue()+ ", " +
+                court.getTypeAsString()+ ", " +
+                court.getStateAsString()+ ", " +
+                court.getOwner().getIdAsValue()+ ", " +
+                court.getUbigeo().getIdAsValue() + "," +
+                court.getService().getIdAsValue()+ ")";
         return change(sql);
     }
 
     public boolean update(Court court) {
-        String sql = "UPDATE courts SET " +
-                "id = " + court.getId() + ", " +
-                "name = " + court.getName() + ", " +
-               " capacity = " + court.getCapacity() + ", " +
-               " address = " + court.getAddress() + ", " +
-               "email = " + court.getEmail() + ", " +
-               " phone = " + court.getPhone() + ", " +
-               " price = " + court.getPrice() + ", " +
-               " photo = " + court.getPhoto() + ", " +
-               " type = " + court.getType() + ", " +
-               "  state = " + court.getState() + ", " +
-
-                "owner_id = " + court.getOwner().getId() +
-                "ubigeo_id = " + court.getUbigeo().getId() +
-                "service_id = " + court.getService().getId() +
-                " WHERE id = " + court.getId();
+        String sql = "UPDATE courts SET name = " + court.getNameAsValue() +
+               ", capacity = " + court.getCapacityAsString() +
+               ", address = " + court.getAddressAsValue() +
+               ", email = " + court.getEmailAsValue() +
+               ", phone = " + court.getPhoneAsValue() +
+               ", price = " + court.getPriceAsString() +
+               ", photo = " + court.getPhotoAsValue() +
+               ", type = " + court.getTypeAsString() +
+               ", state = " + court.getStateAsString() +
+               ", owner_id = " + court.getOwner().getIdAsValue() +
+               ", ubigeo_id = " + court.getUbigeo().getIdAsValue() +
+               ", service_id = " +court.getService().getIdAsValue() +
+                " WHERE id = " + court.getIdAsValue();
         return change(sql);
     }
 
     public boolean delete(Court court) {
-        String sql = "DELETE FROM court WHERE id = " +
-                court.getId();
+        String sql = "DELETE FROM courts WHERE id = " +
+                court.getIdAsValue();
         return change(sql);
     }
 

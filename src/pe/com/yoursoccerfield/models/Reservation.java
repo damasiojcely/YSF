@@ -1,9 +1,12 @@
 package pe.com.yoursoccerfield.models;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
+/**
+ * Created by Yessenia on 16/06/2017.
+ */
 public class Reservation {
     private int id;
     private Date createDate;
@@ -14,9 +17,26 @@ public class Reservation {
     private Organizer organizer;
     private Court court;
 
+    public Reservation() {
+    }
+
+    public Reservation(int id, Date createDate, Boolean state, Date gameTime, float hours, float total, Organizer organizer, Court court) {
+        this.id = id;
+        this.createDate = createDate;
+        this.state = state;
+        this.gameTime = gameTime;
+        this.hours = hours;
+        this.total = total;
+        this.organizer = organizer;
+        this.court = court;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public String getIdAsString() {
+        return String.valueOf(getId());
     }
 
     public Reservation setId(int id) {
@@ -28,7 +48,9 @@ public class Reservation {
         return createDate;
     }
 
-    public Reservation setCreateDate(Date createDate) {
+    public String getCreateDateAsValue() { return "'" + getCreateDate() + "'";}
+
+       public Reservation setCreateDate(Date createDate) {
         this.createDate = createDate;
         return this;
     }
@@ -36,6 +58,8 @@ public class Reservation {
     public Boolean getState() {
         return state;
     }
+
+    public String getStateAsString(){return String.valueOf(getState());}
 
     public Reservation setState(Boolean state) {
         this.state = state;
@@ -46,6 +70,8 @@ public class Reservation {
         return gameTime;
     }
 
+    public String getGameTimeAsValue() { return "'" + getGameTime()+ "'";}
+
     public Reservation setGameTime(Date gameTime) {
         this.gameTime = gameTime;
         return this;
@@ -55,14 +81,16 @@ public class Reservation {
         return hours;
     }
 
+    public String getHoursAsString() { return String.valueOf(getHours());}
+
     public Reservation setHours(float hours) {
         this.hours = hours;
         return this;
     }
 
-    public float getTotal() {
-        return total;
-    }
+    public float getTotal() {return total;}
+
+    public String getTotalAsString(){return String.valueOf(getTotal());}
 
     public Reservation setTotal(float total) {
         this.total = total;
@@ -72,6 +100,7 @@ public class Reservation {
     public Organizer getOrganizer() {
         return organizer;
     }
+    public String getOrganizerAsValue() {return "'" + getOrganizer()+"'";}
 
     public Reservation setOrganizer(Organizer organizer) {
         this.organizer = organizer;
@@ -81,6 +110,7 @@ public class Reservation {
     public Court getCourt() {
         return court;
     }
+    public String getCourtAsValue() {return "'" + getCourt()+"'";}
 
     public Reservation setCourt(Court court) {
         this.court = court;
@@ -109,5 +139,7 @@ public class Reservation {
         }
         return null;
     }
+
+
 
 }
