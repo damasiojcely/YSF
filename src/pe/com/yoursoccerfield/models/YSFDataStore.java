@@ -104,7 +104,16 @@ public class YSFDataStore {
         return ubigeosEntity;
     }
 
-    public List<Ubigeo> findAllUbigeos() { return getUbigeosEntity().findAll(); }
+
+    public List<Ubigeo> findAllDepartments() { return getUbigeosEntity().findAllDepartments();  }
+
+    public List<Ubigeo> findAllProvinces() {
+        return getUbigeosEntity().findAllProvinces();
+    }
+
+    public List<Ubigeo> findAllDistricts() {
+        return getUbigeosEntity().findAllDistricts();
+    }
 
 
 
@@ -126,6 +135,8 @@ public class YSFDataStore {
 
     public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
 
+    public boolean loginOrganizer(Organizer organizer) {return getOrganizersEntity().login(organizer);}
+
     public Participant findParticipantById(String id){ return getParticipantsEntity().findById(id,getOrganizersEntity()); }
 
     public boolean updateParticipant(Participant participant){return getParticipantsEntity().update(participant);}
@@ -139,6 +150,8 @@ public class YSFDataStore {
     public boolean addOrganizer(Organizer organizer){return getOrganizersEntity().add(organizer);}
 
     public boolean addOwner(Owner owner){return getOwnersEntity().add(owner);}
+
+    public boolean loginOwner(Owner owner) {return getOwnersEntity().login(owner);}
 
     public boolean addParticipant(Participant participant){return getParticipantsEntity().add(participant);}
 

@@ -56,10 +56,11 @@ public class OwnersEntity extends BaseEntity{
     }
 
     public boolean add(Owner owner) {
-        String sql = "INSERT INTO owners (id,first_name, last_name, email, password, dni,photo,phone,position) " +
+        String sql = "INSERT INTO owners (id,first_name, last_name, email, password, dni,photo,phone,position,user_type) " +
                 "VALUES(" + owner.getIdAsValue() + ", " + owner.getFirstNameAsValue()+" ,"+
                 owner.getLastNameAsValue() +", "+owner.getEmailAsValue()+", "+ owner.getPasswordAsValue() + ", "+
-                owner.getDniAsValue()+", "+owner.getPhotoAsValue()+", "+owner.getPhoneAsValue()+", "+owner.getPositionAsValue()+ ")";
+                owner.getDniAsValue()+", "+owner.getPhotoAsValue()+", "+owner.getPhoneAsValue()+", "+owner.getPositionAsValue()+ ", "+
+                owner.getUserTypeAsString()+ ")";
         return change(sql);
     }
 
@@ -77,6 +78,7 @@ public class OwnersEntity extends BaseEntity{
                 ", photo = " + owner.getPhotoAsValue()+
                 ", phone = " + owner.getPhoneAsValue()+
                 ",position = "+ owner.getPositionAsValue() +
+                ", user_type = "+owner.getUserTypeAsString()+
                 " WHERE id = " +owner.getIdAsValue());
     }
 
@@ -89,6 +91,11 @@ public class OwnersEntity extends BaseEntity{
     public boolean updatePass(Owner owner) {
         String sql = "UPDATE owners SET WHERE password = " + owner.getPasswordAsValue()+
                 " WHERE id = " + owner.getIdAsValue();
+        return change(sql);
+    }
+
+    public boolean login(Owner owner){
+        String sql = "SELECT id FROM owners WHERE email= " + owner.getEmailAsValue() +", pass= " + owner.getPasswordAsValue() + "";
         return change(sql);
     }
 }

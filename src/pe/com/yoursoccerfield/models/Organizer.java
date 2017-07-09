@@ -16,21 +16,25 @@ public class Organizer {
     private String photo;
     private String phone;
     private String position;
+    private int userType;
 
-    public Organizer(String id, String firstName, String lastName, String email, String password, String dni, String photo, String phone, String position) {
-        this.setId(id);
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setEmail(email);
-        this.setPassword(password);
-        this.setDni(dni);
-        this.setPhoto(photo);
-        this.setPhone(phone);
-        this.setPosition(position);
-    }
+
 
     public Organizer() {
 
+    }
+
+    public Organizer(String id, String firstName, String lastName, String email, String password, String dni, String photo, String phone, String position, int userType) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.dni = dni;
+        this.photo = photo;
+        this.phone = phone;
+        this.position = position;
+        this.userType = userType;
     }
 
 
@@ -97,6 +101,11 @@ public class Organizer {
     public Organizer setPosition(String position) {this.position = position;
         return this; }
 
+    public int getUserType() { return userType; }
+    public String getUserTypeAsString(){return String.valueOf(getUserType());}
+    public Organizer setUserType(int userType) { this.userType = userType;
+    return this;}
+
     public static Organizer build(ResultSet resultSet){
         try {
             return (new Organizer())
@@ -108,10 +117,12 @@ public class Organizer {
                     .setDni(resultSet.getString("dni"))
                     .setPhoto(resultSet.getString("photo"))
                     .setPhone(resultSet.getString("phone"))
-                    .setPosition(resultSet.getString("position"));
+                    .setPosition(resultSet.getString("position"))
+                    .setUserType(resultSet.getInt("user_type"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }

@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class UbigeosEntity extends BaseEntity{
 
-
     public UbigeosEntity(Connection connection) {
         super(connection,"ubigeos");
     }
@@ -20,7 +19,7 @@ public class UbigeosEntity extends BaseEntity{
     public UbigeosEntity() { super(); }
 
     public List<Ubigeo> findByCriteria(String criteria) {
-        String sql = getDefaultQuery() + (criteria.equalsIgnoreCase("") ? "" : " WHERE " + criteria);
+        String sql = getDefaultQuery() + " GROUP BY "+ criteria;
         List<Ubigeo> ubigeos = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -37,9 +36,21 @@ public class UbigeosEntity extends BaseEntity{
         return null;
     }
 
-    List<Ubigeo>findAll(){
-        return findByCriteria("");
+
+    List<Ubigeo>findAllDepartments(){
+        String criteria = "department_name";
+        return findByCriteria(criteria);
     }
+
+    List<Ubigeo>findAllProvinces(){
+        String criteria = "province_name";
+        return findByCriteria(criteria);
+    }
+    List<Ubigeo>findAllDistricts(){
+        String criteria = "district_name";
+        return findByCriteria(criteria);
+    }
+
 
     public Ubigeo findById(String id){
         String criteria = " id = '" + id + "'";

@@ -40,6 +40,7 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria);
     }
 
+    
 
     public List<Organizer> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
@@ -61,10 +62,11 @@ public class OrganizersEntity extends  BaseEntity{
     }
 
     public boolean add(Organizer organizer) {
-        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password, dni,photo,phone,position) " +
+        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password, dni,photo,phone,position,user_type) " +
                 "VALUES(" + organizer.getIdAsValue() + ", " + organizer.getFirstNameAsValue()+" ,"+
                 organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ", "+
-                organizer.getDniAsValue()+", "+organizer.getPhotoAsValue()+", "+organizer.getPhoneAsValue()+", "+organizer.getPositionAsValue()+ ")";
+                organizer.getDniAsValue()+", "+organizer.getPhotoAsValue()+", "+organizer.getPhoneAsValue()+", "+organizer.getPositionAsValue()+
+                ", "+organizer.getUserTypeAsString()+")";
         return change(sql);
     }
 
@@ -94,7 +96,13 @@ public class OrganizersEntity extends  BaseEntity{
                 ", photo = " + organizer.getPhotoAsValue() +
                 ", phone = " + organizer.getPhoneAsValue() +
                 ", position = " + organizer.getPositionAsValue()+
+                ", user_type = " + organizer.getUserTypeAsString()+
                 " WHERE id = " + organizer.getIdAsValue());
+    }
+
+    public boolean login(Organizer organizer){
+        String sql = "SELECT id FROM organizer WHERE email= " + organizer.getEmailAsValue() +", pass= " + organizer.getPasswordAsValue() + "";
+        return change(sql);
     }
 
 
