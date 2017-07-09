@@ -19,7 +19,7 @@ public class YSFService {
 
     public YSFService(InitialContext ctx) {
         try {
-            connection = ((DataSource) ctx.lookup("jdbc/MySQLDataSource1"))
+            connection = ((DataSource) ctx.lookup("jdbc/MySQLDataSource2"))
                     .getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class YSFService {
     public YSFService(){
         try{
             InitialContext ctx = new InitialContext();
-            connection = ((DataSource) ctx.lookup("jdbc/MySQLDataSource1")).getConnection();
+            connection = ((DataSource) ctx.lookup("jdbc/MySQLDataSource2")).getConnection();
         } catch (NamingException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -71,9 +71,6 @@ public class YSFService {
         return getDataStore().findAllServices();
     }
 
-    public List<Ubigeo> getUbigeos() {
-        return getDataStore().findAllUbigeos();
-    }
     public Owner getOwnerById(String id){
         return getDataStore().findOwnerById(id);
     }
@@ -102,7 +99,6 @@ public class YSFService {
 
     public boolean updateParticipant(Participant participant){return getDataStore().updateParticipant(participant);}
 
-
     public Service getServiceById(String id){return getDataStore().findServiceById(id);}
     public boolean updateService(Service service){return getDataStore().updateService(service);}
 
@@ -117,5 +113,17 @@ public class YSFService {
      public boolean addReservation(Reservation reservation){return getDataStore().addReservation(reservation); }
 
      public boolean addService(Service service){return getDataStore().addService(service);}
+
+     public boolean loginOrganizer(Organizer organizer){return getDataStore().loginOrganizer(organizer);}
+
+     public boolean loginOwner(Owner owner){return getDataStore().loginOwner(owner);}
+
+    public List<Ubigeo> getUbigeosD(){ return getDataStore().findAllDepartments();}
+
+    public List<Ubigeo> getUbigeosP(){ return getDataStore().findAllProvinces();}
+
+    public List<Ubigeo> getUbigeosDi(){ return getDataStore().findAllDistricts();}
+
+
 
 }
