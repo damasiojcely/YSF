@@ -20,8 +20,13 @@
         <th>Nombre</th>
         <th>Capacidad</th>
         <th>Direccion</th>
+        <th>Email</th>
+        <th>Phone</th>
         <th>Precio</th>
+        <th>Photo</th>
         <th>Tipo</th>
+        <th>Estado</th>
+        <th>Edit</th>
     </tr>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
 <c:forEach var="court" items="${service.courts}">
@@ -29,10 +34,17 @@
         <td><c:out value="${court.name}"/></td>
         <td><c:out value="${court.capacity}"/></td>
         <td><c:out value="${court.address}"/></td>
+        <td><c:out value="${court.email}"/></td>
+        <td><c:out value="${court.phone}"/></td>
         <td><c:out value="${court.price}"/></td>
+        <td><c:out value="${court.photo}"/></td>
         <td><c:out value="${court.type}"/></td>
+        <td><c:out value="${court.state}"/></td>
+        <td><a href="courts?action=edit&id=<c:out value="${court.id}"/> ">Edit</a></td>
     </tr>
    </c:forEach>
+    <a href="courts?action=add">Add Region</a>
 </table>
+
 </body>
 </html>

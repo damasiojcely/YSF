@@ -22,6 +22,7 @@
         <th>Tiempo juego</th>
         <th>Horas</th>
         <th>Total</th>
+        <th>Edit</th>
     </tr>
     <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
     <c:forEach var="reservation" items="${service.reservations}">
@@ -31,8 +32,10 @@
             <td><c:out value="${reservation.gameTime}"/></td>
             <td><c:out value="${reservation.hours}"/></td>
             <td> <c:out value="${reservation.total}"/></td>
+            <td><a href="reservations?action=edit&id=<c:out value="${reservation.id}"/> ">Edit</a></td>
         </tr>
     </c:forEach>
+    <a href="reservations?action=add">Add Reservation</a>
 </table>
 </body>
 </html>

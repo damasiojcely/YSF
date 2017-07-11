@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>ListUbigeos</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <body>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
