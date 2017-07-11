@@ -36,25 +36,10 @@ public class UbigeosEntity extends BaseEntity{
         }
         return null;
     }
-    /*
-    List<Ubigeo>findAllDepartments(){
-        String sql = "SELECT distinct department_name from ubigeos";
-        List<Ubigeo> ubigeos= new ArrayList<>();
-        try {
-            ResultSet resultSet = getConnection()
-                    .createStatement()
-                    .executeQuery(sql);
-            if (resultSet == null) return null;
-            while(resultSet.next()){
-                ubigeos.add(Ubigeo.build(resultSet));
-            }
-            return ubigeos;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
 
-    }*/
+    List<Ubigeo>findAll(){
+        return findByCriteria("");
+    }
 
     public Ubigeo findById(String id){
         String criteria = " id = '" + id + "'";

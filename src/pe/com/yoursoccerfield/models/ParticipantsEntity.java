@@ -70,13 +70,12 @@ public class ParticipantsEntity extends BaseEntity {
     }
 
     public boolean update(Participant participant) {
-        String sql = "UPDATE participants SET " +
-                "first_name = " + participant.getFirstNameAsValue() + ", " +
-               "last_name = "+ participant.getLastNameAsValue() + ", " +
-                "email="+ participant.getEmailAsValue()+","+
-                "position="+ participant.getPositionAsValue()+"'"+
-                "organizer_id = " + participant.getOrganizer().getIdAsValue() +
-                " WHERE participant_id = " + participant.getIdAsValue();
+        String sql = "UPDATE participants SET first_name = " + participant.getFirstNameAsValue() +
+               ", last_name = "+ participant.getLastNameAsValue() +
+                ", email = "+ participant.getEmailAsValue() +
+                ", position = "+ participant.getPositionAsValue() +
+                ", organizer_id = " + participant.getOrganizer().getIdAsValue() +
+                " WHERE id = " + participant.getIdAsValue();
         return change(sql);
     }
 

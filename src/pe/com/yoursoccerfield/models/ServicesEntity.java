@@ -72,7 +72,9 @@ public class ServicesEntity extends BaseEntity{
 
 
     public boolean update(Service service) {
-        String sql = "UPDATE services SET WHERE id = " + service.getIdAsValue();
+        String sql = "UPDATE services SET name = " + service.getNameAsValue() +
+                ", price = " + service.getPriceAsString()+
+                "WHERE id = " + service.getIdAsValue();
         return change(sql);
     }
 

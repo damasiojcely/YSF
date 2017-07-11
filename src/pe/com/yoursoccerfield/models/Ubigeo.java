@@ -15,9 +15,24 @@ public class Ubigeo {
     private String provinceName;
     private String districtName;
 
+
+    public Ubigeo() {
+    }
+
+    public Ubigeo(String id, String department, String province, String district, String departmentName, String provinceName, String districtName) {
+        this.id = id;
+        this.department = department;
+        this.province = province;
+        this.district = district;
+        this.departmentName = departmentName;
+        this.provinceName = provinceName;
+        this.districtName = districtName;
+    }
+
     public String getId() { return id; }
 
     public String getIdAsValue(){ return "'"+ getId() + "'" ;}
+
     public Ubigeo setId(String id) {
         this.id = id;
         return this;

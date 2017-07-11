@@ -17,6 +17,8 @@ public class Owner {
     private String phone;
     private String position;
 
+
+
     public Owner() {
     }
 

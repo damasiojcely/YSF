@@ -1,7 +1,5 @@
 package pe.com.yoursoccerfield.models;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -11,33 +9,48 @@ import java.util.Date;
  */
 public class Reservation {
     private int id;
-    private java.sql.Date createDate;
+    private Date createDate;
     private Boolean state;
-    private java.sql.Date gameTime;
+    private Date gameTime;
     private float hours;
     private float total;
     private Organizer organizer;
     private Court court;
 
+    public Reservation() {
+    }
+
+    public Reservation(int id, Date createDate, Boolean state, Date gameTime, float hours, float total, Organizer organizer, Court court) {
+        this.id = id;
+        this.createDate = createDate;
+        this.state = state;
+        this.gameTime = gameTime;
+        this.hours = hours;
+        this.total = total;
+        this.organizer = organizer;
+        this.court = court;
+    }
 
     public int getId() {
         return id;
     }
 
-    public String getIdAsValue() { return "'" + getId() + "'";}
+    public String getIdAsString() {
+        return String.valueOf(getId());
+    }
 
     public Reservation setId(int id) {
         this.id = id;
         return this;
     }
 
-    public java.sql.Date getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public String getCreate_DateAsValue() { return "'" + getCreateDate() + "'";}
+    public String getCreateDateAsValue() { return "'" + getCreateDate() + "'";}
 
-       public Reservation setCreateDate(java.sql.Date createDate) {
+       public Reservation setCreateDate(Date createDate) {
         this.createDate = createDate;
         return this;
     }
@@ -46,20 +59,20 @@ public class Reservation {
         return state;
     }
 
-    public String getStateAsValue(){return "'" + getState() + "";}
+    public String getStateAsString(){return String.valueOf(getState());}
 
     public Reservation setState(Boolean state) {
         this.state = state;
         return this;
     }
 
-    public java.sql.Date getGameTime() {
+    public Date getGameTime() {
         return gameTime;
     }
 
-    public String getGame_TimeAsValue() { return "'" + getGameTime()+ "'";}
+    public String getGameTimeAsValue() { return "'" + getGameTime()+ "'";}
 
-    public Reservation setGameTime(java.sql.Date gameTime) {
+    public Reservation setGameTime(Date gameTime) {
         this.gameTime = gameTime;
         return this;
     }
@@ -68,7 +81,7 @@ public class Reservation {
         return hours;
     }
 
-    public String getHoursAsValue() { return "'" + getHours()+ "'";}
+    public String getHoursAsString() { return String.valueOf(getHours());}
 
     public Reservation setHours(float hours) {
         this.hours = hours;
@@ -77,8 +90,7 @@ public class Reservation {
 
     public float getTotal() {return total;}
 
-    public String getTotalAsValue() { return "'" + getTotal()+ "'";}
-
+    public String getTotalAsString(){return String.valueOf(getTotal());}
 
     public Reservation setTotal(float total) {
         this.total = total;
@@ -88,7 +100,7 @@ public class Reservation {
     public Organizer getOrganizer() {
         return organizer;
     }
-    public String getOrganizerAsValue() {return "'" + getOrganizer();}
+    public String getOrganizerAsValue() {return "'" + getOrganizer()+"'";}
 
     public Reservation setOrganizer(Organizer organizer) {
         this.organizer = organizer;
@@ -98,7 +110,7 @@ public class Reservation {
     public Court getCourt() {
         return court;
     }
-    public String getCourtAsValue() {return "'" + getCourt();}
+    public String getCourtAsValue() {return "'" + getCourt()+"'";}
 
     public Reservation setCourt(Court court) {
         this.court = court;

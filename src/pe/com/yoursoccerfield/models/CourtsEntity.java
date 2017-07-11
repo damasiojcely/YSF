@@ -56,7 +56,7 @@ public class CourtsEntity extends BaseEntity{
                 court.getPriceAsString()+ ", " +
                 court.getPhotoAsValue()+ ", " +
                 court.getTypeAsString()+ ", " +
-                court.getStateAsValue()+ ", " +
+                court.getStateAsString()+ ", " +
                 court.getOwner().getIdAsValue()+ ", " +
                 court.getUbigeo().getIdAsValue() + "," +
                 court.getService().getIdAsValue()+ ")";
@@ -64,20 +64,18 @@ public class CourtsEntity extends BaseEntity{
     }
 
     public boolean update(Court court) {
-        String sql = "UPDATE courts SET " +
-                "id = " + court.getIdAsValue() + ", " +
-                "name = " + court.getNameAsValue() + ", " +
-               " capacity = " + court.getCapacityAsString() + ", " +
-               " address = " + court.getAddressAsValue() + ", " +
-               "email = " + court.getEmailAsValue() + ", " +
-               " phone = " + court.getPhoneAsValue() + ", " +
-               " price = " + court.getPriceAsString() + ", " +
-               " photo = " + court.getPhotoAsValue() + ", " +
-               " type = " + court.getTypeAsString() + ", " +
-               "  state = " + court.getStateAsValue() + ", " +
-                "owner_id = " + court.getOwner().getIdAsValue()  + ", " +
-                "ubigeo_id = " + court.getUbigeo().getIdAsValue()  + ", " +
-                "service_id = " +court.getService().getIdAsValue() +
+        String sql = "UPDATE courts SET name = " + court.getNameAsValue() +
+               ", capacity = " + court.getCapacityAsString() +
+               ", address = " + court.getAddressAsValue() +
+               ", email = " + court.getEmailAsValue() +
+               ", phone = " + court.getPhoneAsValue() +
+               ", price = " + court.getPriceAsString() +
+               ", photo = " + court.getPhotoAsValue() +
+               ", type = " + court.getTypeAsString() +
+               ", state = " + court.getStateAsString() +
+               ", owner_id = " + court.getOwner().getIdAsValue() +
+               ", ubigeo_id = " + court.getUbigeo().getIdAsValue() +
+               ", service_id = " +court.getService().getIdAsValue() +
                 " WHERE id = " + court.getIdAsValue();
         return change(sql);
     }

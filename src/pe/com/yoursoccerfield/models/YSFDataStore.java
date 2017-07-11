@@ -39,9 +39,7 @@ public class YSFDataStore {
         return courtsEntity;
     }
 
-    public List<Court> findAllCourts(){
-        return getCourtsEntity().findAll(getOwnersEntity(),getUbigeosEntity(),getServicesEntity());
-    }
+    public List<Court> findAllCourts(){ return getCourtsEntity().findAll(getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
 
     private OrganizersEntity getOrganizersEntity() {
         if(organizersEntity==null){
@@ -105,8 +103,47 @@ public class YSFDataStore {
         }
         return ubigeosEntity;
     }
-/*
-    public List<Ubigeo> findAllUbigeos(){
-        return getUbigeosEntity().findAll();
-    }*/
+
+    public List<Ubigeo> findAllUbigeos() { return getUbigeosEntity().findAll(); }
+
+
+
+    public Owner findOwnerById(String id){
+        return getOwnersEntity().findById(id);
+    }
+
+    public boolean updateOwner(Owner owner){ return getOwnersEntity().update(owner); }
+
+    public Reservation findReservationById(String id){ return getReservationsEntity().findById(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
+
+    public boolean updateReservation(Reservation reservation){ return getReservationsEntity().update(reservation); }
+
+    public Court findCourtById(String id){return getCourtsEntity().findById(id,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
+
+    public boolean updateCourt(Court court){return getCourtsEntity().update(court);}
+
+    public Organizer findOrganizerById(String id){return getOrganizersEntity().findById(id);}
+
+    public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
+
+    public Participant findParticipantById(String id){ return getParticipantsEntity().findById(id,getOrganizersEntity()); }
+
+    public boolean updateParticipant(Participant participant){return getParticipantsEntity().update(participant);}
+
+    public Service findServiceById(String id){ return getServicesEntity().findById(id); }
+
+    public boolean updateService(Service service){return getServicesEntity().update(service);}
+
+    public boolean addCourt(Court court){return getCourtsEntity().add(court);}
+
+    public boolean addOrganizer(Organizer organizer){return getOrganizersEntity().add(organizer);}
+
+    public boolean addOwner(Owner owner){return getOwnersEntity().add(owner);}
+
+    public boolean addParticipant(Participant participant){return getParticipantsEntity().add(participant);}
+
+    public boolean addReservation(Reservation reservation){return getReservationsEntity().add(reservation);}
+
+    public boolean addService(Service service){return getServicesEntity().add(service);}
+
 }

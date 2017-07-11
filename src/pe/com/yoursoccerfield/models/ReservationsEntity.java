@@ -27,6 +27,16 @@ public class ReservationsEntity extends BaseEntity {
         return findByCriteria("",organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity);
     }
 
+    public Reservation findById(String id,
+                                OrganizersEntity organizersEntity,
+                                CourtsEntity courtsEntity,
+                                OwnersEntity ownersEntity,
+                                UbigeosEntity ubigeosEntity,
+                                ServicesEntity servicesEntity){
+        String criteria = "id = " + "'" + id + "'";
+        return findByCriteria(criteria,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity).get(0);
+    }
+
 
 
     public List<Reservation> findByCriteria(
@@ -53,9 +63,9 @@ public class ReservationsEntity extends BaseEntity {
 
     public  boolean add(Reservation reservation) {
         return change("INSERT INTO reservations(id,created_date,state,game_time,hours,total,organizer_id,court_id" +
-                "VALUES (" + reservation.getIdAsValue() + "," +
-                reservation.getCreate_DateAsValue() + "," + reservation.getStateAsValue() + "," +
-                reservation.getGame_TimeAsValue() + "," + reservation.getHoursAsValue() + "," + reservation.getTotalAsValue() +
+                "VALUES (" + reservation.getIdAsString() + "," +
+                reservation.getCreateDateAsValue() + "," + reservation.getStateAsString() + "," +
+                reservation.getGameTimeAsValue() + "," + reservation.getHoursAsString() + "," + reservation.getTotalAsString() +
                 reservation.getOrganizer().getIdAsValue()+reservation.getCourt().getIdAsValue()+
                 ")");
     }
@@ -63,15 +73,18 @@ public class ReservationsEntity extends BaseEntity {
 
     public boolean delete(Reservation reservation){
 
-        return change("DELETE FROM reservations WHERE id = " + reservation.getIdAsValue());
+        return change("DELETE FROM reservations WHERE id = " + reservation.getIdAsString());
     }
 
     public  boolean update(Reservation reservation){
-        return change("UPDATE reservations SET created_date = " + reservation.getCreate_DateAsValue() +
-                ", state = " + reservation.getStateAsValue() + ", game_time = " + reservation.getGame_TimeAsValue()+
-                ", hours = " + reservation.getHoursAsValue()+",total = "+ reservation.getTotalAsValue() + ",organizer_id"+
-                reservation.getOrganizer().getIdAsValue()+",court_id"+reservation.getCourt().getIdAsValue()+
-                " WHERE id = " +reservation.getIdAsValue());
+        return change("UPDATE reservations SET created_date = " + reservation.getCreateDateAsValue() +
+                ", state = " + reservation.getStateAsString() +
+                ", game_time = " + reservation.getGameTimeAsValue()+
+                ", hours = " + reservation.getHoursAsString()+
+                ", total = "+ reservation.getTotalAsString() +
+                ", organizer_id = " + reservation.getOrganizer().getIdAsValue() +
+                ", court_id = " + reservation.getCourt().getIdAsValue() +
+                " WHERE id = " + reservation.getIdAsString());
     }
 
 

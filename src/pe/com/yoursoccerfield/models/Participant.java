@@ -17,6 +17,19 @@ public class Participant {
     private  Organizer organizer;
 
 
+    public Participant() {
+    }
+
+    public Participant(String id, String firstName, String lastName, String email, String position, Organizer organizer) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.position = position;
+        this.organizer = organizer;
+    }
+
+
     public String getId() {
         return id;
     }
@@ -31,6 +44,7 @@ public class Participant {
     public String getFirstName() {
         return firstName;
     }
+
     public String getFirstNameAsValue() { return "'" + getFirstName() + "'";}
 
     public Participant setFirstName(String firstName) {
@@ -51,6 +65,7 @@ public class Participant {
     public String getEmail() {
         return email;
     }
+
     public String getEmailAsValue() { return "'" + getEmail() + "'";}
 
     public Participant setEmail(String email) {
@@ -71,6 +86,7 @@ public class Participant {
     public Organizer getOrganizer() {
         return organizer;
     }
+
     public String getOrganizerAsValue() { return "'" + getOrganizer() + "'";}
 
     public Participant setOrganizer(Organizer organizer) {

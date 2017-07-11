@@ -55,11 +55,12 @@ public class OwnersEntity extends BaseEntity{
         return findByCriteria(criteria).get(0);
     }
 
-    public  boolean add(Owner owner) {
-        return change("INSERT INTO owners(id,first_name,last_name,email," +
-                "password) VALUES (" + owner.getIdAsValue() + "," +
-                owner.getFirstNameAsValue() + "," + owner.getLastNameAsValue() + "," +
-                owner.getEmailAsValue() + "," + owner.getPasswordAsValue() + ")");
+    public boolean add(Owner owner) {
+        String sql = "INSERT INTO owners (id,first_name, last_name, email, password, dni,photo,phone,position) " +
+                "VALUES(" + owner.getIdAsValue() + ", " + owner.getFirstNameAsValue()+" ,"+
+                owner.getLastNameAsValue() +", "+owner.getEmailAsValue()+", "+ owner.getPasswordAsValue() + ", "+
+                owner.getDniAsValue()+", "+owner.getPhotoAsValue()+", "+owner.getPhoneAsValue()+", "+owner.getPositionAsValue()+ ")";
+        return change(sql);
     }
 
     public boolean delete(Owner owner){
@@ -69,8 +70,13 @@ public class OwnersEntity extends BaseEntity{
 
     public  boolean update(Owner owner){
         return change("UPDATE owners SET first_name = " + owner.getFirstNameAsValue() +
-                ", last_name = " + owner.getLastNameAsValue() + ", dni = " + owner.getDniAsValue()+
-                ", phone = " + owner.getPhotoAsValue()+",position = "+ owner.getPositionAsValue() +
+                ", last_name = " + owner.getLastNameAsValue() +
+                ", email = " + owner.getEmailAsValue()+
+                ", password = " + owner.getPasswordAsValue() +
+                ", dni = " + owner.getDniAsValue()+
+                ", photo = " + owner.getPhotoAsValue()+
+                ", phone = " + owner.getPhoneAsValue()+
+                ",position = "+ owner.getPositionAsValue() +
                 " WHERE id = " +owner.getIdAsValue());
     }
 

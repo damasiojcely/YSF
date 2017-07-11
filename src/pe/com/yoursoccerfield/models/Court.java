@@ -86,19 +86,22 @@ public class Court {
         return this;}
 
     public boolean getState() {return state;}
-    public String getStateAsValue() { return "'" + getState() + "'";}
+    public String getStateAsString() { return String.valueOf(getState());}
     public Court setState(boolean state) {this.state = state;
         return this;}
 
     public Owner getOwner() {return owner;}
+    public String getOwnerAsValue(){return "'" + getOwner() + "'";}
     public Court setOwner(Owner owner) {this.owner = owner;
         return this;}
 
     public Ubigeo getUbigeo() {return ubigeo;}
+    public String getUbigeoAsValue(){return "'" + getUbigeo() + "'" ;}
     public Court setUbigeo(Ubigeo ubigeo) {this.ubigeo = ubigeo;
         return this;}
 
     public Service getService() { return service;  }
+    public String getServiceAsValue(){return "'" + getService()+ "'" ;}
     public Court setService(Service service) {this.service = service;
         return this;}
 

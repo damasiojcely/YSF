@@ -40,6 +40,7 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria);
     }
 
+    
 
     public List<Organizer> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
@@ -61,9 +62,10 @@ public class OrganizersEntity extends  BaseEntity{
     }
 
     public boolean add(Organizer organizer) {
-        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password) " +
+        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password, dni,photo,phone,position) " +
                 "VALUES(" + organizer.getIdAsValue() + ", " + organizer.getFirstNameAsValue()+" ,"+
-                organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ")";
+                organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ", "+
+                organizer.getDniAsValue()+", "+organizer.getPhotoAsValue()+", "+organizer.getPhoneAsValue()+", "+organizer.getPositionAsValue()+ ")";
         return change(sql);
     }
 
@@ -85,14 +87,15 @@ public class OrganizersEntity extends  BaseEntity{
     }
 
     public boolean update(Organizer organizer) {
-        String sql = "UPDATE organizers SET WHERE id = " + organizer.getIdAsValue()+", "+
-                "first_name = " + organizer.getFirstNameAsValue()+ "," +
-                "last_name = " + organizer.getLastNameAsValue()+ "," +
-                "email = " + organizer.getEmailAsValue() + "," +
-                "dni = " + organizer.getDniAsValue() + ","+
-                "phone = " + organizer.getPhoneAsValue() +
-                " WHERE id = " + organizer.getIdAsValue();
-        return change(sql);
+        return change("UPDATE organizers SET first_name = " + organizer.getFirstNameAsValue()+
+                ", last_name = " + organizer.getLastNameAsValue()+
+                ", email = " + organizer.getEmailAsValue() +
+                ", password = " + organizer.getPasswordAsValue()+
+                ", dni = " + organizer.getDniAsValue() +
+                ", photo = " + organizer.getPhotoAsValue() +
+                ", phone = " + organizer.getPhoneAsValue() +
+                ", position = " + organizer.getPositionAsValue()+
+                " WHERE id = " + organizer.getIdAsValue());
     }
 
 
