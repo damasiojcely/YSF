@@ -25,18 +25,53 @@
         <input type="text" name="id" value="${owner.id}"
                 <c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>
         />
-        <input type="text" name="firstName" value="${owner.firstName}"/>
-        <input type="text" name="lastName" value="${owner.lastName}"/>
-        <input type="text" name="email" value="${owner.email}"/>
-        <input type="text" name="password" value="${owner.password}"/>
-        <input type="text" name="dni" value="${owner.dni}"/>
-        <input type="text" name="photo" value="${owner.photo}"/>
-        <input type="text" name="phone" value="${owner.phone}"/>
-        <input type="text" name="position" value="${owner.position}"/>
-            <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
-        <input type="submit"/>
-    </b:inputgroup>
+
+            <div class="container">
+                <h2> </h2>
+                <form>
+                    <div class="form-group">
+                        <label>Nombres:</label>
+                        <input type="text" name="firstName" value="${owner.firstName}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                        <input type="text" name="lastName" value="${owner.lastName}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico:</label>
+                        <input type="text" name="email" value="${owner.email}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña:</label>
+                        <input type="text" name="password" value="${owner.password}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombres:</label>
+                        <input type="text" name="dni" value="${owner.dni}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                        <input type="text" name="photo" value="${owner.photo}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico:</label>
+                        <input type="text" name="phone" value="${owner.phone}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                        <input type="text" name="position" value="${owner.position}"/>
+                    </div>
+
+                    <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
+                    <input type="submit"/>
+                </form>
+            </div>
+
+        </b:inputgroup>
     </b:formgroup>
+
+
+
 
 </form>
 </body>
