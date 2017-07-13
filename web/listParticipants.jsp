@@ -31,6 +31,10 @@
         <td><c:out value="${participant.email}"/></td>
         <td><c:out value="${participant.position}"/></td>
         <td><a href="participants?action=edit&id=<c:out value="${participant.id}"/>">Edit</a></td>
+        <td><form method="post" action="participants">
+            <input type="hidden" name="id" value="${participant.id}">
+            <input type="submit" value="delete" name="action"/>
+        </form></td>
     </tr>
 </c:forEach>
     <a href="participants?action=add">Add Participant</a>
