@@ -41,6 +41,10 @@
         <td><c:out value="${court.type}"/></td>
         <td><c:out value="${court.state}"/></td>
         <td><a href="courts?action=edit&id=<c:out value="${court.id}"/> ">Edit</a></td>
+        <td><form method="post" action="courts">
+            <input type="hidden" name="id" value="${court.id}">
+            <input type="submit" value="delete" name="action"/>
+        </form></td>
     </tr>
    </c:forEach>
     <a href="courts?action=add">Add Region</a>
