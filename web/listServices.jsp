@@ -31,6 +31,10 @@
         <td><c:out value="${service.name}"/></td>
         <td><c:out value="${service.price}"/></td>
         <td><a href="services?action=edit&id=<c:out value="${service.id}"/>">Edit</a></td>
+        <td><form method="post" action="services">
+            <input type="hidden" name="id" value="${service.id}">
+            <input type="submit" value="delete" name="action"/>
+        </form></td>
     </tr>
 </c:forEach>
     <a href="services?action=add">Add Services</a>
