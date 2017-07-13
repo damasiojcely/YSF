@@ -30,6 +30,18 @@ public class CourtsEntity extends BaseEntity{
         return null;
     }
 
+    public Court findCourtByOwner(String ownerId, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+        try {
+        String sql = "owner_id= '" + ownerId + "'";
+        return findByCriteria(sql,ownersEntity,ubigeosEntity,servicesEntity).get(0);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
     public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
         return findByCriteria("", ownersEntity, ubigeosEntity, servicesEntity);
     }

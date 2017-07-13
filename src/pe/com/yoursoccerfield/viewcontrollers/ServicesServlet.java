@@ -16,7 +16,6 @@ public class ServicesServlet extends HttpServlet{
 
     YSFService servic = new YSFService();
 
-
     public static String SERVICES_EDIT_URI = "/editService.jsp";
     public static String SERVICES_ADD_URI = "/newService.jsp";
     public static String SERVICES_INDEX_URI = "/listServices.jsp";
@@ -43,11 +42,17 @@ public class ServicesServlet extends HttpServlet{
                         "Error while updating";
                 log(message);
             }
+            case "delete":{
+                Service service=servic.getServiceById(request.getParameter("id"));
+                String message=servic.deleteService(service)?
+                        "Delete success" :
+                        "Error while del";
+                log(message);
+            }
         }
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(SERVICES_INDEX_URI);
         dispatcher.forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

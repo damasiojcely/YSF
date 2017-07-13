@@ -56,6 +56,14 @@ public class CourtsServlet extends HttpServlet {
                         "Error while updating";
                 log(message);
             }
+            case "delete":{
+                Court court = service.getCourtById(request.getParameter("id"));
+                String message = service.deleteCourt(court) ?
+                        "Delete success" :
+                        "Error while delet";
+                log(message);
+            }
+
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher(COURTS_INDEX_URI);
         dispatcher.forward(request,response);

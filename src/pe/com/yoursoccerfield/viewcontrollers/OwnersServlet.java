@@ -20,6 +20,7 @@ public class OwnersServlet extends HttpServlet{
     public static String OWNERS_ADD_URI = "/newOwner.jsp";
     public static String OWNERS_INDEX_URI = "/listOwners.jsp";
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
          String action = request.getParameter("action");
          switch (action){
@@ -52,6 +53,13 @@ public class OwnersServlet extends HttpServlet{
                  String message = service.addOwner(owner)?
                          "Add success" :
                          "Error while updating";
+                 log(message);
+             }
+             case "delete":{
+                 Owner owner= service.getOwnerById(request.getParameter("id"));
+                 String message=service.deleteOwner(owner)?
+                         "Delete success" :
+                         "Error while del";
                  log(message);
              }
          }

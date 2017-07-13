@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 
 @WebServlet(name = "ParticipantsServlet", urlPatterns = "/participants")
@@ -47,6 +48,13 @@ public class ParticipantsServlet extends HttpServlet {
                 String message = service.addParticipant(participant) ?
                         "Update success" :
                         "Error while updating";
+                log(message);
+            }
+            case "delete":{
+                Participant participant=service.getParticipantById(request.getParameter("id"));
+                String message = service.deleteParticipant(participant)?
+                        "Delete success" :
+                        "Error while delete";
                 log(message);
             }
         }

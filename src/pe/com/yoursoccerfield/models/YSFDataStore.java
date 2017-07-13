@@ -1,5 +1,7 @@
 package pe.com.yoursoccerfield.models;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import java.sql.Connection;
 import java.util.List;
 
@@ -104,7 +106,6 @@ public class YSFDataStore {
         return ubigeosEntity;
     }
 
-
     public List<Ubigeo> findAllDepartments() { return getUbigeosEntity().findAllDepartments();  }
 
     public List<Ubigeo> findAllProvinces() {
@@ -116,34 +117,36 @@ public class YSFDataStore {
     }
 
 
-
     public Owner findOwnerById(String id){
         return getOwnersEntity().findById(id);
     }
 
-    public boolean updateOwner(Owner owner){ return getOwnersEntity().update(owner); }
-
-    public Reservation findReservationById(String id){ return getReservationsEntity().findById(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
-
-    public boolean updateReservation(Reservation reservation){ return getReservationsEntity().update(reservation); }
-
-    public Court findCourtById(String id){return getCourtsEntity().findById(id,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
-
-    public boolean updateCourt(Court court){return getCourtsEntity().update(court);}
-
-    public Organizer findOrganizerById(String id){return getOrganizersEntity().findById(id);}
-
-    public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
-
-    public boolean loginOrganizer(Organizer organizer) {return getOrganizersEntity().login(organizer);}
+   public Reservation findReservationById(String id){ return getReservationsEntity().findById(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
 
     public Participant findParticipantById(String id){ return getParticipantsEntity().findById(id,getOrganizersEntity()); }
 
-    public boolean updateParticipant(Participant participant){return getParticipantsEntity().update(participant);}
+    public Court findCourtById(String id){return getCourtsEntity().findById(id,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
+
+    public Court findCourtByOwner(String ownerId){return  getCourtsEntity().findCourtByOwner(ownerId,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
 
     public Service findServiceById(String id){ return getServicesEntity().findById(id); }
 
-    public boolean updateService(Service service){return getServicesEntity().update(service);}
+    public Organizer findOrganizerById(String id){return getOrganizersEntity().findById(id);}
+
+
+    public boolean updateOwner(Owner owner){ return getOwnersEntity().update(owner); }
+
+    public boolean updateCourt(Court court){return getCourtsEntity().update(court);}
+
+    public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
+
+    public boolean updateReservation(Reservation reservation){ return getReservationsEntity().update(reservation); }
+
+    public boolean updateParticipant(Participant participant){return getParticipantsEntity().update(participant);}
+
+   public boolean updateService(Service service){return getServicesEntity().update(service);}
+
+
 
     public boolean addCourt(Court court){return getCourtsEntity().add(court);}
 
@@ -151,12 +154,34 @@ public class YSFDataStore {
 
     public boolean addOwner(Owner owner){return getOwnersEntity().add(owner);}
 
-    public boolean loginOwner(Owner owner) {return getOwnersEntity().login(owner);}
-
     public boolean addParticipant(Participant participant){return getParticipantsEntity().add(participant);}
 
     public boolean addReservation(Reservation reservation){return getReservationsEntity().add(reservation);}
 
     public boolean addService(Service service){return getServicesEntity().add(service);}
+
+
+
+
+    public boolean findOrganizerByEmail(String email,String password){ return getOrganizersEntity().findByEmailPassword(email,password); }
+
+    public boolean findOwnerByEmail(String email, String password){return getOwnersEntity().findByEmailPassword(email,password);}
+
+    public boolean findOrganizerByLogin(Organizer organizer){return getOrganizersEntity().findByLogin(organizer);}
+
+    public boolean findOwnerByLogin(Owner owner){return getOwnersEntity().findByLogin(owner);}
+
+
+    public boolean deleteCourt(Court court){ return getCourtsEntity().delete(court);}
+
+    public boolean deleteOrganizer(Organizer organizer){ return getOrganizersEntity().delete(organizer);}
+
+    public boolean deleteOwner(Owner owner){return getOwnersEntity().delete(owner); }
+
+    public boolean deleteParticipant(Participant participant){return getParticipantsEntity().delete(participant);}
+
+    public boolean deleteReservation(Reservation reservation){return getReservationsEntity().delete(reservation);}
+
+    public boolean deleteService(Service service){return getServicesEntity().delete(service);}
 
 }

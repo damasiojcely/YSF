@@ -48,27 +48,50 @@ public class YSFService {
         }
         return dataStore;
     }
-
+/*ORGANIZERS*/
     public List<Organizer> getOrganizers(){
         return getDataStore().findAllOrganizers();
+    }
+
+    public Organizer getOrganizerById(String id){return getDataStore().findOrganizerById(id);}
+
+    public boolean updateOrganizer(Organizer organizer){return getDataStore().updateOrganizer(organizer);}
+
+    public boolean getOrganizerByEmail(String email,String password){
+        return getDataStore().findOrganizerByEmail(email,password);
+    }
+
+    public boolean deleteOrganizer(Organizer organizer){return getDataStore().deleteOrganizer(organizer);}
+
+    public boolean addOrganizer(Organizer organizer){return getDataStore().addOrganizer(organizer);}
+
+    public boolean loginOrganizer(Organizer organizer){return getDataStore().findOrganizerByLogin(organizer);}
+
+/*COURTS*/
+
+    public boolean getOwnerByEmail(String email, String password){
+    return getDataStore().findOwnerByEmail(email,password);
     }
 
     public List<Court> getCourts(){
         return getDataStore().findAllCourts();
     }
 
+    public boolean deleteCourt(Court court){return getDataStore().deleteCourt(court);}
+
+    public Court getCourtById(String id){return getDataStore().findCourtById(id);}
+
+    public Court getCourtByOwner(String ownerId) {return  getDataStore().findCourtByOwner(ownerId);}
+
+    public boolean updateCourt(Court court){return getDataStore().updateCourt(court);}
+
+    public boolean addCourt(Court court){return getDataStore().addCourt(court); }
+
+
+/*OWNERS*/
+
     public List<Owner> getOwners(){
         return getDataStore().findAllOwners();
-    }
-
-    public List<Participant> getParticipants(){
-        return getDataStore().findAllParticipants();
-    }
-
-    public List<Reservation> getReservations() {return getDataStore().findAllReservations();}
-
-    public List<Service> getServices(){
-        return getDataStore().findAllServices();
     }
 
     public Owner getOwnerById(String id){
@@ -79,6 +102,30 @@ public class YSFService {
         return getDataStore().updateOwner(owner);
     }
 
+    public boolean deleteOwner(Owner owner){return getDataStore().deleteOwner(owner);}
+
+    public boolean addOwner(Owner owner){return getDataStore().addOwner(owner); }
+
+    public boolean loginOwner(Owner owner){return getDataStore().findOwnerByLogin(owner);}
+
+ /*PARTICIPANTS*/
+
+    public List<Participant> getParticipants(){
+        return getDataStore().findAllParticipants();
+    }
+
+    public boolean addParticipant(Participant participant){return getDataStore().addParticipant(participant);}
+
+    public Participant getParticipantById(String id){return getDataStore().findParticipantById(id);}
+
+    public boolean updateParticipant(Participant participant){return getDataStore().updateParticipant(participant);}
+
+    public boolean deleteParticipant(Participant participant){ return getDataStore().deleteParticipant(participant);}
+
+/*RESERVATIONS*/
+
+    public List<Reservation> getReservations() {return getDataStore().findAllReservations();}
+
     public Reservation getReservationById(String id){
         return getDataStore().findReservationById(id);
     }
@@ -87,42 +134,36 @@ public class YSFService {
         return getDataStore().updateReservation(reservation);
     }
 
-    public Court getCourtById(String id){return getDataStore().findCourtById(id);}
+    public boolean addReservation(Reservation reservation){return getDataStore().addReservation(reservation); }
 
-    public boolean updateCourt(Court court){return getDataStore().updateCourt(court);}
 
-    public Organizer getOrganizerById(String id){return getDataStore().findOrganizerById(id);}
+/*SERVICES*/
 
-    public boolean updateOrganizer(Organizer organizer){return getDataStore().updateOrganizer(organizer);}
-
-    public Participant getParticipantById(String id){return getDataStore().findParticipantById(id);}
-
-    public boolean updateParticipant(Participant participant){return getDataStore().updateParticipant(participant);}
+    public List<Service> getServices(){
+        return getDataStore().findAllServices();
+    }
 
     public Service getServiceById(String id){return getDataStore().findServiceById(id);}
+
+    public boolean deleteReservation(Reservation reservation){return getDataStore().deleteReservation(reservation);}
+
     public boolean updateService(Service service){return getDataStore().updateService(service);}
 
-     public boolean addCourt(Court court){return getDataStore().addCourt(court); }
+    public boolean addService(Service service){return getDataStore().addService(service);}
 
-     public boolean addOrganizer(Organizer organizer){return getDataStore().addOrganizer(organizer);}
+    public boolean deleteService(Service service){return getDataStore().deleteService(service);}
 
-     public boolean addOwner(Owner owner){return getDataStore().addOwner(owner); }
 
-     public boolean addParticipant(Participant participant){return getDataStore().addParticipant(participant);}
-
-     public boolean addReservation(Reservation reservation){return getDataStore().addReservation(reservation); }
-
-     public boolean addService(Service service){return getDataStore().addService(service);}
-
-     public boolean loginOrganizer(Organizer organizer){return getDataStore().loginOrganizer(organizer);}
-
-     public boolean loginOwner(Owner owner){return getDataStore().loginOwner(owner);}
-
+/*UBIGEO*/
     public List<Ubigeo> getUbigeosD(){ return getDataStore().findAllDepartments();}
 
     public List<Ubigeo> getUbigeosP(){ return getDataStore().findAllProvinces();}
 
     public List<Ubigeo> getUbigeosDi(){ return getDataStore().findAllDistricts();}
+
+
+
+
 
 
 

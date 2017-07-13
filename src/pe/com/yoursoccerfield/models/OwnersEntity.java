@@ -1,6 +1,7 @@
 package pe.com.yoursoccerfield.models;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -55,12 +56,35 @@ public class OwnersEntity extends BaseEntity{
         return findByCriteria(criteria).get(0);
     }
 
+    public  boolean findByEmailPassword(String email,String password) {
+        boolean st =false;
+//            String sql=getDefaultQuery()+" where email=? and password=? ";
+        try{
+//                Connection con= DriverManager.getConnection
+//                        ("jdbc:mysql://localhost:3306/dbsoccer","root","alumno");
+            PreparedStatement ps =getConnection().prepareStatement
+                    (getDefaultQuery()+ " where email=? and password=?" );
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs =ps.executeQuery();
+            st = rs.next();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return st;
+    }
+
+    public boolean findByLogin(Owner owner){
+        String sql = "SELECT * FROM owners WHERE email =" +owner.getEmailAsValue()+ " and password = " + owner.getPasswordAsValue()+"";
+        return change(sql);
+    }
+
     public boolean add(Owner owner) {
-        String sql = "INSERT INTO owners (id,first_name, last_name, email, password, dni,photo,phone,position,user_type) " +
+        String sql = "INSERT INTO owners (id,first_name, last_name, email, password, dni,photo,phone,position) " +
                 "VALUES(" + owner.getIdAsValue() + ", " + owner.getFirstNameAsValue()+" ,"+
                 owner.getLastNameAsValue() +", "+owner.getEmailAsValue()+", "+ owner.getPasswordAsValue() + ", "+
-                owner.getDniAsValue()+", "+owner.getPhotoAsValue()+", "+owner.getPhoneAsValue()+", "+owner.getPositionAsValue()+ ", "+
-                owner.getUserTypeAsString()+ ")";
+                owner.getDniAsValue()+", "+owner.getPhotoAsValue()+", "+owner.getPhoneAsValue()+", "+owner.getPositionAsValue()+ ")";
         return change(sql);
     }
 
@@ -78,7 +102,6 @@ public class OwnersEntity extends BaseEntity{
                 ", photo = " + owner.getPhotoAsValue()+
                 ", phone = " + owner.getPhoneAsValue()+
                 ",position = "+ owner.getPositionAsValue() +
-                ", user_type = "+owner.getUserTypeAsString()+
                 " WHERE id = " +owner.getIdAsValue());
     }
 
@@ -91,11 +114,6 @@ public class OwnersEntity extends BaseEntity{
     public boolean updatePass(Owner owner) {
         String sql = "UPDATE owners SET WHERE password = " + owner.getPasswordAsValue()+
                 " WHERE id = " + owner.getIdAsValue();
-        return change(sql);
-    }
-
-    public boolean login(Owner owner){
-        String sql = "SELECT id FROM owners WHERE email= " + owner.getEmailAsValue() +", pass= " + owner.getPasswordAsValue() + "";
         return change(sql);
     }
 }

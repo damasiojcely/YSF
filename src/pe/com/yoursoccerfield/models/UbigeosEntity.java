@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class UbigeosEntity extends BaseEntity{
 
+
     public UbigeosEntity(Connection connection) {
         super(connection,"ubigeos");
     }
@@ -36,6 +37,16 @@ public class UbigeosEntity extends BaseEntity{
         return null;
     }
 
+    List<Ubigeo>findAll(){
+        return findByCriteria("");
+    }
+
+    public Ubigeo findById(String id){
+        String criteria = " id = '" + id + "'";
+        return findByCriteria(criteria).get(0);
+    }
+
+
 
     List<Ubigeo>findAllDepartments(){
         String criteria = "department_name";
@@ -49,12 +60,6 @@ public class UbigeosEntity extends BaseEntity{
     List<Ubigeo>findAllDistricts(){
         String criteria = "district_name";
         return findByCriteria(criteria);
-    }
-
-
-    public Ubigeo findById(String id){
-        String criteria = " id = '" + id + "'";
-        return findByCriteria(criteria).get(0);
     }
 
 

@@ -1,6 +1,5 @@
 package pe.com.yoursoccerfield.viewcontrollers;
 
-
 import pe.com.yoursoccerfield.models.Reservation;
 import pe.com.yoursoccerfield.services.YSFService;
 
@@ -48,6 +47,13 @@ public class ReservationsServlet extends HttpServlet {
                String message = service.addReservation(reservation)?
                        "Update sucess" :
                        "Error while updating";
+               log(message);
+           }
+           case "delete":{
+               Reservation reservation=service.getReservationById(request.getParameter("id"));
+               String message=service.deleteReservation(reservation) ?
+                       "Delete success" :
+                       "Error while del";
                log(message);
            }
        }
