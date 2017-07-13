@@ -23,7 +23,6 @@
     <li><a href="listParticipants.jsp">Participants</a></li>
     <li><a href="listReservations.jsp">Reservations</a></li>
     <li><a href="listServices.jsp">Services</a></li>
-    <li><a href="listUbigeos.jsp">Ubigeos</a></li>
 </ul>
 </body>
 </html>

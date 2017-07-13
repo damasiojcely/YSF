@@ -33,6 +33,10 @@
             <td><c:out value="${reservation.hours}"/></td>
             <td> <c:out value="${reservation.total}"/></td>
             <td><a href="reservations?action=edit&id=<c:out value="${reservation.id}"/> ">Edit</a></td>
+            <td><form method="post" action="reservations">
+                <input type="hidden" name="id" value="${reservation.id}">
+                <input type="submit" value="delete" name="action"/>
+            </form></td>
         </tr>
     </c:forEach>
     <a href="reservations?action=add">Add Reservation</a>

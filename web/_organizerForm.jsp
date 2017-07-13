@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
+<div class="container" style="width:450px; height: 434px">
 <form action="organizers" method="post">
     <input type="text" name="id" value="${organizer.id}"
     <c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>
@@ -22,3 +23,4 @@
     <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
     <input type="submit"/>
 </form>
+</div>

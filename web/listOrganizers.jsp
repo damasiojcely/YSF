@@ -39,6 +39,10 @@
         <td><c:out value="${organizer.phone}"/></td>
         <td><c:out value="${organizer.position}"/></td>
         <td><a href="organizers?action=edit&id=<c:out value="${organizer.id}"/>">Edit</a></td>
+        <td><form method="post" action="organizers">
+            <input type="hidden" name="id" value="${organizer.id}">
+            <input type="submit" value="delete" name="action"/>
+        </form></td>
     </tr>
 </c:forEach>
     <a href="organizers?action=add">Add Organizer</a>

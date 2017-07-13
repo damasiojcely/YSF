@@ -43,6 +43,10 @@
         <td><c:out value="${owner.phone}"/></td>
         <td><c:out value="${owner.position}"/></td>
         <td><a href="owners?action=edit&id=<c:out value="${owner.id}"/>">Edit</a></td>
+        <td><form method="post" action="owners">
+            <input type="hidden" name="id" value="${owner.id}">
+            <input type="submit" value="delete" name="action"/>
+        </form></td>
     </tr>
 </c:forEach>
 <a href="owners?action=add">Add Owner</a>
