@@ -1,9 +1,7 @@
 package pe.com.yoursoccerfield.models;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +38,38 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria);
     }
 
-    
+
+    public  boolean findByEmailPassword(String email,String password) {
+            boolean st =false;
+//            String sql=getDefaultQuery()+" where email=? and password=? ";
+            try{
+//                Connection con= DriverManager.getConnection
+//                        ("jdbc:mysql://localhost:3306/dbsoccer","root","alumno");
+                PreparedStatement ps =getConnection().prepareStatement
+                        ( "select id from organizers where email=? and password=?" );
+                ps.setString(1, email);
+                ps.setString(2, password);
+                ResultSet rs =ps.executeQuery();
+                st = rs.next();
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            return st;
+        }
+
+    public boolean findByLogin(Organizer organizer){
+        String sql = "SELECT * FROM organizers WHERE email =" +organizer.getEmailAsValue()+ " and password = " + organizer.getPasswordAsValue()+"";
+        return change(sql);
+    }
+
+   /* public boolean findByEmailPassword(String email,String password){
+        String criteria= "email = '"+email+"' and password = '"+password+"'";
+        if(findByCriteria(criteria) == null){
+            return false;
+        }
+        return false;
+    }*/
 
     public List<Organizer> findByCriteria(String criteria) {
         String sql = getDefaultQuery() +
@@ -97,12 +126,4 @@ public class OrganizersEntity extends  BaseEntity{
                 ", position = " + organizer.getPositionAsValue()+
                 " WHERE id = " + organizer.getIdAsValue());
     }
-
-
-
-
-
-
 }
-
-
