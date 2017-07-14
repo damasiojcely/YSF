@@ -1,6 +1,7 @@
 package pe.com.yoursoccerfield.models;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,6 +54,30 @@ public class OwnersEntity extends BaseEntity{
     public Owner findByLastName(String lastName){
         String criteria = " last_name = '" + lastName + "'";
         return findByCriteria(criteria).get(0);
+    }
+
+    public  boolean findByEmailPassword(String email,String password) {
+        boolean st =false;
+//            String sql=getDefaultQuery()+" where email=? and password=? ";
+        try{
+//                Connection con= DriverManager.getConnection
+//                        ("jdbc:mysql://localhost:3306/dbsoccer","root","alumno");
+            PreparedStatement ps =getConnection().prepareStatement
+                    (getDefaultQuery()+ " where email=? and password=?" );
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs =ps.executeQuery();
+            st = rs.next();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return st;
+    }
+
+    public boolean findByLogin(Owner owner){
+        String sql = "SELECT * FROM owners WHERE email =" +owner.getEmailAsValue()+ " and password = " + owner.getPasswordAsValue()+"";
+        return change(sql);
     }
 
     public boolean add(Owner owner) {
