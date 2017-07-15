@@ -38,6 +38,11 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria);
     }
 
+      public List<Organizer> findAllById(String id) {
+        String criteria = " id = '"+ id+"'";
+        return findByCriteria(criteria);
+    }
+    
 
     public  boolean findByEmailPassword(String email,String password) {
             boolean st =false;
