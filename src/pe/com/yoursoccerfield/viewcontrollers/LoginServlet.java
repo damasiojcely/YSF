@@ -49,6 +49,15 @@ public class Login extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(INDEX_URI);
             dispatcher.forward(request, response);
         }
+        
+        
+        Organizer organizer=service.getOrganizerIdByEmail(email,password);
+        HttpSession session = request.getSession();
+//        String user = "USUARIO_X"; //aqui tu identificador de usuario
+       /* String num=new String(String.valueOf(organizer));*/
+//        session.setAttribute("usuario",organizer.getId());
+        session.setAttribute("organizer",organizer);
+        
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,5 +66,7 @@ public class Login extends HttpServlet {
 
 
     }
+    
+    
 
 }
