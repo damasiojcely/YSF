@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/Footer-with-button-logo.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
     <style>
         .carousel-inner > .item > img,
         .carousel-inner > .item > a > img {
@@ -95,44 +98,42 @@
 <div>
 </div>
 
-<div id="contact" class="container-fluid bg-grey img-responsive">
-    <h2 class="text-center">CONTACTO</h2>
-    <div class="row">
-        <div class="col-sm-1">
-        </div>
-        <div class="col-sm-3 img-responsive">
-            <p>Cont&aacute;ctese con nosotros y nos pondremos en contacto con usted en 24 horas.</p>
-            <p><span class="glyphicon glyphicon-map-marker"></span> Lima , Peru</p>
-            <p><span class="glyphicon glyphicon-phone"></span> +51935922205 / +51982095001 / +51953707278 / +51992196567</p>
-            <p><span class="glyphicon glyphicon-envelope"></span> yoursoccerfield@gmail.com</p>
-        </div>
-        <div class="col-sm-7 slideanim img-responsive">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Nombre" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+
+
+<footer id="myFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <h1 class="logo"><a href="#">NORS | YSF</a></h1>
+                <div class="social-networks">
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
                 </div>
             </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comentario" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit"> Enviar</button>
+            <div class="col-sm-4">
+                <h2 class="text-center">CONTACTO</h2>
+                <p>Cont&aacute;ctese con nosotros y nos pondremos en contacto con usted en 24 horas.</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span> Lima , Peru</p>
+                <p><span class="glyphicon glyphicon-phone"></span> +51935922205 / +51982095001 / +51953707278 / +51992196567</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> yoursoccerfield@gmail.com</p>
+            </div>
+            <div class="slideanim img-responsive">
+                <div class="col-sm-6">
+                    <div>
+                        <p> </p><br>
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required><br>
+                        <textarea class="form-control" name="comments" placeholder="Comentario" rows="5"></textarea><br>
+                        <button class="btn btn-default pull-right" type="submit"> Enviar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="row" >
-    <div class="col-sm-12">
-        <br>
-        <p class="img-responsive"> Copyright 2017, NORS Derechos Reservados. Privacidad | Terminos y condiciones </p>
-        <br>
+    <div class="footer-copyright">
+        <p> Copyright 2017, NORS Todos los derechos reservados. Privacidad | Terminos y condiciones </p>
     </div>
-
-</div>
+</footer>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>

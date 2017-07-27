@@ -1,12 +1,5 @@
 <%@ page import="pe.com.yoursoccerfield.models.Organizer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: lnakaya
-  Date: 7/1/2017
-  Time: 10:37 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -27,7 +20,6 @@
 
 
 <div class="wrapper">
-    <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
             <a href="index.jsp"><h3> NORS | YSF</h3></a>
