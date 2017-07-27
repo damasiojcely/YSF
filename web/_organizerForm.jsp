@@ -1,78 +1,101 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: leone
-  Date: 02/07/2017
-  Time: 23:20
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>FORM</title>
-    <jsp:include page="bootstrap.jsp"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>New Organizer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet"/>
     <style>
         .carousel-inner > .item > img,
         .carousel-inner > .item > a > img {
             width: 100%;
             margin: auto;
         }
+
     </style>
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #F1F1F1">
+<jsp:include page="_head.jsp"/>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
-<form action="organizers" method="post">
-    <input type="text" name="id" value="${organizer.id}"
-    <c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>
-    />
 
-    <div class="container">
-        <h2> </h2>
-        <form>
-            <div class="form-group">
-                <label>Nombres:</label>
-                <input type="text" name="firstName" value="${organizer.firstName}"/>
+<center><div class="container img-responsive" style="width:500px; height: 434px ">
+    <h2>Registro Organizador</h2><br>
+    <form class="form-horizontal" action="organizers" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-5">ID:</label>
+            <div class="col-sm-7">
+                <input type="text" name="id" class="form-control" placeholder="ID" value="${organizer.id}"
+                        <c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>
+                />
             </div>
-            <div class="form-group">
-                <label>Apellidos:</label>
-                <input type="text" name="lastName" value="${organizer.lastName}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Nombres:</label>
+            <div class="col-sm-7">
+                <input type="text" name="firstName" class="form-control" placeholder="Jose Luis" value="${organizer.firstName}"/>
             </div>
-            <div class="form-group">
-                <label>Correo Electrónico:</label>
-                <input type="text" name="email" value="${organizer.email}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Apellidos:</label>
+            <div class="col-sm-7">
+                <input type="text" name="lastName" class="form-control" placeholder="Perez Lopez" value="${organizer.lastName}"/>
             </div>
-            <div class="form-group">
-                <label>Contraseña:</label>
-                <input type="text" name="password" value="${organizer.password}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Correo Electr&oacute;nico:</label>
+            <div class="col-sm-7">
+                <input type="text" name="email" class="form-control" placeholder="Ejemplo: micorreo@mail.com" value="${organizer.email}"/>
             </div>
-            <div class="form-group">
-                <label>DNI:</label>
-                <input type="text" name="dni" value="${organizer.dni}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Contrase&ntilde;a:</label>
+            <div class="col-sm-7">
+                <input type="password" name="password" class="form-control" placeholder="Ingrese una contrase&ntilde;a" value="${organizer.password}"/>
             </div>
-            <div class="form-group">
-                <label>PHOTO:</label>
-                <input type="text" name="photo" value="${organizer.photo}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">DNI:</label>
+            <div class="col-sm-7">
+                <input type="text" name="dni" class="form-control" placeholder="Ingrese DNI" value="${organizer.dni}"/>
             </div>
-            <div class="form-group">
-                <label>Phone:</label>
-                <input type="text" name="phone" value="${organizer.phone}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Tel&eacute;fono:</label>
+            <div class="col-sm-7">
+                <input type="text" name="phone" class="form-control" placeholder="Ingrese # Tel&eacute;fono" value="${organizer.phone}"/>
             </div>
-            <div class="form-group">
-                <label>Position:</label>
-                <input type="text" name="position" value="${organizer.position}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Posici&oacute;n:</label>
+            <div class="col-sm-7">
+                <input type="text" name="position" class="form-control" placeholder="Posici&oacute;n de juego" value="${organizer.position}"/>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5">Foto:</label>
+            <div class="col-sm-7">
+                <input id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
+            </div>
+        </div>
+        <div class="form-group">
 
-            <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
-            <input type="submit"/>
-        </form>
-    </div>
+            <div class="col-sm-5">
+                <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <button type="submit" class="btn btn-primary" value="Ingresar">Registrar</button>
 
+            </div>
+        </div>
+    </form>
+</div></center>
 
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
 
-</form>
 </body>
+</html>
