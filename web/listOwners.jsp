@@ -59,30 +59,20 @@
                 <%String ide=(String)request.getSession().getAttribute("uowner");%>
                 <c:forEach var="owner" items="<%=service.getOwnersById(ide)%>">
                     <div class="row">
-                        <div class="col-md-6">
-                            <img src="image/user/${owner.id}.jpg">
-                        </div>
-                        <div class="col-md-6">
-                            <h3><label> ID : </label> ${owner.id} </h3><p></p>
-                            <h3><label>  NOMBRE : </label> ${owner.firstName} </h3><p></p>
-                            <h3><label> APELLIDO : </label> ${owner.lastName} </h3><p></p>
-                            <h3><label>  EMAIL : </label> ${owner.email} </h3><p></p>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h3><label> DNI : </label> ${owner.dni} </h3><p></p>
-                            <h3><label> PHONE : </label> ${owner.phone} </h3><p></p>
-                            <h3><label> POSITION : </label> ${owner.position} </h3><p></p>
-                        </div>
                         <div class="col-md-4">
-                            <p> </p>
+                            <img src="image/user/${owner.id}.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+                        </div>
+                        <div class="col-md-6">
+                            <label> ID : </label> ${owner.id} <p></p>
+                            <label>  NOMBRE : </label> ${owner.firstName}<p></p>
+                            <label> APELLIDO : </label> ${owner.lastName}<p></p>
+                            <label>  EMAIL : </label> ${owner.email}<p></p>
+                            <label> DNI : </label> ${owner.dni}<p></p>
+                            <label> PHONE : </label> ${owner.phone}<p></p>
+                            <label> POSITION : </label> ${owner.position}<p></p>
                             <br>
-
                             <button><a href="owners?action=edit&id=<c:out value="${owner.id}"/>">EDITAR</a></button>
                         </div>
-
                     </div>
                 </c:forEach>
                 <%--</table>--%>
