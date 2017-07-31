@@ -10,15 +10,18 @@ public class Service {
     private String id;
     private String name;
     private float price;
+    private Court court;
 
     public Service() {
     }
 
-    public Service(String id, String name, float price) {
+    public Service(String id, String name, float price, Court court) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.court = court;
     }
+
     public String getId() {return id;}
 
     public String getIdAsValue() { return "'" + getId() + "'";}
@@ -42,19 +45,30 @@ public class Service {
     public Service setPrice(float price) {this.price = price;
         return this;}
 
-    public static Service build(ResultSet rs) {
+    public Court getCourt() {
+        return court;
+    }
+
+    public String getCourtAsValue() { return "'" + getCourt() + "'";}
+
+    public Service setCourt(Court court) {
+        this.court = court;
+        return this;
+    }
+
+
+    public static Service build(ResultSet rs,CourtsEntity courtsEntity,OwnersEntity ownersEntity,UbigeosEntity ubigeosEntity) {
         try {
             return (new Service())
                     .setId(rs.getString("id"))
                     .setName(rs.getString("name"))
-                    .setPrice(rs.getFloat("price"));
-
+                    .setPrice(rs.getFloat("price"))
+                    .setCourt(courtsEntity.findById(rs.getString("court_id"),ownersEntity,ubigeosEntity));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-
 
 
 }
