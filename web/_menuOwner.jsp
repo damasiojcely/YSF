@@ -26,6 +26,10 @@
                             Reservas
                     </a>
                     <a href="#">
+                        <i class="glyphicon glyphicon-duplicate"></i>
+                        Buscar Canchas
+                    </a>
+                    <a href="#">
                             <i class="glyphicon glyphicon-duplicate"></i>
                             Cambiar Contrase&ntilde;a
                     </a>
