@@ -1,10 +1,11 @@
 <%@ page import="pe.com.yoursoccerfield.models.Owner" %>
+<%@ page import="pe.com.yoursoccerfield.models.Court" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>List Courts</title>
+    <title>Your Soccer Field</title>
     <%--<jsp:include page="bootstrap.jsp"/>--%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1">
@@ -53,46 +54,38 @@
 <div class="col-md-9">
     <div id="content">
         <div class="col-md-10">
-            <h2> LISTA DE CANCHAS </h2>
-            <table class="table table-hover" >
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Capacidad</th>
-                <th>Direccion</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Precio</th>
-                <th>Photo</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
-            <%String ide=(String)request.getSession().getAttribute("uowner");%>
-            <c:forEach var="court" items="<%=service.getCourtsByOwner(ide)%>">
-                <tr><td><c:out value="${court.id}"/></td>
-                    <td><c:out value="${court.name}"/></td>
-                    <td><c:out value="${court.capacity}"/></td>
-                    <td><c:out value="${court.address}"/></td>
-                    <td><c:out value="${court.email}"/></td>
-                    <td><c:out value="${court.phone}"/></td>
-                    <td><c:out value="${court.price}"/></td>
-                    <td><c:out value="${court.photo}"/></td>
-                    <td><c:out value="${court.type}"/></td>
-                    <td><c:out value="${court.state}"/></td>
-                    <td><</td>
-                    <td><a href="courts?action=edit&id=<c:out value="${court.id}"/> " class="" >Edit</a></td>
-                    <td><form method="post" action="courts">
-                        <input type="hidden" name="id" value="${court.id}">
-                        <input type="submit" value="delete" name="action"/>
-                    </form></td>
-                </tr>
-               </c:forEach>
+            <h2> MIS CANCHAS </h2>
+            <div class="container">
+                <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
+                <%String ide=(String)request.getSession().getAttribute("uowner");%>
+                <c:forEach var="court" items="<%=service.getCourtsByOwner(ide)%>">
+                    <div class="row">
+                        <h3><c:out value="${court.name}"/></h3>
+                        <div class="col-md-4">
+                            <img src="image/court/${court.id}.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+                        </div>
+                        <div class="col-md-6">
+                            <label>ID : </label><c:out value="${court.id}"/><p></p>
+                            <label>Capacidad : </label><c:out value="${court.capacity}"/><p></p>
+                            <label>Direcci&oacute;n : </label><c:out value="${court.address}"/><p></p>
+                            <label>E-mail : </label><c:out value="${court.email}"/><p></p>
+                            <label>Tel&eacute;fono : </label><c:out value="${court.phone}"/><p></p>
+                            <label>Precio : S/.</label><c:out value="${court.price}"/><p></p>
+                            <label>Tipo : </label><c:out value="${court.type}"/><p></p>
+                            <label>Posici&oacute;n : </label><c:out value="${court.state}"/><p></p>
+                            <br>
+                            <button><a href="courts?action=edit&id=<c:out value="${court.id}"/>">EDITAR</a></button>
+                            <form method="post" action="courts">
+                                <button><input type="hidden" name="id" value="${court.id}"></button>
+                                <button><input type="submit" value="delete" name="action"/></button>
+                            </form>
 
-            </table>
-        <a href="courts?action=add">Add Region</a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+            <br>
+        </div>
     </div>
 </div>
 
