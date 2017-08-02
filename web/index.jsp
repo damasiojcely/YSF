@@ -18,12 +18,12 @@
 
     </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #F1F1F1">
+<p id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #F1F1F1">
 <jsp:include page="_head.jsp"/>
 
-<div class="row" >
-    <div class="col-sm-6" >
-        <h1 class="text-center">Your Soccer Field</h1>
+<div class="center-block" >
+    <div class="center-block" >
+        <center><h2 class="text-center">Your Soccer Field</h2></center>
     </div>
 </div>
 
@@ -80,63 +80,39 @@
 </div>
 
 <br>
+
+<br>
 <!-- Container (About Section) -->
 <div id="about" class="container-fluid img-responsive">
     <div class="row">
         <div class="col-sm-1">
         </div>
-        <div class="col-sm-3">
-            <h2>Acerca </h2><br>
-            <h4>Realiza tu reserva y pasa momentos deportivos jugando f&uacute;tbol
-                en las mejores estadios de grass sint&eacute;tico .</h4><br>
+        <div class="col-sm-4">
+            <h2 style="color: #3e8f3e">ACERCA </h2><br>
+            <h3>Realiza tu reserva y pasa momentos deportivos jugando f&uacute;tbol
+                en las mejores estadios de grass sint&eacute;tico .</h3><br>
         </div>
-        <div class="col-sm-6 img-responsive">
-            <span><img src="image/logoYSF.jpg" class="img-responsive" WIDTH="650" HEIGHT="200"></span>
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-5 img-responsive">
+            <span><img src="image/logoYSF.jpg" class="img-responsive img-rounded" WIDTH="650" HEIGHT="200"></span>
         </div>
     </div>
 </div>
-<div>
-</div>
 
+<!--->
 
-
+<!--/footer-->
+<hr>
 <footer id="myFooter">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <h1 class="logo"><a href="#">NORS | YSF</a></h1>
-                <div class="social-networks">
-                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <h2 class="text-center">CONTACTO</h2>
-                <p>Cont&aacute;ctese con nosotros y nos pondremos en contacto con usted en 24 horas.</p>
-                <p><span class="glyphicon glyphicon-map-marker"></span> Lima , Peru</p>
-                <p><span class="glyphicon glyphicon-phone"></span> +51935922205 / +51982095001 / +51953707278 / +51992196567</p>
-                <p><span class="glyphicon glyphicon-envelope"></span> yoursoccerfield@gmail.com</p>
-            </div>
-            <div class="slideanim img-responsive">
-                <div class="col-sm-6">
-                    <div>
-                        <p> </p><br>
-                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required><br>
-                        <textarea class="form-control" name="comments" placeholder="Comentario" rows="5"></textarea><br>
-                        <button class="btn btn-default pull-right" type="submit"> Enviar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <p> Copyright 2017, NORS Todos los derechos reservados. Privacidad | Terminos y condiciones </p>
+    <div class="footer-copyright text-center">
+        <h5> Copyright 2017, NORS Todos los derechos reservados. Privacidad | Terminos y condiciones </h5>
     </div>
 </footer>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
+
 
 </body>
 </html>
