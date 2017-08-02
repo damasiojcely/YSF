@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yessenia
@@ -9,98 +10,72 @@
 <html>
 <head>
     <title>REGISTRO</title>
-    <jsp:include page="bootstrap.jsp"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 100%;
-            margin: auto;
-        }
-    </style>
+    <link href="css/style.css" rel="stylesheet" tye="text/css" media="all" />
 </head>
-<body>
-    <div class="header">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">YSF</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.jsp">Home</a></li>
-                    <li><a href="#">Acerca</a></li>
-                    <li><a href="register.jsp">Registro</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index2.jsp"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container" align="center">
-        <img src="image/admin.jpg" alt="Chania">
-    </div>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" >
+<nav class="navbar navbar-default ">
     <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a  href="index.jsp"><img src="image/LOGO2.JPG" width="120" height="50"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="">ACERCA</a></li>
+                <li><a href="">FUNCIONES</a></li>
+                <li><a href="">CONTACTANOS</a></li>
+                <li><a href="register.jsp">REGISTRARSE</a></li>
+                <li><a href="login.jsp">INGRESAR</a></li>
+            </ul>
+        </div>
     </div>
+</nav>
+    <p>
 
-    <div class="container">
+
+    </p>
+
+
         <h2> </h2>
-        <form>
-            <div class="form-group">
-            <label>Nombres:</label>
-            <input type="text" class="form-control" name="firstName">
-            </div>
-            <div class="form-group">
-                <label>Apellidos:</label>
-                <input type="text" class="form-control" name="lastName">
-            </div>
-            <div class="form-group">
-                <label>Correo Electrónico:</label>
-                <input type="text" class="form-control" name="email">
-            </div>
-            <div class="form-group">
-                <label>Contraseña:</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-        </form>
-    </div>
+      <div class="row" >
+          <div class="container-fluid">
+          <div class="col-md-7">
 
-    <div class="container">
-        <h2> </h2>
-        <form>
-            <table>
-                <tr>
-                    <td><label>Tipo de Usuario</label></td>
-                    <td>    </td>
-                    <td>
-                        <form action="">
-                            <input type="radio" name="owner" value="owner"> Dueño<br>
-                            <input type="radio" name="organizer" value="organizer"> Organizador<br>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+              <img src="image/grass.jpg">
 
-    <div class="container">
-        <h2> </h2>
-        <form>
-            <table>
-                <tr>
-                    <td><img src="image/LOGO2.JPG" alt="Chania"></td>
-                    <td>    </td>
-                    <td>
-                        <button><a href="_organizerForm.jsp">Guardar</a></button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+          </div>
 
+          <div class="col-md-5">
+
+              <h2> Registrase como : </h2>
+
+              <p>
+
+              </p>
+
+              <br>
+
+              <button><a href="newOrganizer.jsp"> ORGANIZADOR </a></button>
+
+              <p>
+
+              </p>
+
+              <br>
+
+               <button><a href="newOwner.jsp"> ADMINISTRADOR </a></button>
+
+          </div>
+      </div>
+       </div>
 </body>
 </html>
