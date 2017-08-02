@@ -19,9 +19,9 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
     YSFService service=new YSFService();
 
-    public static String OWNER_IN_URI = "/index3.jsp";
-    public static String ORGANIZER_IN_URI = "/index2.jsp";
-    public static String LOGIN_URI = "/login.jsp";
+  public static String OWNER_IN_URI = "/index3.jsp";
+  public static String ORGANIZER_IN_URI = "/index2.jsp";
+  public static String LOGIN_URI = "/login.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,6 +49,10 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(LOGIN_URI);
             dispatcher.include(request, response);
         }
+
+
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
