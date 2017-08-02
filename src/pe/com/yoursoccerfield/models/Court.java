@@ -19,12 +19,11 @@ public class Court {
     private boolean state;
     private Owner owner;
     private Ubigeo ubigeo;
-    private Service service;
 
     public Court() {
     }
 
-    public Court(String id, String name, int capacity, String address, String email, String phone, float price, String photo, int type, boolean state, Owner owner, Ubigeo ubigeo, Service service) {
+    public Court(String id, String name, int capacity, String address, String email, String phone, float price, String photo, int type, boolean state, Owner owner, Ubigeo ubigeo) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -37,7 +36,6 @@ public class Court {
         this.state = state;
         this.owner = owner;
         this.ubigeo = ubigeo;
-        this.service = service;
     }
 
     public String getId() {return id;}
@@ -100,12 +98,8 @@ public class Court {
     public Court setUbigeo(Ubigeo ubigeo) {this.ubigeo = ubigeo;
         return this;}
 
-    public Service getService() { return service;  }
-    public String getServiceAsValue(){return "'" + getService()+ "'" ;}
-    public Court setService(Service service) {this.service = service;
-        return this;}
 
-    public static Court build(ResultSet rs, OwnersEntity ownersEntity , UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+    public static Court build(ResultSet rs, OwnersEntity ownersEntity , UbigeosEntity ubigeosEntity) {
         try {
             return (new Court())
                     .setId(rs.getString("id"))
@@ -119,8 +113,7 @@ public class Court {
                     .setType(rs.getInt("type"))
                     .setState(rs.getBoolean("state"))
                     .setOwner(ownersEntity.findById(rs.getString("owner_id")))
-                    .setUbigeo(ubigeosEntity.findById(rs.getString("ubigeo_id")))
-                    .setService(servicesEntity.findById(rs.getString("service_id")));
+                    .setUbigeo(ubigeosEntity.findById(rs.getString("ubigeo_id")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
