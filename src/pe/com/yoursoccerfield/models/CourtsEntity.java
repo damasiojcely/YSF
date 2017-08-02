@@ -16,13 +16,20 @@ public class CourtsEntity extends BaseEntity{
         super();
     }
 
-    public List<Court> findByCriteria(String criteria, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+
+    public List<Court> findAllId(String id,OwnersEntity ownersEntity,UbigeosEntity ubigeosEntity) {
+        String criteria = " owner_id = '"+id+"'";
+        return findByCriteria(criteria,ownersEntity,ubigeosEntity);
+    }
+
+
+    public List<Court> findByCriteria(String criteria, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity) {
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Court> courts = new ArrayList<>();
         try {
             ResultSet rs = getConnection().createStatement().executeQuery(sql);
             if(rs == null) return null;
-            while(rs.next()) courts.add(Court.build(rs, ownersEntity,ubigeosEntity,servicesEntity));
+            while(rs.next()) courts.add(Court.build(rs, ownersEntity,ubigeosEntity));
             return courts;
         } catch(SQLException e) {
             e.printStackTrace();
@@ -30,26 +37,14 @@ public class CourtsEntity extends BaseEntity{
         return null;
     }
 
-    public Court findCourtByOwner(String ownerId, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
-        try {
-        String sql = "owner_id= '" + ownerId + "'";
-        return findByCriteria(sql,ownersEntity,ubigeosEntity,servicesEntity).get(0);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity) {
+        return findByCriteria("", ownersEntity, ubigeosEntity);
     }
 
-
-
-    public List<Court> findAll(OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
-        return findByCriteria("", ownersEntity, ubigeosEntity, servicesEntity);
-    }
-
-    public Court findById(String id, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity, ServicesEntity servicesEntity) {
+    public Court findById(String id, OwnersEntity ownersEntity, UbigeosEntity ubigeosEntity) {
         try {
             String  sql = "id = '" + id + "'";
-            return findByCriteria(sql, ownersEntity, ubigeosEntity, servicesEntity).get(0);
+            return findByCriteria(sql, ownersEntity, ubigeosEntity).get(0);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -58,7 +53,7 @@ public class CourtsEntity extends BaseEntity{
 
     public boolean add(Court court) {
         String sql = "INSERT INTO courts(id, name, capacity,address,email,phone,price,photo," +
-                "type,state,owner_id ,ubigeo_id,service_id) VALUES(" +
+                "type,state,owner_id ,ubigeo_id) VALUES(" +
                 court.getIdAsValue() + ", " +
                 court.getNameAsValue() + ", " +
                 court.getCapacityAsString() + ", " +
@@ -70,8 +65,7 @@ public class CourtsEntity extends BaseEntity{
                 court.getTypeAsString()+ ", " +
                 court.getStateAsString()+ ", " +
                 court.getOwner().getIdAsValue()+ ", " +
-                court.getUbigeo().getIdAsValue() + "," +
-                court.getService().getIdAsValue()+ ")";
+                court.getUbigeo().getIdAsValue() + ")" ;
         return change(sql);
     }
 
@@ -87,7 +81,6 @@ public class CourtsEntity extends BaseEntity{
                ", state = " + court.getStateAsString() +
                ", owner_id = " + court.getOwner().getIdAsValue() +
                ", ubigeo_id = " + court.getUbigeo().getIdAsValue() +
-               ", service_id = " +court.getService().getIdAsValue() +
                 " WHERE id = " + court.getIdAsValue();
         return change(sql);
     }
