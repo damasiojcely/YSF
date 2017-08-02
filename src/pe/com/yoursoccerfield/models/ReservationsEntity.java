@@ -19,30 +19,56 @@ public class ReservationsEntity extends BaseEntity {
         super();
     }
 
+
+
+    public List<Reservation> findAllById(String id,OrganizersEntity organizersEntity,CourtsEntity courtsEntity,
+                                         OwnersEntity ownersEntity,UbigeosEntity ubigeosEntity) {
+        String criteria = " organizer_id = '"+id+"'";
+        return findByCriteria(criteria,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity);
+    }
+
+
+
     public List<Reservation> findAll(OrganizersEntity organizersEntity,
                                      CourtsEntity courtsEntity,
                                      OwnersEntity ownersEntity,
-                                     UbigeosEntity ubigeosEntity,
-                                     ServicesEntity servicesEntity){
-        return findByCriteria("",organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity);
+                                     UbigeosEntity ubigeosEntity){
+        return findByCriteria("",organizersEntity,courtsEntity,ownersEntity,ubigeosEntity);
     }
 
     public Reservation findById(String id,
                                 OrganizersEntity organizersEntity,
                                 CourtsEntity courtsEntity,
                                 OwnersEntity ownersEntity,
-                                UbigeosEntity ubigeosEntity,
-                                ServicesEntity servicesEntity){
+                                UbigeosEntity ubigeosEntity){
         String criteria = "id = " + "'" + id + "'";
-        return findByCriteria(criteria,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity).get(0);
+        return findByCriteria(criteria,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity).get(0);
     }
 
+
+    public List<Reservation> findReservationByOwner(String criteria,OrganizersEntity organizersEntity,CourtsEntity courtsEntity,OwnersEntity ownersEntity,UbigeosEntity ubigeosEntity) {
+        String sql = " SELECT r.* from owners o , courts c , reservations r where r.court_id=c.id and c.owner_id=o.id and o.id="+"'"+criteria+"'" ;
+        List<Reservation> reservations = new ArrayList<>();
+        try {
+            ResultSet resultSet = getConnection()
+                    .createStatement()
+                    .executeQuery(sql);
+            if(resultSet == null) return null;
+            while(resultSet.next()) {
+                reservations.add(Reservation.build(resultSet,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity));
+            }
+            return reservations;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     public List<Reservation> findByCriteria(
             String criteria,OrganizersEntity organizersEntity,
             CourtsEntity courtsEntity,OwnersEntity ownersEntity,
-            UbigeosEntity ubigeosEntity,ServicesEntity servicesEntity){
+            UbigeosEntity ubigeosEntity){
 
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Reservation> reservations = new ArrayList<>();
@@ -51,7 +77,7 @@ public class ReservationsEntity extends BaseEntity {
             ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
             if(resultSet == null) return null;
             while(resultSet.next()) {
-                reservations.add(Reservation.build(resultSet,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity,servicesEntity));
+                reservations.add(Reservation.build(resultSet,organizersEntity,courtsEntity,ownersEntity,ubigeosEntity));
             }
             return reservations;
         } catch (SQLException e) {

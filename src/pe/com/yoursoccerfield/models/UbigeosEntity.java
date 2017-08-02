@@ -20,7 +20,7 @@ public class UbigeosEntity extends BaseEntity{
     public UbigeosEntity() { super(); }
 
     public List<Ubigeo> findByCriteria(String criteria) {
-        String sql = getDefaultQuery() + " GROUP BY "+ criteria;
+        String sql = getDefaultQuery() + (criteria.equalsIgnoreCase("") ? "" : " WHERE " + criteria);
         List<Ubigeo> ubigeos = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()
@@ -44,22 +44,6 @@ public class UbigeosEntity extends BaseEntity{
     public Ubigeo findById(String id){
         String criteria = " id = '" + id + "'";
         return findByCriteria(criteria).get(0);
-    }
-
-
-
-    List<Ubigeo>findAllDepartments(){
-        String criteria = "department_name";
-        return findByCriteria(criteria);
-    }
-
-    List<Ubigeo>findAllProvinces(){
-        String criteria = "province_name";
-        return findByCriteria(criteria);
-    }
-    List<Ubigeo>findAllDistricts(){
-        String criteria = "district_name";
-        return findByCriteria(criteria);
     }
 
 

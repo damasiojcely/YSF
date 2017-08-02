@@ -25,9 +25,17 @@ public class ParticipantsEntity extends BaseEntity {
     }
 
     public Participant findById(String id,  OrganizersEntity organizersEntity) {
-        String criteria = "id = '" + id + "'";
+        String criteria = " id = '" + id + "'";
         return findByCriteria(criteria, organizersEntity).get(0);
     }
+
+
+    public List<Participant> findAllId(String id,OrganizersEntity organizersEntity) {
+        String criteria = " organizer_id = '"+id+"'";
+        return findByCriteria(criteria,organizersEntity);
+    }
+
+
 
     public List<Participant> findByCriteria(String criteria, OrganizersEntity organizersEntity) {
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);

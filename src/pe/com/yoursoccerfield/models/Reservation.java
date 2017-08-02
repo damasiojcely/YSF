@@ -121,8 +121,7 @@ public class Reservation {
                                     OrganizersEntity organizersEntity,
                                     CourtsEntity courtsEntity,
                                     OwnersEntity ownersEntity,
-                                    UbigeosEntity ubigeosEntity,
-                                    ServicesEntity servicesEntity){
+                                    UbigeosEntity ubigeosEntity){
         try{
             return (new Reservation())
                     .setId(resultSet.getInt("id"))
@@ -132,8 +131,7 @@ public class Reservation {
                     .setHours(resultSet.getFloat("hours"))
                     .setTotal(resultSet.getFloat("total"))
                     .setOrganizer(organizersEntity.findById(resultSet.getString("organizer_id")))
-                    .setCourt(courtsEntity.findById(resultSet.getString("court_id"),ownersEntity,ubigeosEntity,servicesEntity));
-
+                    .setCourt(courtsEntity.findById(resultSet.getString("court_id"),ownersEntity,ubigeosEntity));
         } catch (SQLException e) {
             e.printStackTrace();
         }

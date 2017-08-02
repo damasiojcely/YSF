@@ -20,7 +20,6 @@ public class BaseEntity {
         this.tableName = tableName;
     }
 
-
     public BaseEntity() {
     }
 

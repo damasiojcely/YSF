@@ -40,7 +40,7 @@ public class ServicesEntity extends BaseEntity{
 
 
     public List<Service> findServiceByOwner(String criteria,CourtsEntity courtsEntity,OwnersEntity ownersEntity,UbigeosEntity ubigeosEntity) {
-        String sql = " SELECT s.* from owners o , courts c , services s where s.court_id=c.id and c.owner_id=o.id and o.id='" ;
+        String sql = " SELECT s.* from owners o , courts c , services s where s.court_id=c.id and c.owner_id=o.id and o.id="+"'"+criteria+"'" ;
         List<Service> services = new ArrayList<>();
         try {
             ResultSet resultSet = getConnection()

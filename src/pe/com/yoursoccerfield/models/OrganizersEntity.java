@@ -27,6 +27,10 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria).get(0);
     }
 
+//
+//    select o.first_name from organizers o inner join reservations r on o.id=r.organizer_id inner join courts c on r.court_id=c.id inner join owners ow on c.owner_id=ow.id where ow.id='OW003' ;
+
+
     public Organizer findByName(String name) {
         String criteria = " first_name = '" +
                 name + "'";
@@ -38,11 +42,16 @@ public class OrganizersEntity extends  BaseEntity{
         return findByCriteria(criteria);
     }
 
-      public List<Organizer> findAllById(String id) {
+    public List<Organizer> findAllById(String id) {
         String criteria = " id = '"+ id+"'";
         return findByCriteria(criteria);
     }
-    
+
+    public Organizer findyIdByEmailPassword(String email,String password){
+        String criteria= " email = '"+email+"' and password = '"+password+"'";
+        return findByCriteria(criteria).get(0);
+    }
+
 
     public  boolean findByEmailPassword(String email,String password) {
             boolean st =false;
@@ -51,7 +60,7 @@ public class OrganizersEntity extends  BaseEntity{
 //                Connection con= DriverManager.getConnection
 //                        ("jdbc:mysql://localhost:3306/dbsoccer","root","alumno");
                 PreparedStatement ps =getConnection().prepareStatement
-                        ( "select id from organizers where email=? and password=?" );
+                        (getDefaultQuery()+ " where email=? and password=?" );
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs =ps.executeQuery();
@@ -62,11 +71,6 @@ public class OrganizersEntity extends  BaseEntity{
             }
             return st;
         }
-
-    public boolean findByLogin(Organizer organizer){
-        String sql = "SELECT * FROM organizers WHERE email =" +organizer.getEmailAsValue()+ " and password = " + organizer.getPasswordAsValue()+"";
-        return change(sql);
-    }
 
    /* public boolean findByEmailPassword(String email,String password){
         String criteria= "email = '"+email+"' and password = '"+password+"'";
@@ -95,9 +99,30 @@ public class OrganizersEntity extends  BaseEntity{
         return null;
     }
 
+
+    public List<Organizer> findOrganizerByOwner(String criteria) {
+        String sql = " SELECT o.* from owners ow , courts c , reservations r , organizers o where o.id=r.organizer_id and r.court_id=c.id and c.owner_id=ow.id and ow.id="+"'"+criteria+"'" ;
+        List<Organizer> organizers = new ArrayList<>();
+        try {
+            ResultSet resultSet = getConnection()
+                    .createStatement()
+                    .executeQuery(sql);
+            if(resultSet == null) return null;
+            while(resultSet.next()) {
+                organizers.add(Organizer.build(resultSet));
+            }
+            return organizers;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
     public boolean add(Organizer organizer) {
-        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password, dni,photo,phone,position) " +
-                "VALUES(" + organizer.getIdAsValue() + ", " + organizer.getFirstNameAsValue()+" ,"+
+        String sql = "INSERT INTO organizers (id,first_name, last_name, email, password, dni,photo,phone,position)" +
+                "VALUES(" + organizer.getIdAsValue() + ", "+organizer.getFirstNameAsValue()+" ,"+
                 organizer.getLastNameAsValue() +", "+organizer.getEmailAsValue()+", "+ organizer.getPasswordAsValue() + ", "+
                 organizer.getDniAsValue()+", "+organizer.getPhotoAsValue()+", "+organizer.getPhoneAsValue()+", "+organizer.getPositionAsValue()+ ")";
         return change(sql);

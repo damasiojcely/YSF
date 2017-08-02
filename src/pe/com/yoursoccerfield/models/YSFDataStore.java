@@ -1,6 +1,6 @@
 package pe.com.yoursoccerfield.models;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.sql.Connection;
 import java.util.List;
@@ -41,7 +41,7 @@ public class YSFDataStore {
         return courtsEntity;
     }
 
-    public List<Court> findAllCourts(){ return getCourtsEntity().findAll(getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
+    public List<Court> findAllCourts(){ return getCourtsEntity().findAll(getOwnersEntity(),getUbigeosEntity()); }
 
     private OrganizersEntity getOrganizersEntity() {
         if(organizersEntity==null){
@@ -53,6 +53,8 @@ public class YSFDataStore {
     public List<Organizer> findAllOrganizers(){
         return getOrganizersEntity().findAll();
     }
+
+    public List<Organizer> finAllByIdOrganizers(String id){return getOrganizersEntity().findAllById(id);}
 
     private OwnersEntity getOwnersEntity() {
         if(ownersEntity==null){
@@ -77,6 +79,7 @@ public class YSFDataStore {
     }
 
 
+
     private ReservationsEntity getReservationsEntity() {
         if(reservationsEntity==null){
             reservationsEntity = new ReservationsEntity(getConnection());
@@ -85,7 +88,7 @@ public class YSFDataStore {
     }
 
     public List<Reservation> findAllReservations(){
-        return getReservationsEntity().findAll(getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity(),getServicesEntity());
+        return getReservationsEntity().findAll(getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity());
     }
 
     private ServicesEntity getServicesEntity() {
@@ -96,7 +99,7 @@ public class YSFDataStore {
     }
 
     public List<Service> findAllServices(){
-        return getServicesEntity().findAll();
+        return getServicesEntity().findAll(getCourtsEntity(),getOwnersEntity(),getUbigeosEntity());
     }
 
     private UbigeosEntity getUbigeosEntity() {
@@ -106,47 +109,40 @@ public class YSFDataStore {
         return ubigeosEntity;
     }
 
-    public List<Ubigeo> findAllDepartments() { return getUbigeosEntity().findAllDepartments();  }
+    public List<Ubigeo> findAllUbigeos() { return getUbigeosEntity().findAll(); }
 
-    public List<Ubigeo> findAllProvinces() {
-        return getUbigeosEntity().findAllProvinces();
+
+    public Organizer findOrganizerIdByEmail(String email,String password){
+        return getOrganizersEntity().findyIdByEmailPassword(email,password);
     }
 
-    public List<Ubigeo> findAllDistricts() {
-        return getUbigeosEntity().findAllDistricts();
-    }
 
 
     public Owner findOwnerById(String id){
         return getOwnersEntity().findById(id);
     }
 
-   public Reservation findReservationById(String id){ return getReservationsEntity().findById(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity(),getServicesEntity()); }
-
-    public Participant findParticipantById(String id){ return getParticipantsEntity().findById(id,getOrganizersEntity()); }
-
-    public Court findCourtById(String id){return getCourtsEntity().findById(id,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
-
-    public Court findCourtByOwner(String ownerId){return  getCourtsEntity().findCourtByOwner(ownerId,getOwnersEntity(),getUbigeosEntity(),getServicesEntity());}
-
-    public Service findServiceById(String id){ return getServicesEntity().findById(id); }
-
-    public Organizer findOrganizerById(String id){return getOrganizersEntity().findById(id);}
-
-
     public boolean updateOwner(Owner owner){ return getOwnersEntity().update(owner); }
 
-    public boolean updateCourt(Court court){return getCourtsEntity().update(court);}
-
-    public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
+    public Reservation findReservationById(String id){ return getReservationsEntity().findById(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity()); }
 
     public boolean updateReservation(Reservation reservation){ return getReservationsEntity().update(reservation); }
 
+    public Court findCourtById(String id){return getCourtsEntity().findById(id,getOwnersEntity(),getUbigeosEntity());}
+
+    public boolean updateCourt(Court court){return getCourtsEntity().update(court);}
+
+    public Organizer findOrganizerById(String id){return getOrganizersEntity().findById(id);}
+
+    public boolean updateOrganizer(Organizer organizer){return getOrganizersEntity().update(organizer);}
+
+    public Participant findParticipantById(String id){ return getParticipantsEntity().findById(id,getOrganizersEntity()); }
+
     public boolean updateParticipant(Participant participant){return getParticipantsEntity().update(participant);}
 
-   public boolean updateService(Service service){return getServicesEntity().update(service);}
+    public Service findServiceById(String id){ return getServicesEntity().findById(id,getCourtsEntity(),getOwnersEntity(),getUbigeosEntity()); }
 
-
+    public boolean updateService(Service service){return getServicesEntity().update(service);}
 
     public boolean addCourt(Court court){return getCourtsEntity().add(court);}
 
@@ -160,16 +156,40 @@ public class YSFDataStore {
 
     public boolean addService(Service service){return getServicesEntity().add(service);}
 
+    public Owner findOwnerIdByEmail(String email,String password){
+        return getOwnersEntity().findyIdByEmailPassword(email,password);
+    }
+
+    public List<Owner> findAllByIdOwners(String id){return  getOwnersEntity().findAllById(id);}
+
+/*    public List<Organizer> findAllOrganizerByOwner(String id){return getOrganizersEntity().findOrganizerByOwner(id);}*/
+
+
+public List<Service> findAllByServiceOwner(String id){
+    return getServicesEntity().findServiceByOwner(id,getCourtsEntity(),getOwnersEntity(),getUbigeosEntity());
+}
+
+public List<Reservation> findAllByReservationOwner(String id){
+    return getReservationsEntity().findReservationByOwner(id,getOrganizersEntity(),getCourtsEntity(),getOwnersEntity(),getUbigeosEntity());
+}
+
+
+    public List<Participant> findAllParticipantsById(String id){return getParticipantsEntity().findAllId(id,getOrganizersEntity());}
+
+    public List<Court> findAllCourtsByOwner(String id){return getCourtsEntity().findAllId(id,getOwnersEntity(),getUbigeosEntity());}
+
+    public List<Reservation> findAllReservationsById(String id){return getReservationsEntity().findAllById(id,getOrganizersEntity(),
+            getCourtsEntity(),getOwnersEntity(),getUbigeosEntity());}
+
+
+    public List<Organizer> findAllOrganizerByOwner(String id){return getOrganizersEntity().findOrganizerByOwner(id);}
+
 
 
 
     public boolean findOrganizerByEmail(String email,String password){ return getOrganizersEntity().findByEmailPassword(email,password); }
 
-    public boolean findOwnerByEmail(String email, String password){return getOwnersEntity().findByEmailPassword(email,password);}
-
-    public boolean findOrganizerByLogin(Organizer organizer){return getOrganizersEntity().findByLogin(organizer);}
-
-    public boolean findOwnerByLogin(Owner owner){return getOwnersEntity().findByLogin(owner);}
+    public boolean findOwnerByEmail(String email,String password){return getOwnersEntity().findByEmailPass(email,password);}
 
 
     public boolean deleteCourt(Court court){ return getCourtsEntity().delete(court);}

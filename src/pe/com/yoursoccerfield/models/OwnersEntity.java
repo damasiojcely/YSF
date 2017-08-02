@@ -19,6 +19,33 @@ public class OwnersEntity extends BaseEntity{
         super(connection,"owners");
     }
 
+
+    public Owner findyIdByEmailPassword(String email,String password){
+        String criteria= " email = '"+email+"' and password = '"+password+"'";
+        return findByCriteria(criteria).get(0);
+    }
+
+    public List<Owner> findAllById(String id) {
+        String criteria = " id = '"+ id+"'";
+        return findByCriteria(criteria);
+    }
+
+    public boolean findByEmailPass(String email,String password) {
+        boolean s =false;
+        try{
+            PreparedStatement ps =getConnection().prepareStatement(getDefaultQuery() + " where email=? and password=?" );
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs =ps.executeQuery();
+            s = rs.next();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+
     public List<Owner>findByCriteria(String criteria){
         String sql = getDefaultQuery() + (criteria.isEmpty() ? "" : " WHERE " + criteria);
         List<Owner> owners = new ArrayList<>();
@@ -54,30 +81,6 @@ public class OwnersEntity extends BaseEntity{
     public Owner findByLastName(String lastName){
         String criteria = " last_name = '" + lastName + "'";
         return findByCriteria(criteria).get(0);
-    }
-
-    public  boolean findByEmailPassword(String email,String password) {
-        boolean st =false;
-//            String sql=getDefaultQuery()+" where email=? and password=? ";
-        try{
-//                Connection con= DriverManager.getConnection
-//                        ("jdbc:mysql://localhost:3306/dbsoccer","root","alumno");
-            PreparedStatement ps =getConnection().prepareStatement
-                    (getDefaultQuery()+ " where email=? and password=?" );
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs =ps.executeQuery();
-            st = rs.next();
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return st;
-    }
-
-    public boolean findByLogin(Owner owner){
-        String sql = "SELECT * FROM owners WHERE email =" +owner.getEmailAsValue()+ " and password = " + owner.getPasswordAsValue()+"";
-        return change(sql);
     }
 
     public boolean add(Owner owner) {
@@ -116,4 +119,7 @@ public class OwnersEntity extends BaseEntity{
                 " WHERE id = " + owner.getIdAsValue();
         return change(sql);
     }
+
+
+
 }
