@@ -65,6 +65,7 @@ public class ReservationsServlet extends HttpServlet {
         String action = request.getParameter("action");
         String actionUri;
         switch (action){
+
             case "add": {
                 actionUri = RESERVATIONS_ADD_URI;
                 request.setAttribute("action","add");
