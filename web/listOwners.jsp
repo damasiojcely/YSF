@@ -47,9 +47,9 @@
     <link rel="stylesheet" href="css/style4.css">
 
 </head>
-<body >
-<jsp:include page="_headWithLogOut.jsp"/>
+<body>
 <jsp:include page="_menuOwner.jsp"/>
+
 <div class="col-md-9">
     <div id="content">
         <div class="col-md-10">
@@ -62,16 +62,17 @@
                         <div class="col-md-4">
                             <img src="image/user/${owner.id}.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
                         </div>
-                        <div class="col-md-6">
-                            <label> ID : </label> ${owner.id} <p></p>
-                            <label>  NOMBRE : </label> ${owner.firstName}<p></p>
-                            <label> APELLIDO : </label> ${owner.lastName}<p></p>
-                            <label>  EMAIL : </label> ${owner.email}<p></p>
-                            <label> DNI : </label> ${owner.dni}<p></p>
-                            <label> PHONE : </label> ${owner.phone}<p></p>
-                            <label> POSITION : </label> ${owner.position}<p></p>
+                        <div class="col-md-5">
+                            <h4><label> ID : </label> ${owner.id} </h4><p></p>
+                            <h4><label>  NOMBRE : </label> ${owner.firstName} </h4><p></p>
+                            <h4><label> APELLIDO : </label> ${owner.lastName} </h4><p></p>
+                            <h4><label>  EMAIL : </label> ${owner.email} </h4><p></p>
+                            <h4><label> DNI : </label> ${owner.dni} </h4><p></p>
+                            <h4><label> PHONE : </label> ${owner.phone} </h4><p></p>
+                            <h4><label> POSITION : </label> ${owner.position} </h4><p></p>
                             <br>
-                            <button><a href="owners?action=edit&id=<c:out value="${owner.id}"/>">EDITAR</a></button>
+                            <button class="btn-success"><a href="owners?action=edit&id=<c:out value="${owner.id}"/>">EDITAR PERFIL</a></button>
+
                         </div>
                     </div>
                 </c:forEach>
@@ -81,6 +82,8 @@
     </div>
 </div>
 
+</div>
+</div>
 <%--
     </div>
 --%>
