@@ -6,23 +6,14 @@
     <title>New Organizer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1">
-    <link href="css/bootstrap.css" rel="stylesheet"/>
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 100%;
-            margin: auto;
-        }
 
-    </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #F1F1F1">
-<jsp:include page="_head.jsp"/>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
 
 <center><div class="container img-responsive" style="width:500px; height: 434px ">
-    <h2>Registro Organizador</h2><br>
-    <form class="form-horizontal" action="organizers" method="post">
+        <form class="form-horizontal" action="organizers" method="post">
+            <h2>${action == 'edit' ? "Editar Perfil" : "Nuevo Perfil Organizador"}</h2><br>
         <div class="form-group">
             <label class="control-label col-sm-5">ID:</label>
             <div class="col-sm-7">
@@ -34,19 +25,19 @@
         <div class="form-group">
             <label class="control-label col-sm-5">Nombres:</label>
             <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Jose Luis" value="${organizer.firstName}"/>
+                <input type="text" name="firstName" class="form-control" placeholder="Ingrese nombres" value="${organizer.firstName}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-5">Apellidos:</label>
             <div class="col-sm-7">
-                <input type="text" name="lastName" class="form-control" placeholder="Perez Lopez" value="${organizer.lastName}"/>
+                <input type="text" name="lastName" class="form-control" placeholder="Ingrese Apellidos" value="${organizer.lastName}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-5">Correo Electr&oacute;nico:</label>
             <div class="col-sm-7">
-                <input type="text" name="email" class="form-control" placeholder="Ejemplo: micorreo@mail.com" value="${organizer.email}"/>
+                <input type="text" name="email" class="form-control" placeholder="Ingrese email" value="${organizer.email}"/>
             </div>
         </div>
         <div class="form-group">
@@ -87,15 +78,10 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary" value="Ingresar">Registrar</button>
+                <button type="submit" class="btn btn-primary"> ${action == 'edit' ? "Actualizar" : "Grabar"}</button>
 
             </div>
         </div>
     </form>
 </div></center>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-
-</body>
-</html>
