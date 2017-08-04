@@ -1,88 +1,90 @@
+<%@ page import="pe.com.yoursoccerfield.models.Organizer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: lnakaya
+  Date: 7/1/2017
+  Time: 10:37 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
 
-    <title>New Participant</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width , initial-scale=1">
-    <link href="css/bootstrap.css" rel="stylesheet"/>
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 100%;
-            margin: auto;
-        }
+    <title>Participantes</title>
 
-    </style>
 </head>
 <body>
-<jsp:include page="_head.jsp"/>
+
+
+<jsp:include page="_menuOrganizer.jsp"/>
+
+        <h2> AGREGAR PARTICIPANTE </h2>
 <jsp:useBean id="service" class="pe.com.yoursoccerfield.services.YSFService"/>
+<form action="participants" method="post" class="form-horizontal">
 
-<center><div class="container img-responsive" style="width:500px; height: 434px ">
-    <h2>Registro Participante</h2><br>
-    <form class="form-horizontal" action="participants" method="post">
-        <div class="form-group">
-            <label class="control-label col-sm-5">ID:</label>
-            <div class="col-sm-7">
+    <div class="form-group">
+        <label class="control-label col-sm-4" > ID : </label>
+        <div class="col-sm-8">
+    <input type="text" name="id" class="form-control" value="${participant.id}"<c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>/>
+        </div>
+    </div>
 
-                <input type="text" name="id" class="form-control" placeholder="ID" value="${participant.id}"
-                        <c:out value="${action == 'edit' ? 'readonly=\"readonly\"' : '' }"/>
-                />
-		</div>
+    <div class="form-group">
+        <label class="control-label col-sm-4" > First Name : </label>
+        <div class="col-sm-8">
+    <input type="text" name="firstName" class="form-control" value="${participant.firstName}"/>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-5">Nombre:</label>
-            <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Joaquin Sebastian" value="${participant.firstName}"/>
-            </div>
-        </div>
-		
-		<div class="form-group">
-            <label class="control-label col-sm-5">Apellidos:</label>
-            <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Moreno Saenz" value="${participant.lastName}"/>
-            </div>
-        </div>
-		
-		<div class="form-group">
-            <label class="control-label col-sm-5">Correo Electr&oacuteico;:</label>
-            <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Joaquin Moreno" value="${participant.email}"/>
-            </div>
-        </div>
-		
-		<div class="form-group">
-            <label class="control-label col-sm-5">Posici&oacuteico;n:</label>
-            <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Joaquin Moreno" value="${participant.position}"/>
-            </div>
-        </div>
-		
-		<div class="form-group">
-            <label class="control-label col-sm-5">Organizador:</label>
-            <div class="col-sm-7">
-                <input type="text" name="firstName" class="form-control" placeholder="Joaquin Moreno" value="${organizer.id}"/>
-            </div>
-        </div>
-		
-		   <div class="form-group">
+    </div>
 
-            <div class="col-sm-5">
-                <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-sm-4"> Last Name : </label>
+        <div class="col-sm-8">
+    <input type="text" name="lastName" class="form-control" value="${participant.lastName}"/>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary" value="Ingresar">Registrar</button>
-            </div>
-        </div>
-	</form>
-</div></center>
+    </div>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
+    <div class="form-group">
+        <label class="control-label col-sm-4"> Email : </label>
+        <div class="col-sm-8">
+    <input type="text" name="email" class="form-control" value="${participant.email}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-4" > Position : </label>
+        <div class="col-sm-8">
+    <input type="text" name="position" class="form-control" value="${participant.position}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-4"> ID Organizer : </label>
+        <div class="col-sm-8">
+    <input type="text" name="organizer" class="form-control" value="${organizer.id}"/>
+        </div>
+
+    </div>
+    <input type="hidden" value="${action == 'edit' ? "update" : "agregate"}" name="action"/>
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+    <input type="submit" class="btn btn-success" />
+        </div>
+    </div>
+
+
+
+</form>
+
+
+
+    </div>
+</div>
+
+
 
 </body>
 </html>
+
